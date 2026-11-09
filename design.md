@@ -170,8 +170,20 @@ objects.
 - The hero h1, lead and link rise 22px and fade in, staggered at 0/120/240ms
   over 0.9s. Inner-page heroes do the same for eyebrow, h1, lead and actions.
 - The hero horizon fades in over 1.3s.
-- The sun in the hero artwork drifts 8px vertically on an 11s loop. It is the
-  only looping animation on the site.
+- The sun in the hero artwork drifts 8px vertically on an 11s loop.
+
+**Sky detail**
+
+- A small airliner crosses the hero left to right over 46s, starting 3s after
+  load. A gull crosses right to left over 64s, already mid-flight at load so
+  the sky is never empty. Both loop, and both sit in the empty band above the
+  headline, behind the text layer.
+- The airliner bobs and pitches by 1.6° over 9s; the gull bobs 7px over 5.5s
+  and flaps its wings on a 1.1s cycle.
+- Both are original inline SVG in `--accent-strong` at 0.46–0.55 opacity, about
+  62px and 52px wide on desktop. They are decorative: `aria-hidden`, no pointer
+  events, and `display: none` under reduced motion.
+- They are on the home hero only. Inner-page heroes stay still.
 
 **On scroll**
 

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroArt from '../components/HeroArt.astro';
+import HeroFlyers from '../components/HeroFlyers.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import FeaturedProject from '../components/FeaturedProject.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -60,6 +61,7 @@ const legacyBg = [
       <a class="link-cta" href={url('/projects')}>View projects</a>
     </div>
     <HeroArt />
+    <HeroFlyers />
   </section>
 
   <section class="section" id="now-selling">

@@ -1598,6 +1598,105 @@ b {
   transform: none;
 }
 
+/* Sky detail: an aircraft and a bird crossing the hero from opposite sides. */
+
+.hero-flyers {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.flyer {
+  position: absolute;
+  left: 0;
+  color: var(--accent-strong);
+  will-change: transform;
+}
+
+.flyer svg {
+  width: 100%;
+  height: auto;
+}
+
+.flyer--plane {
+  top: clamp(1.15rem, 3.2vw, 2.4rem);
+  width: clamp(38px, 4.4vw, 62px);
+  opacity: 0.46;
+  animation: fly-across 46s linear 3s infinite;
+}
+
+.flyer--bird {
+  top: clamp(3.1rem, 6.8vw, 5.2rem);
+  width: clamp(32px, 3.9vw, 52px);
+  opacity: 0.55;
+  animation: fly-back 64s linear infinite;
+  animation-delay: -22s;
+}
+
+.flyer__drift {
+  animation: flyer-bob 9s ease-in-out infinite;
+}
+
+.flyer--bird .flyer__drift {
+  animation: bird-bob 5.5s -1.6s ease-in-out infinite;
+}
+
+.bird-wings {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: flap 1.1s ease-in-out infinite;
+}
+
+@keyframes fly-across {
+  from {
+    transform: translate3d(-16vw, 0, 0);
+  }
+  to {
+    transform: translate3d(116vw, 0, 0);
+  }
+}
+
+@keyframes fly-back {
+  from {
+    transform: translate3d(116vw, 0, 0);
+  }
+  to {
+    transform: translate3d(-16vw, 0, 0);
+  }
+}
+
+@keyframes flyer-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.6deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(1.6deg);
+  }
+}
+
+@keyframes bird-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes flap {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.38);
+  }
+}
+
 /* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
@@ -1775,5 +1874,9 @@ b {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .hero-flyers {
+    display: none;
   }
 }
