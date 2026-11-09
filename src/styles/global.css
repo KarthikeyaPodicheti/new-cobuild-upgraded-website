@@ -3,6 +3,32 @@
    Design tokens first, then base, components, and responsive rules.
    ========================================================================== */
 
+/* Self-hosted brand type: Larken Light for display, Atlas Grotesk for UI/body. */
+
+@font-face {
+  font-family: "Larken";
+  src: url("../assets/fonts/Larken-Light.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atlas Grotesk";
+  src: url("../assets/fonts/AtlasGrotesk-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atlas Grotesk";
+  src: url("../assets/fonts/AtlasGrotesk-Medium.otf") format("opentype");
+  font-weight: 500 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Colour */
   --ink: #101b2b;
@@ -21,9 +47,9 @@
   --success: #2c7454;
 
   /* Type */
-  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-  --font-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia,
+  --font-sans: "Atlas Grotesk", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: "Larken", "Iowan Old Style", "Palatino Linotype", Georgia,
     "Times New Roman", serif;
 
   /* Shape */
@@ -71,10 +97,15 @@ h3,
 h4 {
   margin: 0;
   font-family: var(--font-serif);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.015em;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   text-wrap: balance;
+}
+
+strong,
+b {
+  font-weight: 500;
 }
 
 p {
@@ -345,7 +376,7 @@ blockquote {
   color: var(--accent-2);
   font-family: var(--font-serif);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: 0.02em;
 }
 
@@ -356,9 +387,9 @@ blockquote {
 
 .logo__text strong {
   font-family: var(--font-serif);
-  font-size: 1.12rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0;
 }
 
 .logo__text small {
@@ -631,7 +662,7 @@ blockquote {
   display: block;
   font-family: var(--font-serif);
   font-size: clamp(1.7rem, 3vw, 2.5rem);
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -896,7 +927,7 @@ blockquote {
   background: var(--accent-wash);
   color: var(--accent-strong);
   font-family: var(--font-serif);
-  font-weight: 700;
+  font-weight: 300;
 }
 
 .feature h3 {
@@ -1136,7 +1167,7 @@ blockquote {
   background: linear-gradient(140deg, var(--ink-2), var(--ink));
   color: var(--accent-2);
   font-family: var(--font-serif);
-  font-weight: 700;
+  font-weight: 300;
 }
 
 .person strong {

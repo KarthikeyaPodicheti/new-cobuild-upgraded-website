@@ -5,6 +5,8 @@ import SiteFooter from '../components/SiteFooter.astro';
 import PreviewBanner from '../components/PreviewBanner.astro';
 import { site } from '../data/site';
 import { url } from '../lib/paths';
+import larkenLight from '../assets/fonts/Larken-Light.ttf?url';
+import atlasRegular from '../assets/fonts/AtlasGrotesk-Regular.otf?url';
 
 interface Props {
   title: string;
@@ -38,12 +40,8 @@ const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href={larkenLight} as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href={atlasRegular} as="font" type="font/otf" crossorigin />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
