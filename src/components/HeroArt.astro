@@ -1,0 +1,96 @@
+---
+// Decorative hero artwork: an abstract cityscape rendered inline so the
+// placeholder needs no external image.
+---
+
+<div class="hero-art" aria-hidden="true">
+  <div class="hero-art__frame">
+    <svg viewBox="0 0 640 720" role="presentation" focusable="false">
+      <defs>
+        <linearGradient id="hero-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#16263d" />
+          <stop offset="1" stop-color="#2c4462" />
+        </linearGradient>
+        <linearGradient id="hero-tower" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#f0d6a2" />
+          <stop offset="1" stop-color="#b8862f" />
+        </linearGradient>
+        <pattern
+          id="hero-windows"
+          width="16"
+          height="20"
+          patternUnits="userSpaceOnUse"
+        >
+          <rect width="16" height="20" fill="none" />
+          <rect
+            x="3"
+            y="4"
+            width="8"
+            height="10"
+            rx="1"
+            fill="#0f1b2b"
+            opacity="0.28"
+          />
+        </pattern>
+        <radialGradient id="hero-glow" cx="0.72" cy="0.2" r="0.5">
+          <stop offset="0" stop-color="#d9b166" stop-opacity="0.35" />
+          <stop offset="1" stop-color="#d9b166" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+
+      <rect width="640" height="720" fill="url(#hero-sky)" />
+      <rect width="640" height="720" fill="url(#hero-glow)" />
+      <circle cx="458" cy="150" r="52" fill="#d9b166" opacity="0.4" />
+
+      <!-- distant skyline -->
+      <g fill="#0d1726" opacity="0.55">
+        <rect x="12" y="392" width="72" height="328" />
+        <rect x="94" y="440" width="44" height="280" />
+        <rect x="498" y="408" width="62" height="312" />
+        <rect x="570" y="458" width="50" height="262" />
+      </g>
+
+      <!-- mid-ground blocks -->
+      <g>
+        <rect x="150" y="300" width="108" height="420" fill="#1a2c45" />
+        <rect x="150" y="300" width="108" height="420" fill="url(#hero-windows)" />
+        <rect x="382" y="336" width="120" height="384" fill="#20344f" />
+        <rect x="382" y="336" width="120" height="384" fill="url(#hero-windows)" />
+      </g>
+
+      <!-- focal tower -->
+      <rect x="268" y="186" width="92" height="534" fill="url(#hero-tower)" />
+      <rect
+        x="268"
+        y="186"
+        width="92"
+        height="534"
+        fill="url(#hero-windows)"
+        opacity="0.85"
+      />
+      <rect x="260" y="176" width="108" height="12" rx="2" fill="#f0d6a2" />
+
+      <!-- podium and lighting -->
+      <rect x="196" y="638" width="264" height="82" fill="#0d1726" />
+      <g fill="#d9b166" opacity="0.75">
+        <rect x="216" y="662" width="30" height="58" />
+        <rect x="262" y="662" width="30" height="58" />
+        <rect x="356" y="662" width="30" height="58" />
+        <rect x="402" y="662" width="30" height="58" />
+      </g>
+
+      <rect y="700" width="640" height="20" fill="#0a1320" />
+    </svg>
+  </div>
+
+  <div class="hero-art__badge">
+    <strong>18+</strong>
+    <span>years of delivery</span>
+  </div>
+
+  <div class="hero-art__card">
+    <span class="pill">Now launching</span>
+    <strong>Skyline Residences</strong>
+    <span>3 &amp; 4 BHK sky homes · Kondapur</span>
+  </div>
+</div>

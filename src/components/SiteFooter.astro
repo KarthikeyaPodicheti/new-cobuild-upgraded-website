@@ -1,0 +1,57 @@
+---
+import { navLinks, site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="/" aria-label={`${site.name} — home`}>
+          <span class="logo__mark" aria-hidden="true">NC</span>
+          <span class="logo__text">
+            <strong>New Co</strong>
+            <small>Build Infra Developers</small>
+          </span>
+        </a>
+        <p>
+          Residential communities, commercial landmarks and infrastructure —
+          planned, built and handed over by one accountable team.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Company</h3>
+        <ul class="footer-list">
+          {navLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>What we do</h3>
+        <ul class="footer-list">
+          <li><a href="/services">Residential development</a></li>
+          <li><a href="/services">Commercial &amp; retail</a></li>
+          <li><a href="/services">Plotted &amp; townships</a></li>
+          <li><a href="/services">Infrastructure &amp; EPC</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Visit us</h3>
+        <ul class="footer-contact">
+          <li>{site.address.lines.join(', ')}</li>
+          <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li>{site.hours}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p>{site.reraNote}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroArt from '../components/HeroArt.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { projects } from '../data/projects';
+
+const featured = projects.filter((project) => project.featured).slice(0, 3);
+
+const services = [
+  {
+    title: 'Residential development',
+    text: 'Apartments and gated communities designed around how people actually live — light, ventilation, storage and shared space.',
+  },
+  {
+    title: 'Commercial & retail',
+    text: 'Grade-A offices, retail high streets and mixed-use assets planned for occupancy, footfall and long-term value.',
+  },
+  {
+    title: 'Plotted & townships',
+    text: 'Master-planned layouts with roads, utilities, parks and amenities delivered end to end.',
+  },
+  {
+    title: 'Infrastructure & EPC',
+    text: 'Civil, road and utility works executed to public and private sector standards, on schedule.',
+  },
+];
+
+const pillars = [
+  {
+    icon: '01',
+    title: 'Engineering-led, not brochure-led',
+    text: 'In-house design coordination and site engineers own the details from foundation to finish.',
+  },
+  {
+    icon: '02',
+    title: 'Documentation you can verify',
+    text: 'Approvals, titles and RERA registrations are shared before you commit — not after.',
+  },
+  {
+    icon: '03',
+    title: 'Timelines we publish',
+    text: 'Every project carries a milestone schedule, and we report progress against it.',
+  },
+  {
+    icon: '04',
+    title: 'One team to handover',
+    text: 'Land, design, construction and handover sit with the same accountable team.',
+  },
+];
+
+const quotes = [
+  {
+    quote:
+      'The handover date we were given at booking is the date we got the keys. That has not been our experience with builders before.',
+    name: 'Homeowner',
+    detail: 'Green Meadows Villas',
+  },
+  {
+    quote:
+      'What stood out was the paperwork. Every approval was shared upfront, and the title was clean before we paid a rupee.',
+    name: 'Plot buyer',
+    detail: 'Sunrise Enclave',
+  },
+  {
+    quote:
+      'Their site team caught coordination issues early, which kept our fit-out schedule intact.',
+    name: 'Commercial tenant',
+    detail: 'Metro Trade Centre',
+  },
+];
+---
+
+<BaseLayout
+  title="Real estate and infrastructure developers"
+  description="New Co Build Infra Developers plans, builds and hands over residential communities, commercial landmarks and infrastructure with verifiable documentation and dependable timelines."
+>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <p class="eyebrow">Real estate &amp; infrastructure developers</p>
+        <h1>We build the places where <em>life and business</em> grow.</h1>
+        <p class="lead">
+          New Co Build Infra Developers plans, builds and hands over homes,
+          workplaces and infrastructure — with the paperwork, timelines and
+          finish quality to match the promise.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/projects">Explore projects</a>
+          <a class="btn btn--ghost" href="/contact">Book a site visit</a>
+        </div>
+        <ul class="hero__proof">
+          <li>RERA-compliant projects</li>
+          <li>Published handover schedules</li>
+          <li>In-house engineering team</li>
+        </ul>
+      </div>
+
+      <HeroArt />
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Company at a glance">
+    <div class="container stats__grid">
+      <div class="stat"><strong>18+</strong><span>Years in development</span></div>
+      <div class="stat"><strong>42</strong><span>Projects delivered</span></div>
+      <div class="stat"><strong>6.4M</strong><span>Sq ft developed</span></div>
+      <div class="stat"><strong>3,200+</strong><span>Families &amp; businesses housed</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="What we do"
+        title="Four ways we build"
+        intro="From a single residential tower to a fully serviced township, the same engineering discipline applies."
+        linkHref="/services"
+        linkLabel="All services"
+      />
+      <div class="grid grid--4">
+        {
+          services.map((service, index) => (
+            <article class="service-card">
+              <span class="service-card__num">0{index + 1}</span>
+              <h3>{service.title}</h3>
+              <p>{service.text}</p>
+              <a class="service-card__link" href="/services">
+                Learn more
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Selected work"
+        title="Projects on the ground"
+        intro="A mix of delivered communities and developments currently under construction."
+        linkHref="/projects"
+        linkLabel="See all projects"
+      />
+      <div class="grid grid--3">
+        {featured.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Why New Co"
+        title="The boring parts, done properly"
+        intro="Most construction promises sound the same. The difference is in what gets documented, published and handed over."
+      />
+      <ul class="feature-list">
+        {
+          pillars.map((pillar) => (
+            <li class="feature">
+              <span class="feature__icon">{pillar.icon}</span>
+              <div>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <SectionHeading
+        eyebrow="In their words"
+        title="What owners and tenants tell us"
+        intro="Illustrative quotes — replace with verified client testimonials before launch."
+      />
+      <div class="quote-grid">
+        {
+          quotes.map((item) => (
+            <blockquote class="quote">
+              <p>“{item.quote}”</p>
+              <footer>
+                <strong>{item.name}</strong>
+                <span>{item.detail}</span>
+              </footer>
+            </blockquote>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

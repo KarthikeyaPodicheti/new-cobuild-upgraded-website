@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { projects } from '../data/projects';
+
+const statuses = ['All', 'Ongoing', 'Completed', 'Upcoming'] as const;
+const counts = {
+  All: projects.length,
+  Ongoing: projects.filter((p) => p.status === 'Ongoing').length,
+  Completed: projects.filter((p) => p.status === 'Completed').length,
+  Upcoming: projects.filter((p) => p.status === 'Upcoming').length,
+};
+---
+
+<BaseLayout
+  title="Projects"
+  description="Residential, commercial, plotted and infrastructure projects — ongoing, completed and upcoming."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Projects</p>
+      <h1>Built, building, and next.</h1>
+      <p class="lead">
+        A working view of the portfolio: communities already handed over,
+        developments under construction, and sites in planning.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="filters" role="group" aria-label="Filter projects by status">
+        {
+          statuses.map((status, index) => (
+            <button
+              class="filter"
+              type="button"
+              data-filter={status === 'All' ? 'all' : status}
+              aria-pressed={index === 0 ? 'true' : 'false'}
+            >
+              {status} ({counts[status]})
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="grid grid--3">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+
+      <p class="note" style="margin-top: 2rem;">
+        Project names, locations, specifications and dates on this page are
+        illustrative placeholders. Replace them with verified project data, RERA
+        numbers and photography before launch.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Ask for the full project dossier"
+    body="Approvals, specifications, floor plans and the milestone schedule — sent before you book a site visit."
+  />
+</BaseLayout>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-status]');
+
+  filters.forEach((button) => {
+    button.addEventListener('click', () => {
+      const value = button.dataset.filter;
+
+      filters.forEach((item) =>
+        item.setAttribute('aria-pressed', String(item === button)),
+      );
+
+      cards.forEach((card) => {
+        card.hidden = value !== 'all' && card.dataset.status !== value;
+      });
+    });
+  });
+</script>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  title?: string;
+  body?: string;
+}
+
+const {
+  title = 'Thinking about a home, an office, or a land partnership?',
+  body = "Tell us what you're planning. We'll come back with a straight answer, a site visit, and the documents you need to decide.",
+} = Astro.props;
+---
+
+<section class="section section--tight">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <p class="eyebrow">Start a conversation</p>
+        <h2>{title}</h2>
+        <p>{body}</p>
+      </div>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href="/contact">Enquire now</a>
+        <a class="btn btn--light" href="/projects">View projects</a>
+      </div>
+    </div>
+  </div>
+</section>

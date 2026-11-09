@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const values = [
+  {
+    title: 'Integrity in paperwork',
+    text: 'Titles, approvals and registrations are checked and shared before money moves. No surprises at handover.',
+  },
+  {
+    title: 'Craft in construction',
+    text: 'Material specifications are published, samples are approved, and quality is checked at every stage, not just at the end.',
+  },
+  {
+    title: 'Respect for timelines',
+    text: 'Milestone schedules are committed at booking and reported against during construction.',
+  },
+  {
+    title: 'Responsibility to community',
+    text: 'Water, drainage, access and landscaping are planned with the neighbourhood, not just the boundary wall.',
+  },
+];
+
+const milestones = [
+  { year: '2008', title: 'The company is founded', text: 'Starts with civil works and small residential mandates in Hyderabad.' },
+  { year: '2011', title: 'First residential project', text: 'A 96-home community delivered two months ahead of schedule.' },
+  { year: '2015', title: 'Commercial development', text: 'Enters Grade-A office and retail construction with a 220,000 sq ft build.' },
+  { year: '2019', title: 'One million sq ft delivered', text: 'Crosses the million-square-foot mark across residential and commercial.' },
+  { year: '2023', title: 'First township handover', text: 'Sunrise Enclave handed over plot-by-plot with completed infrastructure.' },
+  { year: '2026', title: 'Forty-two projects', text: 'Operating across three cities with residential, commercial and infrastructure mandates.' },
+];
+
+const leaders = [
+  { initials: 'MD', role: 'Managing Director' },
+  { initials: 'DP', role: 'Director — Projects' },
+  { initials: 'HD', role: 'Head of Design' },
+  { initials: 'HS', role: 'Head of Sales' },
+];
+
+const credentials = [
+  'RERA registration published for every project',
+  'Clear title and encumbrance certificates shared upfront',
+  'Statutory approvals tracked and disclosed at each stage',
+  'Stage-wise QA/QC checks with third-party audits on request',
+  'Site safety plan and monthly safety reporting',
+];
+---
+
+<BaseLayout
+  title="About us"
+  description="Eighteen years of residential, commercial and infrastructure development — built around verifiable documentation and dependable handovers."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">About New Co</p>
+      <h1>Builders with an engineer's habit of showing the working.</h1>
+      <p class="lead">
+        We started in 2008 with a simple frustration: buying property in this
+        market asked for more faith than paperwork. New Co was built to close
+        that gap.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="prose">
+        <p class="eyebrow">Our story</p>
+        <h2 style="margin-top: 0.85rem;">One brief, one accountable team</h2>
+        <p style="margin-top: 1.1rem;">
+          Eighteen years, forty-two projects and 6.4 million square feet later,
+          the principle has not changed. We take on land, design, approvals and
+          construction as a single brief — and we document each stage so buyers,
+          tenants and partners can check the work.
+        </p>
+        <p>
+          Today the company operates across residential, commercial, plotted
+          development and infrastructure. An in-house team of engineers, project
+          managers and sales staff stays with a project from feasibility to
+          handover, which means decisions do not get lost between consultants.
+        </p>
+        <p>
+          We are deliberately not the fastest builder in the market. We would
+          rather publish a realistic date, meet it, and hand over a building
+          that does not need a second round of corrections.
+        </p>
+      </div>
+
+      <ul class="timeline" aria-label="Company milestones">
+        {
+          milestones.map((milestone) => (
+            <li>
+              <strong>{milestone.year}</strong>
+              <h3>{milestone.title}</h3>
+              <p>{milestone.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="grid grid--2" style="margin-bottom: 2.5rem;">
+        <article class="value-card">
+          <h3>Mission</h3>
+          <p>
+            To build assets that perform as promised — on specification, on
+            schedule and on title.
+          </p>
+        </article>
+        <article class="value-card">
+          <h3>Vision</h3>
+          <p>
+            To be the developer landowners and buyers recommend because the
+            process was as sound as the building.
+          </p>
+        </article>
+      </div>
+
+      <p class="eyebrow">What we stand on</p>
+      <h2 style="margin-top: 0.85rem; font-size: clamp(1.85rem, 3.5vw, 2.6rem);">
+        Four values, no exceptions
+      </h2>
+      <div class="grid grid--4" style="margin-top: 2rem;">
+        {
+          values.map((value) => (
+            <article class="value-card">
+              <h3>{value.title}</h3>
+              <p>{value.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="container">
+      <p class="eyebrow">Leadership</p>
+      <h2 style="margin-top: 0.85rem; font-size: clamp(1.85rem, 3.5vw, 2.6rem);">
+        The people accountable for delivery
+      </h2>
+      <div class="grid grid--4" style="margin-top: 2rem;">
+        {
+          leaders.map((leader) => (
+            <article class="person">
+              <span class="avatar" aria-hidden="true">{leader.initials}</span>
+              <strong>Name to be added</strong>
+              <span>{leader.role}</span>
+            </article>
+          ))
+        }
+      </div>
+      <p class="note" style="margin-top: 1.75rem; border-color: rgba(255,255,255,0.2); color: #aeb9c8;">
+        Leadership profiles, photographs and biographies are placeholders in
+        this draft.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Credentials</p>
+        <h2 style="margin-top: 0.85rem; font-size: clamp(1.85rem, 3.5vw, 2.6rem);">
+          What we can show you
+        </h2>
+        <p class="lead" style="margin-top: 0.9rem;">
+          Ask for any of these at enquiry; they are part of the sales pack, not a
+          favour.
+        </p>
+      </div>
+      <ul class="check-list">
+        {credentials.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Want the project dossier before you visit?"
+    body="Ask us for the approvals, title documents and milestone schedule for any project you are considering."
+  />
+</BaseLayout>

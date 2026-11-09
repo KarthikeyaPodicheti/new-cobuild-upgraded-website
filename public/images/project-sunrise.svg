@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="800" height="550" role="img" aria-label="Illustration of a plotted layout with small houses and roads">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e7cb"/>
+      <stop offset="1" stop-color="#e3c893"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6b6f76"/>
+      <stop offset="1" stop-color="#4c5158"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="550" fill="url(#sky)"/>
+  <circle cx="660" cy="110" r="58" fill="#d9b166" opacity="0.55"/>
+  <g fill="#2f4a3c" opacity="0.85">
+    <rect x="40" y="150" width="90" height="90" rx="6"/>
+    <rect x="150" y="150" width="90" height="90" rx="6"/>
+    <rect x="260" y="150" width="90" height="90" rx="6"/>
+    <rect x="370" y="150" width="90" height="90" rx="6"/>
+    <rect x="480" y="150" width="90" height="90" rx="6"/>
+    <rect x="590" y="150" width="90" height="90" rx="6"/>
+  </g>
+  <g fill="#f3e8cf">
+    <rect x="58" y="180" width="54" height="44"/>
+    <rect x="168" y="180" width="54" height="44"/>
+    <rect x="278" y="180" width="54" height="44"/>
+    <rect x="388" y="180" width="54" height="44"/>
+    <rect x="498" y="180" width="54" height="44"/>
+    <rect x="608" y="180" width="54" height="44"/>
+  </g>
+  <g fill="#8a6b3f">
+    <polygon points="52,182 85,158 118,182"/>
+    <polygon points="162,182 195,158 228,182"/>
+    <polygon points="272,182 305,158 338,182"/>
+    <polygon points="382,182 415,158 448,182"/>
+    <polygon points="492,182 525,158 558,182"/>
+    <polygon points="602,182 635,158 668,182"/>
+  </g>
+  <rect y="260" width="800" height="60" fill="url(#road)"/>
+  <g fill="#e3c893">
+    <rect x="40" y="270" width="46" height="8" rx="4"/>
+    <rect x="120" y="270" width="46" height="8" rx="4"/>
+    <rect x="200" y="270" width="46" height="8" rx="4"/>
+    <rect x="280" y="270" width="46" height="8" rx="4"/>
+    <rect x="360" y="270" width="46" height="8" rx="4"/>
+    <rect x="440" y="270" width="46" height="8" rx="4"/>
+    <rect x="520" y="270" width="46" height="8" rx="4"/>
+    <rect x="600" y="270" width="46" height="8" rx="4"/>
+    <rect x="680" y="270" width="46" height="8" rx="4"/>
+  </g>
+  <g fill="#d9c49a">
+    <rect x="40" y="340" width="160" height="120" rx="6"/>
+    <rect x="220" y="340" width="160" height="120" rx="6"/>
+    <rect x="400" y="340" width="160" height="120" rx="6"/>
+    <rect x="580" y="340" width="160" height="120" rx="6"/>
+  </g>
+  <g fill="#4c6b52">
+    <circle cx="120" cy="400" r="26"/>
+    <circle cx="300" cy="400" r="26"/>
+    <circle cx="480" cy="400" r="26"/>
+    <circle cx="660" cy="400" r="26"/>
+  </g>
+  <rect y="500" width="800" height="50" fill="#d9c49a"/>
+  <rect y="536" width="800" height="14" fill="#c2ab7e"/>
+</svg>

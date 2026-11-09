@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Talk to New Co Build Infra Developers about a home, commercial space, plot or land partnership."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Contact</p>
+      <h1>Let's talk about what you're planning.</h1>
+      <p class="lead">
+        Whether it is a first home, an office requirement or a land partnership,
+        start with a short brief. We reply within one working day.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow">Reach us</p>
+        <h2 style="margin-top: 0.85rem; font-size: clamp(1.6rem, 3vw, 2.2rem);">
+          Office and site visits
+        </h2>
+        <dl class="contact-list">
+          <div>
+            <dt>Head office</dt>
+            <dd>{site.address.lines.join(', ')}</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href={`tel:${site.phoneHref}`}>{site.phone}</a></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+          </div>
+          <div>
+            <dt>Hours</dt>
+            <dd>{site.hours}</dd>
+          </div>
+          <div>
+            <dt>Follow</dt>
+            <dd>
+              {
+                site.social.map((item, index) => (
+                  <>
+                    {index > 0 && ' · '}
+                    <a href={item.href}>{item.label}</a>
+                  </>
+                ))
+              }
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="form-card">
+        <h2>Send an enquiry</h2>
+        <p>Fields marked with * are required.</p>
+
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="form-grid"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="sr-only">
+            <label>Do not fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="field">
+            <label for="name">Full name *</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone *</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+
+          <div class="field field--full">
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="field field--full">
+            <label for="interest">I am interested in</label>
+            <select id="interest" name="interest">
+              <option>Buying a home</option>
+              <option>Commercial or retail space</option>
+              <option>Plotted land</option>
+              <option>Land / joint-venture partnership</option>
+              <option>Infrastructure or EPC work</option>
+              <option>Something else</option>
+            </select>
+          </div>
+
+          <div class="field field--full">
+            <label for="message">Tell us a little more</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Preferred location, budget range, timeline, or the stage you are at."
+            ></textarea>
+          </div>
+
+          <div class="field field--full">
+            <label class="checkbox">
+              <input type="checkbox" name="consent" required />
+              <span>I agree to be contacted about this enquiry. My details will not be used for anything else.</span>
+            </label>
+          </div>
+
+          <div class="field field--full">
+            <button class="btn btn--ink" type="submit">Send enquiry</button>
+            <p class="form-note">
+              This form is ready for Netlify Forms. Connect your chosen form
+              backend before the site goes live.
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="map-placeholder" role="img" aria-label="Map placeholder for the head office">
+        <span>
+          Map embed placeholder<br />
+          {site.address.lines.join(', ')}
+        </span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
