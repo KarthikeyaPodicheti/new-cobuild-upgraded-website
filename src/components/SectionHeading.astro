@@ -1,4 +1,6 @@
 ---
+import { url } from '../lib/paths';
+
 interface Props {
   eyebrow: string;
   title: string;
@@ -16,5 +18,5 @@ const { eyebrow, title, intro, linkHref, linkLabel = 'View all' } = Astro.props;
     <h2>{title}</h2>
     {intro && <p>{intro}</p>}
   </div>
-  {linkHref && <a class="section-head__link" href={linkHref}>{linkLabel}</a>}
+  {linkHref && <a class="section-head__link" href={url(linkHref)}>{linkLabel}</a>}
 </div>

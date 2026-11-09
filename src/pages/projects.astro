@@ -1,58 +1,83 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import FeaturedProject from '../components/FeaturedProject.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { projects } from '../data/projects';
+import { projects, trackRecord } from '../data/projects';
+import { url } from '../lib/paths';
 
-const statuses = ['All', 'Ongoing', 'Completed', 'Upcoming'] as const;
-const counts = {
-  All: projects.length,
-  Ongoing: projects.filter((p) => p.status === 'Ongoing').length,
-  Completed: projects.filter((p) => p.status === 'Completed').length,
-  Upcoming: projects.filter((p) => p.status === 'Upcoming').length,
-};
+const flagship = projects[0];
 ---
 
 <BaseLayout
   title="Projects"
-  description="Residential, commercial, plotted and infrastructure projects — ongoing, completed and upcoming."
+  description="The current NewBuild launch, plus developments delivered by the promoters."
 >
   <section class="page-hero">
     <div class="container">
       <p class="eyebrow">Projects</p>
       <h1>Built, building, and next.</h1>
       <p class="lead">
-        A working view of the portfolio: communities already handed over,
-        developments under construction, and sites in planning.
+        A working view of the portfolio: the project selling now, and earlier
+        work delivered by the promoters.
       </p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="filters" role="group" aria-label="Filter projects by status">
+      <p class="eyebrow">Now selling</p>
+      <h2 style="margin-top: 0.85rem; font-size: clamp(1.85rem, 3.5vw, 2.6rem);">
+        The current launch
+      </h2>
+      <div style="margin-top: 2rem;">
+        {flagship && <FeaturedProject project={flagship} />}
+      </div>
+      <p class="note" style="margin-top: 2rem;">
+        Placeholder project name, specifications and imagery. The Client
+        supplies verified facts, the RERA number and photography before launch.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container">
+      <p class="eyebrow">Track record</p>
+      <h2 style="margin-top: 0.85rem; font-size: clamp(1.85rem, 3.5vw, 2.6rem);">
+        Delivered by the promoters
+      </h2>
+      <p class="lead" style="margin-top: 0.75rem; max-width: 60ch;">
+        Earlier developments completed by the team behind NewBuild, shown with
+        attribution.
+      </p>
+
+      <div class="grid grid--3" style="margin-top: 2rem;">
         {
-          statuses.map((status, index) => (
-            <button
-              class="filter"
-              type="button"
-              data-filter={status === 'All' ? 'all' : status}
-              aria-pressed={index === 0 ? 'true' : 'false'}
-            >
-              {status} ({counts[status]})
-            </button>
+          trackRecord.map((entry) => (
+            <article class="track-card">
+              <div class="track-card__media">
+                <img
+                  src={url(entry.image)}
+                  alt={`Illustration of ${entry.title}`}
+                  width="640"
+                  height="440"
+                  loading="lazy"
+                />
+              </div>
+              <div class="track-card__body">
+                <p class="project-card__meta">
+                  {entry.location} · {entry.year}
+                </p>
+                <h3>{entry.title}</h3>
+                <p>{entry.note}</p>
+              </div>
+            </article>
           ))
         }
       </div>
 
-      <div class="grid grid--3">
-        {projects.map((project) => <ProjectCard project={project} />)}
-      </div>
-
       <p class="note" style="margin-top: 2rem;">
-        Project names, locations, specifications and dates on this page are
-        illustrative placeholders. Replace them with verified project data, RERA
-        numbers and photography before launch.
+        Placeholder entries. Replace with verified names, years and photography,
+        or remove this section if no attributable track record exists.
       </p>
     </div>
   </section>
@@ -62,22 +87,3 @@ const counts = {
     body="Approvals, specifications, floor plans and the milestone schedule — sent before you book a site visit."
   />
 </BaseLayout>
-
-<script>
-  const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-  const cards = document.querySelectorAll<HTMLElement>('[data-status]');
-
-  filters.forEach((button) => {
-    button.addEventListener('click', () => {
-      const value = button.dataset.filter;
-
-      filters.forEach((item) =>
-        item.setAttribute('aria-pressed', String(item === button)),
-      );
-
-      cards.forEach((card) => {
-        card.hidden = value !== 'all' && card.dataset.status !== value;
-      });
-    });
-  });
-</script>

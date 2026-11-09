@@ -1,18 +1,21 @@
 ---
 import { navLinks, site } from '../data/site';
+import { projects } from '../data/projects';
+import { url } from '../lib/paths';
 
 const year = new Date().getFullYear();
+const flagship = projects[0];
 ---
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="/" aria-label={`${site.name} — home`}>
-          <span class="logo__mark" aria-hidden="true">NC</span>
+        <a class="logo" href={url('/')} aria-label={`${site.name} — home`}>
+          <span class="logo__mark" aria-hidden="true">NB</span>
           <span class="logo__text">
-            <strong>New Co</strong>
-            <small>Build Infra Developers</small>
+            <strong>{site.shortName}</strong>
+            <small>Infra Developers</small>
           </span>
         </a>
         <p>
@@ -24,17 +27,28 @@ const year = new Date().getFullYear();
       <div class="footer-col">
         <h3>Company</h3>
         <ul class="footer-list">
-          {navLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+          {
+            navLinks.map((link) => (
+              <li><a href={url(link.href)}>{link.label}</a></li>
+            ))
+          }
         </ul>
       </div>
 
       <div class="footer-col">
-        <h3>What we do</h3>
+        <h3>Explore</h3>
         <ul class="footer-list">
-          <li><a href="/services">Residential development</a></li>
-          <li><a href="/services">Commercial &amp; retail</a></li>
-          <li><a href="/services">Plotted &amp; townships</a></li>
-          <li><a href="/services">Infrastructure &amp; EPC</a></li>
+          <li><a href={url('/projects')}>All projects</a></li>
+          {
+            flagship && (
+              <li>
+                <a href={url(`/projects/${flagship.slug}/`)}>
+                  {flagship.title}
+                </a>
+              </li>
+            )
+          }
+          <li><a href={url('/contact')}>Book a site visit</a></li>
         </ul>
       </div>
 

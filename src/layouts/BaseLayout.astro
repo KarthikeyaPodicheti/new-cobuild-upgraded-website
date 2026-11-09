@@ -2,7 +2,9 @@
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import PreviewBanner from '../components/PreviewBanner.astro';
 import { site } from '../data/site';
+import { url } from '../lib/paths';
 
 interface Props {
   title: string;
@@ -12,7 +14,7 @@ interface Props {
 const { title, description = site.description } = Astro.props;
 const pageTitle = `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/images/og-cover.svg', Astro.site);
+const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
 ---
 
 <!doctype html>
@@ -24,7 +26,9 @@ const ogImage = new URL('/images/og-cover.svg', Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#101b2b" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Mockup only: removed at launch. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
@@ -43,6 +47,7 @@ const ogImage = new URL('/images/og-cover.svg', Astro.site);
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <PreviewBanner />
     <SiteHeader />
     <main id="main">
       <slot />

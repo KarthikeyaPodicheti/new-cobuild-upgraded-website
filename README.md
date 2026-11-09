@@ -1,7 +1,8 @@
-# New Co Build Infra Developers — website
+# NewBuild — website mockup
 
-A static marketing site for a real estate and infrastructure development
-business. Built with [Astro](https://astro.build) and deployed as plain HTML.
+A static design mockup for a real-estate developer's website, built with
+[Astro](https://astro.build). It is deployed to GitHub Pages with placeholder
+content, a design-preview banner and `noindex`.
 
 ## Commands
 
@@ -12,55 +13,41 @@ business. Built with [Astro](https://astro.build) and deployed as plain HTML.
 | `npm run build`   | Build the production site to `./dist/`       |
 | `npm run preview` | Preview the production build locally         |
 
+## What this is
+
+- 5 pages + 404: Home, About, Projects, Project detail, Contact.
+- Placeholder copy, imagery and a `NewBuild` wordmark.
+- A single flagship project plus a promoters' track-record section.
+- `noindex` and a visible "Design preview" banner.
+- Deployed to GitHub Pages from `.github/workflows/deploy.yml`.
+
 ## Structure
 
 ```
 src/
-├── components/     Header, footer, cards, CTA band, hero artwork
+├── components/     Header, footer, cards, CTA band, hero artwork, preview banner
 ├── data/           Site details and project records (edit content here)
 ├── layouts/        Base layout with SEO metadata
+├── lib/            Base-path helper for GitHub Pages
 ├── pages/          One file per route
 └── styles/         Global design tokens and component styles
 public/
 └── images/         Placeholder SVG artwork (replace with real photography)
 ```
 
-## What to replace before launch
+## Before the production launch (MilesWeb)
 
-- **Content:** `src/data/site.ts` (phone, email, address, social links) and
-  `src/data/projects.ts` (projects, statuses, facts, images).
-- **Branding:** logo mark in `src/components/SiteHeader.astro` and
-  `src/components/SiteFooter.astro`; colours in `src/styles/global.css`.
-- **Imagery:** swap `public/images/*.svg` for real photography. Keep the same
-  filenames or update the paths in `src/data/projects.ts`.
-- **Contact form:** the form is marked for Netlify Forms
-  (`data-netlify="true"`). Connect a backend (Netlify, Formspree, or your own
-  endpoint) and test a real submission.
-- **Map:** replace the placeholder block in `src/pages/contact.astro` with a
-  Google Maps or OpenStreetMap embed.
-- **Legal:** add real RERA registration numbers and a privacy policy.
-- **Domain:** update `site` in `astro.config.mjs`, plus the URLs in
-  `public/robots.txt` and `public/sitemap.xml`, before deploying.
-- **Open Graph image:** `public/images/og-cover.svg` works for previews, but most
-  social platforms prefer a 1200×630 PNG or JPG. Export one before launch.
+- Replace placeholder content in `src/data/site.ts` and `src/data/projects.ts`.
+- Swap the wordmark for the real logo.
+- Remove the preview banner and the `noindex` meta from
+  `src/layouts/BaseLayout.astro`.
+- Change `site` and `base` in `astro.config.mjs` to
+  `https://newbuild.co.in` and `/`.
+- Connect the enquiry form to email and WhatsApp.
+- Add privacy, terms and RERA disclaimer pages.
+- Back up the default WordPress install, then upload `dist/` to `public_html`.
 
-## Deploying
+## Deploy (mockup)
 
-The build output is fully static. Any of these work:
-
-- **Netlify:** connect the repo, build command `npm run build`, publish `dist`.
-- **Vercel:** framework preset Astro; defaults are correct.
-- **GitHub Pages / Cloudflare Pages / S3:** upload the contents of `dist/`.
-
-## Toolchain note
-
-Astro is pinned to **5.x**. Astro 7 pulls a native Markdown-binding binary
-(`satteri`) that Windows Application Control blocks on this machine. This site
-uses no Markdown, so 5.x is a clean fit. The sitemap is a hand-written static
-file in `public/` for the same reason: fewer native dependencies.
-
-## Draft status
-
-Copy, project data, testimonials, leadership profiles and imagery are
-placeholders. The site is structurally complete and builds cleanly; the
-checklist above is what remains before it represents the business publicly.
+GitHub Pages builds and deploys on every push to `main`. The site is served from
+`https://karthikeyapodicheti.github.io/newbuild-mockup/`.

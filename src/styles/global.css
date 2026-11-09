@@ -1541,6 +1541,206 @@ blockquote {
 }
 
 /* --------------------------------------------------------------------------
+   Preview banner (mockup only)
+   -------------------------------------------------------------------------- */
+
+.preview-banner {
+  background: var(--accent-2);
+  color: #201708;
+  font-size: 0.78rem;
+}
+
+.preview-banner__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  padding-block: 0.55rem;
+}
+
+.preview-banner strong {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Featured project
+   -------------------------------------------------------------------------- */
+
+.featured-project {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.featured-project__media {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  background: var(--ink-2);
+}
+
+.featured-project__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-project__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.featured-project__body h3 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+.featured-project__body p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.featured-project__body .btn {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.section--ink .featured-project h3,
+.section--ink .featured-project h3 a {
+  color: var(--ink);
+}
+
+.section--ink .featured-project .project-card__meta {
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Track record cards
+   -------------------------------------------------------------------------- */
+
+.track-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--white);
+}
+
+.track-card__media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--ink-2);
+}
+
+.track-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.track-card__body {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.35rem;
+}
+
+.track-card h3 {
+  font-size: 1.15rem;
+}
+
+.track-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Project card link
+   -------------------------------------------------------------------------- */
+
+.project-card__link {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.project-card__link::after {
+  content: " →";
+}
+
+/* --------------------------------------------------------------------------
+   Project detail
+   -------------------------------------------------------------------------- */
+
+.project-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 8;
+  border-radius: var(--r-lg);
+  background: var(--ink-2);
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.project-facts {
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--white);
+}
+
+.project-facts h2 {
+  font-size: 1.25rem;
+}
+
+.project-facts .btn {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.facts--stacked {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1.25rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  border-radius: var(--r);
+}
+
+/* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
 
@@ -1694,5 +1894,21 @@ blockquote {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .featured-project,
+  .project-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-project__media {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+
+  .project-media {
+    aspect-ratio: 16 / 10;
   }
 }

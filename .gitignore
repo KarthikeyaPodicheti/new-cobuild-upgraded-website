@@ -21,3 +21,6 @@ Thumbs.db
 # editors
 .vscode/
 .idea/
+
+# local specs and client commercial details
+.scratch/

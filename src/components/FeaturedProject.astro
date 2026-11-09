@@ -1,0 +1,45 @@
+---
+import type { Project } from '../data/projects';
+import { url } from '../lib/paths';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const href = url(`/projects/${project.slug}/`);
+---
+
+<article class="featured-project">
+  <a class="featured-project__media" href={href}>
+    <img
+      src={url(project.image)}
+      alt={`Illustration of ${project.title}`}
+      width="900"
+      height="620"
+      loading="lazy"
+    />
+    <span class={`status status--${project.status.toLowerCase()}`}>
+      {project.status}
+    </span>
+  </a>
+
+  <div class="featured-project__body">
+    <p class="project-card__meta">{project.type} · {project.location}</p>
+    <h3><a href={href}>{project.title}</a></h3>
+    <p>{project.summary}</p>
+
+    <dl class="facts">
+      {
+        project.facts.slice(0, 3).map((fact) => (
+          <div>
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <a class="btn btn--primary" href={href}>Explore the project</a>
+  </div>
+</article>

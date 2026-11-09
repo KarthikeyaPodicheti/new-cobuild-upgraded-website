@@ -2,30 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroArt from '../components/HeroArt.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import FeaturedProject from '../components/FeaturedProject.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { projects } from '../data/projects';
+import { projects, trackRecord } from '../data/projects';
+import { url } from '../lib/paths';
 
-const featured = projects.filter((project) => project.featured).slice(0, 3);
-
-const services = [
-  {
-    title: 'Residential development',
-    text: 'Apartments and gated communities designed around how people actually live — light, ventilation, storage and shared space.',
-  },
-  {
-    title: 'Commercial & retail',
-    text: 'Grade-A offices, retail high streets and mixed-use assets planned for occupancy, footfall and long-term value.',
-  },
-  {
-    title: 'Plotted & townships',
-    text: 'Master-planned layouts with roads, utilities, parks and amenities delivered end to end.',
-  },
-  {
-    title: 'Infrastructure & EPC',
-    text: 'Civil, road and utility works executed to public and private sector standards, on schedule.',
-  },
-];
+const flagship = projects[0];
 
 const pillars = [
   {
@@ -49,46 +31,24 @@ const pillars = [
     text: 'Land, design, construction and handover sit with the same accountable team.',
   },
 ];
-
-const quotes = [
-  {
-    quote:
-      'The handover date we were given at booking is the date we got the keys. That has not been our experience with builders before.',
-    name: 'Homeowner',
-    detail: 'Green Meadows Villas',
-  },
-  {
-    quote:
-      'What stood out was the paperwork. Every approval was shared upfront, and the title was clean before we paid a rupee.',
-    name: 'Plot buyer',
-    detail: 'Sunrise Enclave',
-  },
-  {
-    quote:
-      'Their site team caught coordination issues early, which kept our fit-out schedule intact.',
-    name: 'Commercial tenant',
-    detail: 'Metro Trade Centre',
-  },
-];
 ---
 
 <BaseLayout
-  title="Real estate and infrastructure developers"
-  description="New Co Build Infra Developers plans, builds and hands over residential communities, commercial landmarks and infrastructure with verifiable documentation and dependable timelines."
+  title="Residential and commercial developers"
+  description="NewBuild plans, builds and hands over residential communities and commercial landmarks with verifiable documentation and dependable timelines."
 >
   <section class="hero">
     <div class="container hero__grid">
       <div>
-        <p class="eyebrow">Real estate &amp; infrastructure developers</p>
+        <p class="eyebrow">Residential &amp; commercial developers</p>
         <h1>We build the places where <em>life and business</em> grow.</h1>
         <p class="lead">
-          New Co Build Infra Developers plans, builds and hands over homes,
-          workplaces and infrastructure — with the paperwork, timelines and
-          finish quality to match the promise.
+          NewBuild plans, builds and hands over homes and workplaces — with the
+          paperwork, timelines and finish quality to match the promise.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="/projects">Explore projects</a>
-          <a class="btn btn--ghost" href="/contact">Book a site visit</a>
+          <a class="btn btn--primary" href={url('/projects')}>Explore projects</a>
+          <a class="btn btn--ghost" href={url('/contact')}>Book a site visit</a>
         </div>
         <ul class="hero__proof">
           <li>RERA-compliant projects</li>
@@ -101,60 +61,32 @@ const quotes = [
     </div>
   </section>
 
-  <section class="stats" aria-label="Company at a glance">
+  <section class="stats" aria-label="The flagship project at a glance">
     <div class="container stats__grid">
-      <div class="stat"><strong>18+</strong><span>Years in development</span></div>
-      <div class="stat"><strong>42</strong><span>Projects delivered</span></div>
-      <div class="stat"><strong>6.4M</strong><span>Sq ft developed</span></div>
-      <div class="stat"><strong>3,200+</strong><span>Families &amp; businesses housed</span></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <SectionHeading
-        eyebrow="What we do"
-        title="Four ways we build"
-        intro="From a single residential tower to a fully serviced township, the same engineering discipline applies."
-        linkHref="/services"
-        linkLabel="All services"
-      />
-      <div class="grid grid--4">
-        {
-          services.map((service, index) => (
-            <article class="service-card">
-              <span class="service-card__num">0{index + 1}</span>
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
-              <a class="service-card__link" href="/services">
-                Learn more
-              </a>
-            </article>
-          ))
-        }
-      </div>
+      <div class="stat"><strong>1</strong><span>Project live now</span></div>
+      <div class="stat"><strong>2.4</strong><span>Acres under development</span></div>
+      <div class="stat"><strong>168</strong><span>Homes in the flagship</span></div>
+      <div class="stat"><strong>2027</strong><span>Handover scheduled</span></div>
     </div>
   </section>
 
   <section class="section section--ink">
     <div class="container">
       <SectionHeading
-        eyebrow="Selected work"
-        title="Projects on the ground"
-        intro="A mix of delivered communities and developments currently under construction."
+        eyebrow="Now selling"
+        title="The Courtyard"
+        intro="Our current residential launch in Kondapur — two towers around a landscaped central court, with a rooftop clubhouse and a work-from-home lounge."
         linkHref="/projects"
-        linkLabel="See all projects"
+        linkLabel="See the project"
       />
-      <div class="grid grid--3">
-        {featured.map((project) => <ProjectCard project={project} />)}
-      </div>
+      {flagship && <FeaturedProject project={flagship} />}
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <SectionHeading
-        eyebrow="Why New Co"
+        eyebrow="Why NewBuild"
         title="The boring parts, done properly"
         intro="Most construction promises sound the same. The difference is in what gets documented, published and handed over."
       />
@@ -177,23 +109,39 @@ const quotes = [
   <section class="section section--tint">
     <div class="container">
       <SectionHeading
-        eyebrow="In their words"
-        title="What owners and tenants tell us"
-        intro="Illustrative quotes — replace with verified client testimonials before launch."
+        eyebrow="Track record"
+        title="Delivered by the promoters"
+        intro="Earlier developments completed by the team behind NewBuild, shown with attribution."
       />
-      <div class="quote-grid">
+      <div class="grid grid--3">
         {
-          quotes.map((item) => (
-            <blockquote class="quote">
-              <p>“{item.quote}”</p>
-              <footer>
-                <strong>{item.name}</strong>
-                <span>{item.detail}</span>
-              </footer>
-            </blockquote>
+          trackRecord.map((entry) => (
+            <article class="track-card">
+              <div class="track-card__media">
+                <img
+                  src={url(entry.image)}
+                  alt={`Illustration of ${entry.title}`}
+                  width="640"
+                  height="440"
+                  loading="lazy"
+                />
+              </div>
+              <div class="track-card__body">
+                <p class="project-card__meta">
+                  {entry.location} · {entry.year}
+                </p>
+                <h3>{entry.title}</h3>
+                <p>{entry.note}</p>
+              </div>
+            </article>
           ))
         }
       </div>
+      <p class="note" style="margin-top: 2rem;">
+        Placeholder entries. Replace with verified project names, years and
+        photography, or remove this section if the promoters have no attributable
+        track record.
+      </p>
     </div>
   </section>
 

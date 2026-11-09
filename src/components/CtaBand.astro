@@ -1,4 +1,6 @@
 ---
+import { url } from '../lib/paths';
+
 interface Props {
   title?: string;
   body?: string;
@@ -19,8 +21,8 @@ const {
         <p>{body}</p>
       </div>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="/contact">Enquire now</a>
-        <a class="btn btn--light" href="/projects">View projects</a>
+        <a class="btn btn--primary" href={url('/contact')}>Enquire now</a>
+        <a class="btn btn--light" href={url('/projects')}>View projects</a>
       </div>
     </div>
   </div>

@@ -5,15 +5,15 @@ import { site } from '../data/site';
 
 <BaseLayout
   title="Contact"
-  description="Talk to New Co Build Infra Developers about a home, commercial space, plot or land partnership."
+  description="Talk to NewBuild about a home, commercial space or a site visit."
 >
   <section class="page-hero">
     <div class="container">
       <p class="eyebrow">Contact</p>
       <h1>Let's talk about what you're planning.</h1>
       <p class="lead">
-        Whether it is a first home, an office requirement or a land partnership,
-        start with a short brief. We reply within one working day.
+        Whether it is a first home or an office requirement, start with a short
+        brief. We reply within one working day.
       </p>
     </div>
   </section>
@@ -56,24 +56,17 @@ import { site } from '../data/site';
             </dd>
           </div>
         </dl>
+
+        <a class="btn btn--primary" href={site.whatsappHref} style="margin-top: 2rem;">
+          Chat on WhatsApp
+        </a>
       </div>
 
       <div class="form-card">
         <h2>Send an enquiry</h2>
         <p>Fields marked with * are required.</p>
 
-        <form
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          class="form-grid"
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="sr-only">
-            <label>Do not fill this out: <input name="bot-field" /></label>
-          </p>
-
+        <form class="form-grid" data-mockup-form>
           <div class="field">
             <label for="name">Full name *</label>
             <input id="name" name="name" type="text" autocomplete="name" required />
@@ -92,11 +85,9 @@ import { site } from '../data/site';
           <div class="field field--full">
             <label for="interest">I am interested in</label>
             <select id="interest" name="interest">
-              <option>Buying a home</option>
+              <option>The Courtyard — 3 BHK</option>
+              <option>The Courtyard — 4 BHK</option>
               <option>Commercial or retail space</option>
-              <option>Plotted land</option>
-              <option>Land / joint-venture partnership</option>
-              <option>Infrastructure or EPC work</option>
               <option>Something else</option>
             </select>
           </div>
@@ -107,7 +98,7 @@ import { site } from '../data/site';
               id="message"
               name="message"
               rows="5"
-              placeholder="Preferred location, budget range, timeline, or the stage you are at."
+              placeholder="Preferred unit, budget range, timeline, or the stage you are at."
             ></textarea>
           </div>
 
@@ -121,8 +112,8 @@ import { site } from '../data/site';
           <div class="field field--full">
             <button class="btn btn--ink" type="submit">Send enquiry</button>
             <p class="form-note">
-              This form is ready for Netlify Forms. Connect your chosen form
-              backend before the site goes live.
+              Design preview — this form is not connected yet. Email and WhatsApp
+              are wired up in the final build.
             </p>
           </div>
         </form>
@@ -139,3 +130,14 @@ import { site } from '../data/site';
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-mockup-form]');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    window.alert(
+      'Design preview — the enquiry form is not connected yet. Email and WhatsApp are added in the final build.',
+    );
+  });
+</script>

@@ -1,17 +1,19 @@
 ---
 import type { Project } from '../data/projects';
+import { url } from '../lib/paths';
 
 interface Props {
   project: Project;
 }
 
 const { project } = Astro.props;
+const href = url(`/projects/${project.slug}/`);
 ---
 
 <article class="project-card" data-status={project.status}>
-  <div class="project-card__media">
+  <a class="project-card__media" href={href} aria-label={`View ${project.title}`}>
     <img
-      src={project.image}
+      src={url(project.image)}
       alt={`Illustration of ${project.title}`}
       width="640"
       height="440"
@@ -20,14 +22,14 @@ const { project } = Astro.props;
     <span class={`status status--${project.status.toLowerCase()}`}>
       {project.status}
     </span>
-  </div>
+  </a>
   <div class="project-card__body">
     <p class="project-card__meta">{project.type} · {project.location}</p>
-    <h3>{project.title}</h3>
+    <h3><a href={href}>{project.title}</a></h3>
     <p>{project.summary}</p>
     <dl class="facts">
       {
-        project.facts.map((fact) => (
+        project.facts.slice(0, 3).map((fact) => (
           <div>
             <dt>{fact.label}</dt>
             <dd>{fact.value}</dd>
@@ -35,5 +37,6 @@ const { project } = Astro.props;
         ))
       }
     </dl>
+    <a class="project-card__link" href={href}>View project</a>
   </div>
 </article>
