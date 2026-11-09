@@ -20,8 +20,8 @@ const { project } = Astro.props;
       <p class="eyebrow">{project.type} · {project.location}</p>
       <h1>{project.title}</h1>
       <p class="lead">{project.summary}</p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href={url('/contact')}>Book a site visit</a>
+      <div class="page-hero__actions">
+        <a class="link-cta" href={url('/contact')}>Book a site visit</a>
         <a class="btn btn--ghost" href={url('/projects')}>All projects</a>
       </div>
     </div>
@@ -33,8 +33,8 @@ const { project } = Astro.props;
         <img
           src={url(project.image)}
           alt={`Illustration of ${project.title}`}
-          width="1200"
-          height="720"
+          width="1440"
+          height="810"
         />
         <span class={`status status--${project.status.toLowerCase()}`}>
           {project.status}
@@ -44,16 +44,14 @@ const { project } = Astro.props;
       <div class="project-layout">
         <div class="prose">
           <p class="eyebrow">About the project</p>
-          <h2 style="margin-top: 0.85rem; font-size: clamp(1.7rem, 3vw, 2.4rem);">
-            Designed around the courtyard
-          </h2>
-          <p style="margin-top: 1rem;">{project.description}</p>
-          <p style="margin-top: 1rem;">
+          <h2>Designed around the courtyard</h2>
+          <p style="margin-top: 1.25rem;">{project.description}</p>
+          <p>
             Floor plans, specifications and the approval set are shared at the
             site visit, together with the RERA registration and the milestone
             schedule.
           </p>
-          <p class="note" style="margin-top: 1.5rem;">
+          <p class="note" style="margin-top: 1.75rem;">
             Placeholder project details. The Client supplies verified facts,
             RERA number and photography before launch.
           </p>
@@ -61,7 +59,7 @@ const { project } = Astro.props;
 
         <aside class="project-facts">
           <h2>At a glance</h2>
-          <dl class="facts facts--stacked">
+          <dl class="facts">
             {
               project.facts.map((fact) => (
                 <div>
@@ -71,7 +69,7 @@ const { project } = Astro.props;
               ))
             }
           </dl>
-          <a class="btn btn--ink" href={url('/contact')}>Request the brochure</a>
+          <a class="btn" href={url('/contact')}>Request the brochure</a>
         </aside>
       </div>
     </div>
@@ -80,17 +78,15 @@ const { project } = Astro.props;
   <section class="section section--tint">
     <div class="container">
       <p class="eyebrow">Gallery</p>
-      <h2 style="margin-top: 0.85rem; font-size: clamp(1.7rem, 3vw, 2.4rem);">
-        A first look
-      </h2>
-      <p class="lead" style="margin-top: 0.75rem; max-width: 60ch;">
+      <h2>A first look</h2>
+      <p class="lead" style="margin-top: 1.1rem;">
         Placeholder artwork. Real project photography replaces these images
         before launch.
       </p>
       <div class="gallery">
         {
           project.gallery.map((src) => (
-            <img src={url(src)} alt="" width="640" height="440" loading="lazy" />
+            <img src={url(src)} alt="" width="640" height="480" loading="lazy" />
           ))
         }
       </div>
@@ -98,14 +94,12 @@ const { project } = Astro.props;
   </section>
 
   <section class="section">
-    <div class="container split">
+    <div class="container story">
       <div>
         <p class="eyebrow">Location</p>
-        <h2 style="margin-top: 0.85rem; font-size: clamp(1.7rem, 3vw, 2.4rem);">
-          {project.location}
-        </h2>
-        <p class="lead" style="margin-top: 0.9rem;">
-          Close to schools, daily retail and the city’s main employment corridor.
+        <h2>{project.location}</h2>
+        <p class="lead" style="margin-top: 1.25rem;">
+          Close to schools, daily retail and the city's main employment corridor.
           Exact distances and the location map are confirmed at the site visit.
         </p>
       </div>
@@ -121,5 +115,6 @@ const { project } = Astro.props;
   <CtaBand
     title="See the site before you decide."
     body="Book a visit and we will walk you through the layout, the specification and the paperwork — including the RERA registration."
+    ctaLabel="Book a site visit"
   />
 </BaseLayout>

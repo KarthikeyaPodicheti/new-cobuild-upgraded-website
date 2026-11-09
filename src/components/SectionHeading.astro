@@ -2,21 +2,35 @@
 import { url } from '../lib/paths';
 
 interface Props {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   intro?: string;
   linkHref?: string;
   linkLabel?: string;
+  dark?: boolean;
 }
 
-const { eyebrow, title, intro, linkHref, linkLabel = 'View all' } = Astro.props;
+const {
+  eyebrow,
+  title,
+  intro,
+  linkHref,
+  linkLabel = 'View all',
+  dark = false,
+} = Astro.props;
 ---
 
-<div class="section-head">
-  <div class="section-head__title">
-    <p class="eyebrow">{eyebrow}</p>
+<div class:list={['section-head', dark && 'section-head--dark']}>
+  <div>
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h2>{title}</h2>
-    {intro && <p>{intro}</p>}
+    {intro && <p class="section-head__intro">{intro}</p>}
   </div>
-  {linkHref && <a class="section-head__link" href={url(linkHref)}>{linkLabel}</a>}
+  {
+    linkHref && (
+      <a class:list={['link-cta', dark && 'link-cta--light']} href={url(linkHref)}>
+        {linkLabel}
+      </a>
+    )
+  }
 </div>

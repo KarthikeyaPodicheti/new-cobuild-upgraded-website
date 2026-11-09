@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import FeaturedProject from '../components/FeaturedProject.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { projects, trackRecord } from '../data/projects';
@@ -25,32 +26,31 @@ const flagship = projects[0];
 
   <section class="section">
     <div class="container">
-      <p class="eyebrow">Now selling</p>
-      <h2 style="margin-top: 0.85rem; font-size: clamp(1.85rem, 3.5vw, 2.6rem);">
-        The current launch
-      </h2>
-      <div style="margin-top: 2rem;">
-        {flagship && <FeaturedProject project={flagship} />}
-      </div>
-      <p class="note" style="margin-top: 2rem;">
-        Placeholder project name, specifications and imagery. The Client
-        supplies verified facts, the RERA number and photography before launch.
+      <SectionHeading
+        eyebrow="Now selling"
+        title="The current launch"
+        intro="A gated residential community in Kondapur, planned around a shaded central court."
+      />
+
+      {flagship && <FeaturedProject project={flagship} />}
+
+      <p class="note" style="margin-top: 2.5rem;">
+        Placeholder project name, specifications and imagery. The Client supplies
+        verified facts, the RERA number and photography before launch.
       </p>
     </div>
   </section>
 
-  <section class="section section--tint">
+  <section class="track">
     <div class="container">
-      <p class="eyebrow">Track record</p>
-      <h2 style="margin-top: 0.85rem; font-size: clamp(1.85rem, 3.5vw, 2.6rem);">
-        Delivered by the promoters
-      </h2>
-      <p class="lead" style="margin-top: 0.75rem; max-width: 60ch;">
-        Earlier developments completed by the team behind NewBuild, shown with
-        attribution.
-      </p>
+      <SectionHeading
+        eyebrow="Track record"
+        title="Delivered by the promoters"
+        intro="Earlier developments completed by the team behind NewBuild, shown with attribution."
+        dark
+      />
 
-      <div class="grid grid--3" style="margin-top: 2rem;">
+      <div class="track__grid">
         {
           trackRecord.map((entry) => (
             <article class="track-card">
@@ -59,15 +59,25 @@ const flagship = projects[0];
                   src={url(entry.image)}
                   alt={`Illustration of ${entry.title}`}
                   width="640"
-                  height="440"
+                  height="480"
                   loading="lazy"
                 />
               </div>
               <div class="track-card__body">
-                <p class="project-card__meta">
+                <h3>{entry.title}</h3>
+                <p class="track-card__meta">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z" />
+                    <circle cx="12" cy="10" r="2.5" />
+                  </svg>
                   {entry.location} · {entry.year}
                 </p>
-                <h3>{entry.title}</h3>
                 <p>{entry.note}</p>
               </div>
             </article>
@@ -75,7 +85,7 @@ const flagship = projects[0];
         }
       </div>
 
-      <p class="note" style="margin-top: 2rem;">
+      <p class="note note--light">
         Placeholder entries. Replace with verified names, years and photography,
         or remove this section if no attributable track record exists.
       </p>
@@ -85,5 +95,6 @@ const flagship = projects[0];
   <CtaBand
     title="Ask for the full project dossier"
     body="Approvals, specifications, floor plans and the milestone schedule — sent before you book a site visit."
+    ctaLabel="Request the dossier"
   />
 </BaseLayout>

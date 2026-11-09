@@ -22,9 +22,8 @@ import { site } from '../data/site';
     <div class="container contact-grid">
       <div>
         <p class="eyebrow">Reach us</p>
-        <h2 style="margin-top: 0.85rem; font-size: clamp(1.6rem, 3vw, 2.2rem);">
-          Office and site visits
-        </h2>
+        <h2>Office and site visits</h2>
+
         <dl class="contact-list">
           <div>
             <dt>Head office</dt>
@@ -57,7 +56,7 @@ import { site } from '../data/site';
           </div>
         </dl>
 
-        <a class="btn btn--primary" href={site.whatsappHref} style="margin-top: 2rem;">
+        <a class="link-cta" href={site.whatsappHref} style="margin-top: 2rem;">
           Chat on WhatsApp
         </a>
       </div>
@@ -110,7 +109,7 @@ import { site } from '../data/site';
           </div>
 
           <div class="field field--full">
-            <button class="btn btn--ink" type="submit">Send enquiry</button>
+            <button class="btn" type="submit">Send enquiry</button>
             <p class="form-note">
               Design preview — this form is not connected yet. Email and WhatsApp
               are wired up in the final build.
@@ -120,7 +119,7 @@ import { site } from '../data/site';
       </div>
     </div>
 
-    <div class="container">
+    <div class="container contact-map">
       <div class="map-placeholder" role="img" aria-label="Map placeholder for the head office">
         <span>
           Map embed placeholder<br />

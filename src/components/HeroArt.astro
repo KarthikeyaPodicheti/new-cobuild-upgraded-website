@@ -1,96 +1,65 @@
 ---
-// Decorative hero artwork: an abstract cityscape rendered inline so the
-// placeholder needs no external image.
+// Decorative hero horizon: an original, low-contrast skyline drawn inline so
+// the placeholder needs no external image. Replaced by real photography later.
 ---
 
 <div class="hero-art" aria-hidden="true">
-  <div class="hero-art__frame">
-    <svg viewBox="0 0 640 720" role="presentation" focusable="false">
-      <defs>
-        <linearGradient id="hero-sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#16263d" />
-          <stop offset="1" stop-color="#2c4462" />
-        </linearGradient>
-        <linearGradient id="hero-tower" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#f0d6a2" />
-          <stop offset="1" stop-color="#b8862f" />
-        </linearGradient>
-        <pattern
-          id="hero-windows"
-          width="16"
-          height="20"
-          patternUnits="userSpaceOnUse"
-        >
-          <rect width="16" height="20" fill="none" />
-          <rect
-            x="3"
-            y="4"
-            width="8"
-            height="10"
-            rx="1"
-            fill="#0f1b2b"
-            opacity="0.28"
-          />
-        </pattern>
-        <radialGradient id="hero-glow" cx="0.72" cy="0.2" r="0.5">
-          <stop offset="0" stop-color="#d9b166" stop-opacity="0.35" />
-          <stop offset="1" stop-color="#d9b166" stop-opacity="0" />
-        </radialGradient>
-      </defs>
+  <svg viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" role="presentation" focusable="false">
+    <defs>
+      <linearGradient id="horizon-fade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f7faf8" stop-opacity="0"></stop>
+        <stop offset="1" stop-color="#edf5f1" stop-opacity="1"></stop>
+      </linearGradient>
+      <linearGradient id="horizon-near" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#d5e7df"></stop>
+        <stop offset="1" stop-color="#c3dcd2"></stop>
+      </linearGradient>
+    </defs>
 
-      <rect width="640" height="720" fill="url(#hero-sky)" />
-      <rect width="640" height="720" fill="url(#hero-glow)" />
-      <circle cx="458" cy="150" r="52" fill="#d9b166" opacity="0.4" />
+    <rect width="1440" height="420" fill="url(#horizon-fade)"></rect>
 
-      <!-- distant skyline -->
-      <g fill="#0d1726" opacity="0.55">
-        <rect x="12" y="392" width="72" height="328" />
-        <rect x="94" y="440" width="44" height="280" />
-        <rect x="498" y="408" width="62" height="312" />
-        <rect x="570" y="458" width="50" height="262" />
-      </g>
+    <!-- sun -->
+    <circle cx="1105" cy="118" r="88" fill="#e2f0ea"></circle>
 
-      <!-- mid-ground blocks -->
-      <g>
-        <rect x="150" y="300" width="108" height="420" fill="#1a2c45" />
-        <rect x="150" y="300" width="108" height="420" fill="url(#hero-windows)" />
-        <rect x="382" y="336" width="120" height="384" fill="#20344f" />
-        <rect x="382" y="336" width="120" height="384" fill="url(#hero-windows)" />
-      </g>
+    <!-- far skyline -->
+    <g fill="#e4efe9">
+      <rect x="40" y="252" width="70" height="168"></rect>
+      <rect x="128" y="286" width="46" height="134"></rect>
+      <rect x="210" y="232" width="58" height="188"></rect>
+      <rect x="300" y="300" width="40" height="120"></rect>
+      <rect x="1180" y="240" width="64" height="180"></rect>
+      <rect x="1264" y="292" width="44" height="128"></rect>
+      <rect x="1330" y="262" width="70" height="158"></rect>
+    </g>
 
-      <!-- focal tower -->
-      <rect x="268" y="186" width="92" height="534" fill="url(#hero-tower)" />
-      <rect
-        x="268"
-        y="186"
-        width="92"
-        height="534"
-        fill="url(#hero-windows)"
-        opacity="0.85"
-      />
-      <rect x="260" y="176" width="108" height="12" rx="2" fill="#f0d6a2" />
+    <!-- mid skyline -->
+    <g fill="#d8e9e1">
+      <rect x="88" y="300" width="54" height="120"></rect>
+      <rect x="164" y="262" width="86" height="158"></rect>
+      <rect x="270" y="322" width="52" height="98"></rect>
+      <rect x="352" y="280" width="38" height="140"></rect>
+      <rect x="1080" y="286" width="52" height="134"></rect>
+      <rect x="1150" y="314" width="38" height="106"></rect>
+      <rect x="1236" y="274" width="60" height="146"></rect>
+    </g>
 
-      <!-- podium and lighting -->
-      <rect x="196" y="638" width="264" height="82" fill="#0d1726" />
-      <g fill="#d9b166" opacity="0.75">
-        <rect x="216" y="662" width="30" height="58" />
-        <rect x="262" y="662" width="30" height="58" />
-        <rect x="356" y="662" width="30" height="58" />
-        <rect x="402" y="662" width="30" height="58" />
-      </g>
+    <!-- focal blocks -->
+    <g fill="url(#horizon-near)">
+      <rect x="430" y="238" width="96" height="182"></rect>
+      <rect x="566" y="300" width="70" height="120"></rect>
+      <rect x="690" y="212" width="112" height="208"></rect>
+      <rect x="842" y="288" width="66" height="132"></rect>
+      <rect x="948" y="252" width="84" height="168"></rect>
+    </g>
 
-      <rect y="700" width="640" height="20" fill="#0a1320" />
-    </svg>
-  </div>
+    <!-- mullions -->
+    <g stroke="#b9d5ca" stroke-width="1" opacity="0.7">
+      <path d="M446 238v182M462 238v182M478 238v182M494 238v182M510 238v182"></path>
+      <path d="M706 212v208M722 212v208M738 212v208M754 212v208M770 212v208M786 212v208"></path>
+      <path d="M964 252v168M980 252v168M996 252v168M1012 252v168"></path>
+    </g>
 
-  <div class="hero-art__badge">
-    <strong>168</strong>
-    <span>homes in the flagship</span>
-  </div>
-
-  <div class="hero-art__card">
-    <span class="pill">Now selling</span>
-    <strong>The Courtyard</strong>
-    <span>3 &amp; 4 BHK homes · Kondapur</span>
-  </div>
+    <!-- ground -->
+    <rect y="404" width="1440" height="16" fill="#b9d5ca"></rect>
+  </svg>
 </div>

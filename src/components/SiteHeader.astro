@@ -27,7 +27,8 @@ const isActive = (href: string) =>
       data-nav-toggle
     >
       <span class="sr-only">Toggle navigation menu</span>
-      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar nav-toggle__bar--top" aria-hidden="true"></span>
+      <span class="nav-toggle__bar nav-toggle__bar--bottom" aria-hidden="true"></span>
     </button>
 
     <nav class="nav" id="site-nav" data-nav aria-label="Primary">
@@ -45,9 +46,6 @@ const isActive = (href: string) =>
           ))
         }
       </ul>
-      <a class="btn btn--primary btn--sm nav__cta" href={url('/contact')}>
-        Enquire now
-      </a>
     </nav>
   </div>
 </header>

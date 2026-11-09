@@ -11,26 +11,39 @@ const flagship = projects[0];
 
 const pillars = [
   {
-    icon: '01',
+    num: '01',
     title: 'Engineering-led, not brochure-led',
     text: 'In-house design coordination and site engineers own the details from foundation to finish.',
   },
   {
-    icon: '02',
+    num: '02',
     title: 'Documentation you can verify',
     text: 'Approvals, titles and RERA registrations are shared before you commit — not after.',
   },
   {
-    icon: '03',
+    num: '03',
     title: 'Timelines we publish',
     text: 'Every project carries a milestone schedule, and we report progress against it.',
   },
   {
-    icon: '04',
+    num: '04',
     title: 'One team to handover',
     text: 'Land, design, construction and handover sit with the same accountable team.',
   },
 ];
+
+const numbers = [
+  { value: '1', label: 'Project live now' },
+  { value: '2.4', label: 'Acres under development' },
+  { value: '168', label: 'Homes in the flagship' },
+  { value: '2027', label: 'Handover scheduled' },
+  { value: '3', label: 'Delivered by the promoters' },
+];
+
+const legacyBg = [
+  'linear-gradient(90deg, rgba(13, 40, 33, 0.95) 0%, rgba(13, 40, 33, 0.85) 48%, rgba(13, 40, 33, 0.55) 100%)',
+  `url(${url('/images/skyline-dusk.svg')})`,
+].join(', ');
 ---
 
 <BaseLayout
@@ -38,67 +51,68 @@ const pillars = [
   description="NewBuild plans, builds and hands over residential communities and commercial landmarks with verifiable documentation and dependable timelines."
 >
   <section class="hero">
-    <div class="container hero__grid">
-      <div>
-        <p class="eyebrow">Residential &amp; commercial developers</p>
-        <h1>We build the places where <em>life and business</em> grow.</h1>
-        <p class="lead">
-          NewBuild plans, builds and hands over homes and workplaces — with the
-          paperwork, timelines and finish quality to match the promise.
-        </p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href={url('/projects')}>Explore projects</a>
-          <a class="btn btn--ghost" href={url('/contact')}>Book a site visit</a>
-        </div>
-        <ul class="hero__proof">
-          <li>RERA-compliant projects</li>
-          <li>Published handover schedules</li>
-          <li>In-house engineering team</li>
-        </ul>
-      </div>
-
-      <HeroArt />
+    <div class="container hero__inner">
+      <h1>We build the places where life and business grow.</h1>
+      <p class="hero__lead">
+        NewBuild plans, builds and hands over homes and workplaces — with the
+        paperwork, timelines and finish quality to match the promise.
+      </p>
+      <a class="link-cta" href={url('/projects')}>View projects</a>
     </div>
+    <HeroArt />
   </section>
 
-  <section class="stats" aria-label="The flagship project at a glance">
-    <div class="container stats__grid">
-      <div class="stat"><strong>1</strong><span>Project live now</span></div>
-      <div class="stat"><strong>2.4</strong><span>Acres under development</span></div>
-      <div class="stat"><strong>168</strong><span>Homes in the flagship</span></div>
-      <div class="stat"><strong>2027</strong><span>Handover scheduled</span></div>
-    </div>
-  </section>
-
-  <section class="section section--ink">
+  <section class="section" id="now-selling">
     <div class="container">
       <SectionHeading
         eyebrow="Now selling"
-        title="The Courtyard"
-        intro="Our current residential launch in Kondapur — two towers around a landscaped central court, with a rooftop clubhouse and a work-from-home lounge."
+        title="Our current launch"
+        intro="Two towers around a landscaped central court in Kondapur, with a rooftop clubhouse and a dedicated work-from-home lounge."
         linkHref="/projects"
-        linkLabel="See the project"
+        linkLabel="All projects"
       />
+
       {flagship && <FeaturedProject project={flagship} />}
+
+      <p class="note" style="margin-top: 2.5rem;">
+        Placeholder project name, specifications and imagery. The Client supplies
+        verified facts, the RERA number and photography before launch.
+      </p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="values">
+    <div class="container values__grid">
+      <div class="values__media">
+        <img
+          src={url('/images/project-meadows.svg')}
+          alt="Illustration of a completed residential community"
+          width="900"
+          height="675"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <h2>The boring parts, done properly.</h2>
+        <p>
+          Most construction promises sound the same. The difference is in what
+          gets documented, published and handed over — and who is still
+          answering the phone after possession.
+        </p>
+        <a class="link-cta link-cta--light" href={url('/about')}>How we work</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="principles" aria-label="How we work">
     <div class="container">
-      <SectionHeading
-        eyebrow="Why NewBuild"
-        title="The boring parts, done properly"
-        intro="Most construction promises sound the same. The difference is in what gets documented, published and handed over."
-      />
-      <ul class="feature-list">
+      <ul class="principles__grid">
         {
           pillars.map((pillar) => (
-            <li class="feature">
-              <span class="feature__icon">{pillar.icon}</span>
-              <div>
-                <h3>{pillar.title}</h3>
-                <p>{pillar.text}</p>
-              </div>
+            <li class="principle">
+              <span class="principle__num">{pillar.num}</span>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
             </li>
           ))
         }
@@ -106,14 +120,52 @@ const pillars = [
     </div>
   </section>
 
-  <section class="section section--tint">
+  <section class="numbers" aria-label="The business at a glance">
+    <div class="container numbers__grid">
+      <div class="numbers__intro">
+        <h2>Building up</h2>
+        <p>
+          One live project today, and a promoter team with a delivered record
+          behind it.
+        </p>
+      </div>
+
+      <ul class="numbers__items">
+        {
+          numbers.map((item) => (
+            <li class="number">
+              <span class="number__value">{item.value}</span>
+              <span class="number__line" aria-hidden="true"></span>
+              <span class="number__label">{item.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="legacy" style={`background-image: ${legacyBg};`}>
+    <div class="container legacy__inner">
+      <h2>
+        Land, design, approvals and construction — held to one brief, one team
+        and one published schedule.
+      </h2>
+      <a class="link-cta link-cta--light" href={url('/about')}>Read our story</a>
+    </div>
+  </section>
+
+  <section class="track">
     <div class="container">
       <SectionHeading
         eyebrow="Track record"
         title="Delivered by the promoters"
         intro="Earlier developments completed by the team behind NewBuild, shown with attribution."
+        linkHref="/projects"
+        linkLabel="All projects"
+        dark
       />
-      <div class="grid grid--3">
+
+      <div class="track__grid">
         {
           trackRecord.map((entry) => (
             <article class="track-card">
@@ -122,25 +174,36 @@ const pillars = [
                   src={url(entry.image)}
                   alt={`Illustration of ${entry.title}`}
                   width="640"
-                  height="440"
+                  height="480"
                   loading="lazy"
                 />
               </div>
               <div class="track-card__body">
-                <p class="project-card__meta">
+                <h3>{entry.title}</h3>
+                <p class="track-card__meta">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z" />
+                    <circle cx="12" cy="10" r="2.5" />
+                  </svg>
                   {entry.location} · {entry.year}
                 </p>
-                <h3>{entry.title}</h3>
                 <p>{entry.note}</p>
               </div>
             </article>
           ))
         }
       </div>
-      <p class="note" style="margin-top: 2rem;">
+
+      <p class="note note--light">
         Placeholder entries. Replace with verified project names, years and
-        photography, or remove this section if the promoters have no attributable
-        track record.
+        photography, or remove this section if the promoters have no
+        attributable track record.
       </p>
     </div>
   </section>
