@@ -161,9 +161,39 @@ photography; the layout must not change.
 
 ## 6. Motion
 
-- Hover: images scale to 1.03–1.04 over 0.6s; links shift colour only.
-- No scroll-triggered reveals, parallax, autoplay or floating objects.
-- All transitions collapse under `prefers-reduced-motion: reduce`.
+Motion is subtle and one-directional: things arrive, they do not loop or
+compete for attention. There is no autoplay, no carousel and no floating
+objects.
+
+**On load**
+
+- The hero h1, lead and link rise 22px and fade in, staggered at 0/120/240ms
+  over 0.9s. Inner-page heroes do the same for eyebrow, h1, lead and actions.
+- The hero horizon fades in over 1.3s.
+- The sun in the hero artwork drifts 8px vertically on an 11s loop. It is the
+  only looping animation on the site.
+
+**On scroll**
+
+- Section heads, project rows, value columns, principles, numbers, timeline
+  rows, track cards, gallery images, contact columns and the closer fade up
+  18px over 0.8s. Items that sit side by side are staggered by 80ms, capped at
+  five steps (400ms) so nothing waits long to appear.
+- The hero horizon parallaxes down by 6% of the scroll distance, capped at one
+  viewport height.
+
+**Hover**
+
+- Images scale to 1.03–1.04 over 0.6s; links shift colour only.
+
+**Rules**
+
+- The reveal class is added by JavaScript; without JavaScript, or if the
+  observer cannot be created, all content is visible immediately.
+- Everything above collapses under `prefers-reduced-motion: reduce`: the
+  reveal script exits early, and animation duration, iteration count and
+  transition delay are neutralised.
+- Do not add more motion to the final build. This is the ceiling.
 
 ## 7. Accessibility
 

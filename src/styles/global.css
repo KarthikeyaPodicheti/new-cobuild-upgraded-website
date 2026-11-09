@@ -1514,6 +1514,91 @@ b {
 }
 
 /* --------------------------------------------------------------------------
+   Motion
+   -------------------------------------------------------------------------- */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.hero h1 {
+  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__lead {
+  animation: rise-in 0.9s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero .link-cta {
+  animation: rise-in 0.9s 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-art {
+  animation: fade-in 1.3s 0.2s ease both;
+}
+
+.hero-sun {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: drift 11s ease-in-out infinite;
+}
+
+.page-hero .eyebrow {
+  animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-hero h1 {
+  animation: rise-in 0.9s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-hero .lead {
+  animation: rise-in 0.9s 0.16s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-hero .note,
+.page-hero__actions {
+  animation: rise-in 0.9s 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
 
@@ -1682,6 +1767,13 @@ b {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
