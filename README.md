@@ -1,8 +1,10 @@
-# NewBuild — website mockup
+# NewBuild — upgraded website
 
-A static design mockup for a real-estate developer's website, built with
-[Astro](https://astro.build). It is deployed to GitHub Pages with placeholder
-content, a design-preview banner and `noindex`.
+A premium, responsive design mockup for a real-estate developer's website, built with
+[Astro](https://astro.build). Fully optimised for mobile, tablet, and desktop with
+human-speak copy, sunset-villa hero imagery, and a styled contact form.
+
+**Live site:** https://karthikeyapodicheti.github.io/new-cobuild-upgraded-website/
 
 ## Commands
 
@@ -16,8 +18,11 @@ content, a design-preview banner and `noindex`.
 ## What this is
 
 - 5 pages + 404: Home, About, Projects, Project detail, Contact.
-- Placeholder copy, imagery and a `NewBuild` wordmark.
-- A single flagship project plus a promoters' track-record section.
+- Hero section with sunset villa photography matching the inspiration design.
+- Copy rewritten using human-speak principles — direct, concrete, no marketing fluff.
+- Contact form with card layout, focus states, and mobile-friendly inputs.
+- Responsive CSS: touch targets (44px+), safe-area insets, reduced-motion support.
+- Single flagship project plus a promoters' track-record section.
 - `noindex` and a visible "Design preview" banner.
 - Deployed to GitHub Pages from `.github/workflows/deploy.yml`.
 
@@ -50,4 +55,4 @@ public/
 ## Deploy (mockup)
 
 GitHub Pages builds and deploys on every push to `main`. The site is served from
-`https://karthikeyapodicheti.github.io/newbuild-mockup/`.
+`https://karthikeyapodicheti.github.io/new-cobuild-upgraded-website/`.
