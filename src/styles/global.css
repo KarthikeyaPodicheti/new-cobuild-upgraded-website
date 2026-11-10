@@ -80,7 +80,7 @@
 }
 
 .hero h1 {
-  font-size: clamp(2.25rem, 4vw + 0.5rem, 4rem);
+  font-size: clamp(3rem, 5vw + 1rem, 5rem);
   line-height: 1.05;
   letter-spacing: var(--tracking-display);
   margin-bottom: var(--space-md);
@@ -1168,7 +1168,7 @@
 .js .hero__actions {
   opacity: 0;
   transform: translateX(-20px);
-  animation: hero-slide-left 0.8s var(--ease-out) forwards;
+  animation: hero-slide-left 1.5s var(--ease-out) forwards;
 }
 
 .js .hero__eyebrow { animation-delay: 0.1s; }
@@ -1277,8 +1277,8 @@
     width: auto;
     max-width: none;
     justify-content: flex-start;
-    padding: var(--space-sm) var(--space-lg);
-    font-size: var(--text-sm);
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--text-xs);
   }
   
   .hero__divider {
@@ -1286,7 +1286,7 @@
   }
   
   .hero h1 {
-    font-size: clamp(1.75rem, 6vw, 2.75rem);
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
     max-width: none;
   }
   
@@ -1544,8 +1544,8 @@
     width: auto;
     max-width: none;
     justify-content: flex-start;
-    padding: var(--space-sm) var(--space-lg);
-    font-size: var(--text-sm);
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--text-xs);
   }
   
   .hero__divider {
@@ -1553,7 +1553,7 @@
   }
   
   .hero h1 {
-    font-size: clamp(1.75rem, 6vw, 2.75rem);
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
     max-width: none;
   }
   
