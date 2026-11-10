@@ -80,7 +80,7 @@
 }
 
 .hero h1 {
-  font-size: clamp(3rem, 5vw + 1rem, 5rem);
+  font-size: clamp(3.5rem, 6vw + 1rem, 6rem);
   line-height: 1.05;
   letter-spacing: var(--tracking-display);
   margin-bottom: var(--space-md);
@@ -1535,21 +1535,28 @@
   
   .hero__actions {
     justify-content: flex-start;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    gap: var(--space-md);
+    gap: var(--space-sm);
+    flex-wrap: wrap;
   }
   
   .hero__actions .btn {
     width: auto;
     max-width: none;
-    justify-content: flex-start;
+    justify-content: center;
     padding: var(--space-xs) var(--space-md);
     font-size: var(--text-xs);
   }
   
   .hero__divider {
-    display: none;
+    display: inline;
+  }
+  
+  .hero .lead {
+    font-size: var(--text-sm);
+    max-width: 100%;
+    line-height: 1.4;
   }
   
   .hero h1 {
