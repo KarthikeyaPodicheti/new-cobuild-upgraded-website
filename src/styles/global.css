@@ -1277,6 +1277,8 @@
     width: auto;
     max-width: none;
     justify-content: flex-start;
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--text-sm);
   }
   
   .hero__divider {
@@ -1289,9 +1291,9 @@
   }
   
   .hero__eyebrow {
-    text-align: center;
-    justify-content: center;
-    margin: 0 auto var(--space-md);
+    text-align: left;
+    justify-content: flex-start;
+    margin: 0 0 var(--space-md);
   }
   
   .offer__grid,
@@ -1542,6 +1544,8 @@
     width: auto;
     max-width: none;
     justify-content: flex-start;
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--text-sm);
   }
   
   .hero__divider {
