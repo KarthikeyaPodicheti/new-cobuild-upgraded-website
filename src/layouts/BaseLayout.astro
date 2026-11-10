@@ -1,12 +1,7 @@
 ---
 import '../styles/global.css';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import PreviewBanner from '../components/PreviewBanner.astro';
 import { site } from '../data/site';
 import { url } from '../lib/paths';
-import larkenLight from '../assets/fonts/Larken-Light.ttf?url';
-import atlasRegular from '../assets/fonts/AtlasGrotesk-Regular.otf?url';
 
 interface Props {
   title: string;
@@ -23,11 +18,11 @@ const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#101b2b" />
+    <meta name="theme-color" content="#f4f2ef" />
     <!-- Mockup only: removed at launch. -->
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
@@ -40,130 +35,154 @@ const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preload" href={larkenLight} as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href={atlasRegular} as="font" type="font/otf" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Onest:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Onest:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <PreviewBanner />
-    <SiteHeader />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <header class="site-header" role="banner">
+      <div class="container header__inner">
+        <a href={url('/')} class="logo" aria-label={`${site.name} home`}>
+          <span class="logo__mark">NB</span>
+          <span class="logo__text">
+            <strong>NewBuild</strong>
+            <span>Residential & Commercial</span>
+          </span>
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary">
+          <ul class="nav__list" id="nav-list">
+            <li><a href={url('/projects')} class="nav__link">Projects</a></li>
+            <li><a href={url('/about')} class="nav__link">About</a></li>
+            <li><a href={url('/contact')} class="nav__link">Contact</a></li>
+          </ul>
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Toggle navigation">
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+          </button>
+        </nav>
+      </div>
+    </header>
     <main id="main">
       <slot />
     </main>
-    <SiteFooter />
-
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <div class="footer__logo">
+              <span class="footer__logo-mark">NB</span>
+              <span class="footer__logo-text">
+                <strong>NewBuild</strong>
+                <span>Residential & Commercial</span>
+              </span>
+            </div>
+            <p class="footer__description">
+              We plan, build and hand over homes and workplaces — with the documentation, timelines and finish quality to match the promise.
+            </p>
+          </div>
+          <nav class="footer__column" aria-label="Projects">
+            <h3>Projects</h3>
+            <ul>
+              <li><a href={url('/projects')}>Current launches</a></li>
+              <li><a href={url('/projects')}>Track record</a></li>
+              <li><a href={url('/projects')}>All projects</a></li>
+            </ul>
+          </nav>
+          <nav class="footer__column" aria-label="Company">
+            <h3>Company</h3>
+            <ul>
+              <li><a href={url('/about')}>Our story</a></li>
+              <li><a href={url('/about#values')}>Values</a></li>
+              <li><a href={url('/about#leadership')}>Leadership</a></li>
+            </ul>
+          </nav>
+          <nav class="footer__column" aria-label="Contact">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href={url('/contact')}>Get in touch</a></li>
+              <li><a href="tel:+914012345678">+91 40 1234 5678</a></li>
+              <li><a href="mailto:hello@newbuild.co.in">hello@newbuild.co.in</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__credits">
+            Photographs: 
+            <a href="https://commons.wikimedia.org/wiki/File:Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg">Basile Morin</a> (CC BY-SA 4.0),
+            <a href="https://commons.wikimedia.org/wiki/File:Fragment_of_160_Front_Street_West%2C_Toronto.jpg">Maksim Sokolov</a> (CC BY-SA 4.0),
+            <a href="https://commons.wikimedia.org/wiki/File:Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg">Martin Falbisoner</a> (CC BY-SA 4.0),
+            <a href="https://commons.wikimedia.org/wiki/File:Auditorio_de_Tenerife,_Santa_Cruz_de_Tenerife,_Espa%C3%B1a,_2012-12-15,_DD_24.jpg">Diego Delso</a> (CC BY-SA 3.0),
+            <a href="https://commons.wikimedia.org/wiki/File:M%C3%BCnster,_LVM,_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg">Dietmar Rabich</a> (CC BY-SA 4.0),
+            <a href="https://commons.wikimedia.org/wiki/File:Prague_skyline_at_dawn.jpg">Petar Milošević</a> (CC BY-SA 4.0),
+            <a href="https://commons.wikimedia.org/wiki/File:Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg">Designer Mario Kleff</a> (CC BY-SA 4.0)
+          </p>
+          <p class="footer__legal">&copy; 2024 NewBuild.</p>
+        </div>
+      </div    </footer>
     <script is:inline>
+      // Mobile nav toggle
       (() => {
-        const reduce = window.matchMedia(
-          '(prefers-reduced-motion: reduce)',
-        ).matches;
-        if (reduce) return;
-
-        const selectors = [
-          '.section-head',
-          '.project-row',
-          '.values__grid > *',
-          '.principle',
-          '.numbers__intro',
-          '.number',
-          '.legacy__inner',
-          '.track-card',
-          '.closer__inner',
-          '.story > *',
-          '.timeline li',
-          '.value-card',
-          '.person',
-          '.check-list li',
-          '.project-media',
-          '.project-layout > *',
-          '.gallery img',
-          '.contact-grid > *',
-          '.map-placeholder',
-        ];
-
-        const elements = Array.from(
-          document.querySelectorAll(selectors.join(',')),
-        );
-        if (!elements.length) return;
-
-        // Stagger items that sit side by side in a grid or list.
-        document
-          .querySelectorAll(
-            [
-              '.principles__grid',
-              '.numbers__items',
-              '.track__grid',
-              '.grid-2',
-              '.grid-4',
-              '.gallery',
-              '.timeline',
-              '.check-list',
-              '.values__grid',
-              '.project-layout',
-              '.contact-grid',
-              '.story',
-            ].join(','),
-          )
-          .forEach((group) => {
-            Array.from(group.children).forEach((child, index) => {
-              child.style.setProperty(
-                '--reveal-delay',
-                `${Math.min(index, 5) * 80}ms`,
-              );
-            });
+        const toggle = document.querySelector('.nav-toggle');
+        const list = document.querySelector('.nav__list');
+        if (!toggle || !list) return;
+        toggle.addEventListener('click', () => {
+          const expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!expanded));
+          list.classList.toggle('is-open');
+        });
+        // Close on link click
+        list.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            toggle.setAttribute('aria-expanded', 'false');
+            list.classList.remove('is-open');
           });
-
-        let observer = null;
-        try {
-          observer =
-            'IntersectionObserver' in window
-              ? new IntersectionObserver(
-                  (entries) => {
-                    entries.forEach((entry) => {
-                      if (!entry.isIntersecting) return;
-                      entry.target.classList.add('is-visible');
-                      observer?.unobserve(entry.target);
-                    });
-                  },
-                  { threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
-                )
-              : null;
-        } catch {
-          observer = null;
-        }
-
-        // Only hide content once we know we can reveal it again.
-        elements.forEach((el) => el.classList.add('reveal'));
-
-        // Observe everything, including elements already in view: the observer
-        // fires on the next frame, which gives the reveal a frame to transition
-        // from instead of popping in.
-        if (observer) {
-          elements.forEach((el) => observer?.observe(el));
-        } else {
-          elements.forEach((el) => el.classList.add('is-visible'));
-        }
-
-        // Slow parallax on the hero horizon.
-        const art = document.querySelector('.hero-art');
-        if (art) {
-          let ticking = false;
-          const update = () => {
-            const y = Math.min(window.scrollY, window.innerHeight);
-            art.style.transform = `translateY(${y * 0.06}px)`;
-            ticking = false;
-          };
-          window.addEventListener(
-            'scroll',
-            () => {
-              if (ticking) return;
-              ticking = true;
-              requestAnimationFrame(update);
-            },
-            { passive: true },
-          );
-        }
+        });
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && list.classList.contains('is-open')) {
+            toggle.setAttribute('aria-expanded', 'false');
+            list.classList.remove('is-open');
+            toggle.focus();
+          }
+        });
       })();
+
+      // Hallmark slot image replacement
+      window.hallmarkSlots = (m) => {
+        for (const [k, v] of Object.entries(m)) {
+          const s = document.querySelector(`[data-slot="${k}"]`);
+          if (!s) continue;
+          const im = new Image();
+          im.src = typeof v === 'string' ? v : v.src;
+          im.alt = (typeof v === 'object' && v.alt) || s.dataset.alt || '';
+          s.querySelectorAll(':scope > img').forEach((o) => o.remove());
+          s.prepend(im);
+        }
+      };
+      document.querySelectorAll('[data-slot] img').forEach((i) => {
+        if (i.complete && !i.naturalWidth) i.remove();
+        else i.addEventListener('error', () => i.remove(), { once: true });
+      });
+
+      // IntersectionObserver for reveal animations
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+        );
+        document.querySelectorAll('[data-reveal], [data-stagger]').forEach((el) => observer.observe(el));
+      } else {
+        document.querySelectorAll('[data-reveal], [data-stagger]').forEach((el) => el.classList.add('is-visible'));
+      }
     </script>
   </body>
 </html>

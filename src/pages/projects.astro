@@ -1,8 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import FeaturedProject from '../components/FeaturedProject.astro';
-import CtaBand from '../components/CtaBand.astro';
 import { projects, trackRecord } from '../data/projects';
 import { url } from '../lib/paths';
 
@@ -13,88 +10,78 @@ const flagship = projects[0];
   title="Projects"
   description="The current NewBuild launch, plus developments delivered by the promoters."
 >
-  <section class="page-hero">
-    <div class="container">
-      <p class="eyebrow">Projects</p>
-      <h1>Built, building, and next.</h1>
-      <p class="lead">
-        A working view of the portfolio: the project selling now, and earlier
-        work delivered by the promoters.
-      </p>
+  <section class="hero" data-reveal>
+    <div class="hero__bg" aria-hidden="true">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg/1280px-Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg" alt="" width="1280" height="853" loading="eager" />
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <SectionHeading
-        eyebrow="Now selling"
-        title="The current launch"
-        intro="A gated residential community in Kondapur, planned around a shaded central court."
-      />
-
-      {flagship && <FeaturedProject project={flagship} />}
-
-      <p class="note" style="margin-top: 2.5rem;">
-        Placeholder project name, specifications and imagery. The Client supplies
-        verified facts, the RERA number and photography before launch.
-      </p>
-    </div>
-  </section>
-
-  <section class="track">
-    <div class="container">
-      <SectionHeading
-        eyebrow="Track record"
-        title="Delivered by the promoters"
-        intro="Earlier developments completed by the team behind NewBuild, shown with attribution."
-        dark
-      />
-
-      <div class="track__grid">
-        {
-          trackRecord.map((entry) => (
-            <article class="track-card">
-              <div class="track-card__media">
-                <img
-                  src={url(entry.image)}
-                  alt={`Illustration of ${entry.title}`}
-                  width="640"
-                  height="480"
-                  loading="lazy"
-                />
-              </div>
-              <div class="track-card__body">
-                <h3>{entry.title}</h3>
-                <p class="track-card__meta">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z" />
-                    <circle cx="12" cy="10" r="2.5" />
-                  </svg>
-                  {entry.location} · {entry.year}
-                </p>
-                <p>{entry.note}</p>
-              </div>
-            </article>
-          ))
-        }
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__eyebrow">Projects</span>
+        <h1>Current work and past delivery</h1>
+        <p class="lead">
+          See the current launch and the work delivered earlier by the promoters. Each listing includes the details we can share now and the documents available on request.
+        </p>
       </div>
-
-      <p class="note note--light">
-        Placeholder entries. Replace with verified names, years and photography,
-        or remove this section if no attributable track record exists.
-      </p>
     </div>
   </section>
 
-  <CtaBand
-    title="Ask for the full project dossier"
-    body="Approvals, specifications, floor plans and the milestone schedule — sent before you book a site visit."
-    ctaLabel="Request the dossier"
-  />
+  <section class="offer" data-reveal>
+    <div class="container">
+      <header class="offer__header">
+        <h2>Now selling in Kondapur</h2>
+      </header>
+      {flagship && (
+        <div class="offer__grid">
+          <div class="offer__media">
+            <a href={url(`/projects/${flagship.slug}/`)} data-slot="project-featured" data-alt={`${flagship.title} illustration`} style="display:block; --slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg');">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg" alt="Curved blue glass facade" width="1280" height="853" loading="lazy" />
+            </a>
+          </div>
+          <div class="offer__content">
+            <dl class="offer__meta">
+              {flagship.facts.slice(0, 4).map((fact) => (
+                <>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </>
+              ))}
+            </dl>
+            <p class="offer__description">{flagship.summary}</p>
+            <a href={url(`/projects/${flagship.slug}/`)} class="offer__cta">View project details</a>
+          </div>
+        </div>
+      )}
+      <p class="offer__note">Placeholder project name, specifications, and imagery. Verified facts, the RERA number, and photography replace these before launch.</p>
+    </div>
+  </section>
+
+  <section class="case-study" data-reveal>
+    <div class="container">
+      <header class="case-study__header">
+        <h2>Delivered by the promoters</h2>
+      </header>
+      <div class="what-we-do__grid" data-stagger>
+        {trackRecord.map((entry) => (
+          <article class="what-we-do__item">
+            <span class="what-we-do__num">{entry.year}</span>
+            <h3>{entry.title}</h3>
+            <p>{entry.location}</p>
+            <p>{entry.note}</p>
+          </article>
+        ))}
+      </div>
+      <p class="case-study__note">Placeholder entries. Replace with verified names, years, and photography, or remove this section if there is no attributable record.</p>
+    </div>
+  </section>
+
+  <section class="close" data-reveal>
+    <div class="container">
+      <h2>Ask for the full project dossier</h2>
+      <p class="lead">Approvals, specifications, floor plans and the milestone schedule — sent before you book a site visit.</p>
+      <div class="close__contact">
+        <a href={url('/contact')}>Request the dossier</a>
+        <a href="tel:+914012345678">Call us</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

@@ -1,237 +1,129 @@
 # Design direction — NewBuild
 
-Status: implemented in the mockup (v1)
-Reference: the Pragna Group homepage, used as a structural and tonal reference only.
+Status: implemented (Terrazzo redesign, Hallmark v2.0.0)  
+Theme: Terrazzo · genre: modern-minimal · axes: light / geometric-sans / warm · terrazzo: off-white  
+Shape: Photographic · hero: full-bleed background with left fade · nav: sticky glass banner · footer: index columns
 
-This document fixes the visual system for the final build so that replacing
-placeholder content does not reopen design decisions. It describes what the site
-does and why; it is not a copy of the reference site.
+This document is the locked visual/system spec for the current build. Replace placeholder content and imagery without reopening design decisions.
 
-## 1. The idea
+## 1. Idea
 
-**Editorial landscape.** The site should read like a well-made property
-monograph, not a builder's brochure: a white page, one deep green accent, large
-light serif headlines, and photography carrying the emotion. Structure and
-paperwork — the things this developer actually sells — are expressed through
-calm rhythm, visible facts and plain language rather than badges and gradients.
+**Editorial property monograph with proof.** Warm off-white paper, one rust accent, strong geometric display type, and architectural photography. The site sells trust through clarity: verified facts, visible timelines, calm structure, and direct calls to action.
 
-Three rules follow from that:
+Rules:
+1. **Photography carries atmosphere.** Hero and project imagery are real/placeholder photos in framed slots (`[data-slot]`), never decorative wallpaper behind body copy.
+2. **One accent.** Rust `--color-accent` is used for emphasis, CTAs/active states, key numbers, and highlights. No second accent.
+3. **Air and structure.** Large section rhythm, consistent gutters/gaps, hard rules and offset shadows (Terrazzo material). Remove content before tightening spacing.
+4. **Content is verifiable.** Numbers, RERA, approvals, names, and photography must be client-supplied before launch; placeholders remain marked.
 
-1. **Photography first.** Every project is introduced by an image, then named,
-   then explained. Images are never decorative wallpaper behind body copy.
-2. **One accent.** Green is used for numbers, active navigation, links and small
-   labels. It is not used for large fills except the dark bands.
-3. **Air is part of the design.** Sections breathe at 8rem vertical rhythm. If a
-   section feels crowded, remove content rather than tighten spacing.
+## 2. Hallmark / floor
 
-## 2. What we borrowed, and what we did not
-
-Borrowed as inspiration:
-
-- The light-canvas, serif-headline editorial feel.
-- Alternating image/text project rows with a small location line.
-- A dark values band, a numbers band, a dark track-record band and a centred
-  closing call to action.
-- Text-link buttons with a thin accent underline.
-- A quiet header: logo left, four links right, no CTA button.
-
-Deliberately not copied:
-
-- Pragna's brand name, logo, copy, project names, photography, balloon/mountain
-  artwork, or Webflow markup and animations.
-- Pragna's exact mint `#2CB690`. NewBuild uses a deeper architectural green.
-- Per-project microsites. Every project stays inside this site.
-- A carousel with autoplay. The track record is a static grid; it is easier to
-  scan and does not hide content behind interaction.
+- Hallmark stamp and critique at top of `src/styles/global.css`; scaffolded `tokens.css` + `base.css` imported first.
+- All colours/fonts/radii/shadows/rules go through tokens (`:root` in `tokens.css`, page tokens in `global.css`).
+- No `transition: all`, no layout-property animation; motion uses `transform`/`opacity` and is disabled/reduced under `prefers-reduced-motion`.
+- Content visible by default; reveal states scoped under `.js` (added inline in `BaseLayout.astro`).
+- `overflow-x: clip` on `html, body`; no horizontal overflow hacks.
+- Interactive elements have `:hover`/`:active`/`:focus-visible`; hero copy/CTAs visible above fold on desktop.
 
 ## 3. Tokens
 
-All tokens live at the top of `src/styles/global.css`.
+Defined in `src/styles/tokens.css` (theme) and `src/styles/global.css` (page).
 
-### Colour
-
+### Colour (oklch)
 | Token | Value | Use |
 | --- | --- | --- |
-| `--ink` | `#1a1c1d` | Headlines, dark bands, footer rule |
-| `--grey` | `#3f4442` | Body copy |
-| `--muted` | `#707570` | Secondary copy, labels, notes |
-| `--line` | `#e5e8e4` | Hairline dividers |
-| `--line-strong` | `#cfd5cf` | Section rules, form underlines |
-| `--tint` | `#f6f8f6` | Alternating light sections |
-| `--accent` | `#1f8a70` | Numbers, markers, links |
-| `--accent-strong` | `#146b57` | Small text links, active nav |
-| `--accent-light` | `#5fc7ab` | Accent on dark bands |
-| `--accent-wash` | `#eaf4f0` | Selection, soft highlights |
+| `--color-paper` | `oklch(96% 0.009 82)` | Page background |
+| `--color-paper-2` | `oklch(92% 0.012 82)` | Alternate sections/footer |
+| `--color-paper-3` | `oklch(87.5% 0.014 80)` | Depth/shadows |
+| `--color-plate` | `oklch(99.5% 0.003 82)` | Cards/surfaces |
+| `--color-ink` | `oklch(16% 0.006 60)` | Primary text, dark bands/buttons |
+| `--color-ink-2` | `oklch(27% 0.006 60)` | Secondary text/leads |
+| `--color-muted` | `oklch(46% 0.01 60)` | Meta/labels/notes |
+| `--color-rule` | `oklch(81% 0.012 80)` | Hairline rules/borders |
+| `--color-accent` | `oklch(53% 0.15 38)` | Primary accent (rust) |
+| `--color-accent-soft` | `oklch(91% 0.035 45)` | Soft accent backgrounds |
+| `--color-accent-ink` | `oklch(99.5% 0.003 82)` | Text on accent |
+| `--color-focus` | `oklch(50% 0.16 38)` | Focus ring |
 
-Do not introduce a second accent. Gold, navy and terracotta were removed from
-the previous draft on purpose.
+No second accent. Dark band: `.numbers` uses `--color-ink` bg with paper/accent text.
 
 ### Type
+- **Display:** `Syne` 700 (`--font-display`), tight tracking `--tracking-display: -0.025em`
+- **Body:** `Onest` 400/500 (`--font-body`)
+- **Outlier/meta:** `JetBrains Mono` 500 (`--font-outlier`) for small labels/eyebrows/meta where used
 
-Self-hosted, in `src/assets/fonts/`:
+Scale (tokens): `--text-xs..--text-3xl`, `--text-display`, `--text-display-s`, `--text-section`, `--text-title`, `--text-lead`.  
+Hero h1 capped for fold fit: `clamp(2.25rem, 4vw + 0.5rem, 4rem)`; lead `--text-md`. Body/lead measures constrained (`max-width` on hero/sections). Tabular figures on numeric stats.
 
-- **Larken Light (300)** — display only: h1–h4, stat numbers, the wordmark.
-  It is a single weight; never ask for a bold serif.
-- **Atlas Grotesk Regular (400)** — body, navigation, labels.
-- **Atlas Grotesk Medium (500)** — emphasis, buttons, form labels, table values.
+Fonts loaded via Google Fonts in `BaseLayout.astro` (swap/preload pattern).
 
-Scale:
+### Space, layout, shape
+- Container: `--container: 1440px`, gutter `64px` desktop → `24px`/`16px` responsive (`base.css`)
+- Gaps/sections: `--gap-columns: 32px`, `--section-gap-s: 120px`, `--section-gap: 144px`, `--section-gap-l: 176px` (responsive reductions in `base.css`)
+- Radius: `0` (square surfaces/cards/images/slots); **buttons/pills rounded** (`border-radius: 999px`) for `.btn`, `.nav__cta`, `.offer__cta`, `.close__contact a`, `.nav-toggle`
+- Rules: `--rule-hair: 1px`, `--rule-bar: 2px`; bordered plates/cards
+- Shadows (Terrazzo): `--shadow-card: 14px 14px 0 var(--color-paper-3)`, hover `--shadow-card-hover: 14px 14px 0 var(--color-ink)`
+- Motion tokens: `--ease-out/in/in-out`, `--dur-micro/short/long`
 
-| Role | Size | Line height |
-| --- | --- | --- |
-| h1 | `clamp(2.6rem, 5.4vw, 4rem)` | 1.1 |
-| h2 | `clamp(2rem, 3.6vw, 3rem)` | 1.15 |
-| h3 | `clamp(1.5rem, 2.4vw, 2rem)` | 1.2 |
-| h4 | `1.5rem` | 1.4 |
-| Body | `1rem` | 1.55 |
-| Lead | `1–1.1rem` | 1.65 |
-| Eyebrow | `0.7rem`, `0.18em` tracking, uppercase | 1.4 |
+## 4. Global components
 
-Headlines are Light 300 with `-0.01em` tracking. Body copy never goes below
-`0.78rem` except the footer disclaimer.
+### Header (`BaseLayout.astro`, `.site-header`)
+- Sticky, glassmorphism: semi-transparent paper + `backdrop-filter: blur(12px)`, subtle bottom border
+- Left: monogram mark + wordmark/tagline; Right: nav links (`Projects`, `About`, `Contact`) + mobile toggle (no header CTA)
+- Mobile: collapsible nav panel, toggle animates to X, closes on link/Escape
+- Active/current link in accent
 
-> Licensing note: Larken and Atlas Grotesk are commercial typefaces. The mockup
-> uses the files supplied with the reference. Before launch the Client must hold
-> a webfont licence, or the site must switch to the open fallbacks named in the
-> font stack (Iowan Old Style / Palatino for display, system UI for body).
+### Hero (all pages)
+- Full-bleed photographic background (`.hero__bg` img: Maison Hermès facade, Wikimedia Commons) — visible (no global blur/dimming), subtle slow drift animation
+- Left-to-right paper fade overlay for text legibility: `linear-gradient(90deg, paper 92% → 70% → transparent 60%)`
+- Content left-aligned in container: eyebrow, h1, lead, optional actions
+- Hero text has soft glow `text-shadow` for readability over image; fits first viewport (`min-height: calc(100svh - 72px)`, reduced type/spacing)
+- `prefers-reduced-motion`: hero entrance/drift disabled
 
-### Space and shape
+### Sections (home)
+1. **Offer / current launch** (`.offer`): header + link, 2-col grid (media slot + content), aligned meta grid, description, 3 facts, CTA, placeholder note
+2. **Why buyers choose NewBuild** (`.what-we-do`, paper-2): left-aligned header, 4 principle cards (number/title/text), stagger reveal
+3. **Where we are** (`.where-we-are`): map/visual slot + office/contact details
+4. **Case study / track record** (`.case-study`, paper-2): header, main media + content/meta/description, 3-image gallery, placeholder note
+5. **Numbers band** (`.numbers`, ink): featured figure + responsive stat grid
+6. **Close CTA** (`.close`): centered headline/lead, primary actions
+7. **Footer** (`.site-footer`): brand/description, 3 link columns, photo credits + legal line
 
-- Container: `80rem` max, `2.5rem` gutter (`1.25rem` under 720px).
-- Section rhythm: `clamp(4.5rem, 8vw, 8rem)` block padding.
-- Corners: square. No rounded cards, pills or soft shadows. The only circles are
-  the leadership monograms.
-- Rules: 1px. Use them to separate, not to decorate.
-- Buttons: text link with a 1px accent underline. Solid ink buttons are reserved
-  for form submit and the project-detail brochure action.
+### Imagery
+- Slots: `[data-slot]` with `--slot-img`, object-fit cover, mild contrast (`base.css`), bordered/shadowed frames in sections
+- Current placeholders: Wikimedia Commons architectural photos (credited in footer). Replace with client photography (4:3 project/gallery, 16:9 leads as used) keeping layout/alts real.
 
-## 4. Page patterns
+### Motion
+- **Hero entrance:** staggered rise/fade (eyebrow → h1 → lead → actions), `.js`-scoped
+- **Scroll reveals:** `[data-reveal]` and `[data-stagger]` via IntersectionObserver (`BaseLayout.astro`), translate/opacity transitions
+- **Hover:** card lift, slot scale, number emphasis, button/link color transitions
+- **Ambient:** slow hero background drift (`hero-drift`, 20s alternate)
+- All animated states gated by `.js` and neutralized under `prefers-reduced-motion: reduce`; no autoplay media/carousels
 
-### Header
+## 5. Pages
 
-Sticky, white with a slight blur. Monogram square + Larken wordmark + spaced
-small caps. Four links, active in `--accent-strong`. No header CTA: the first
-viewport already has "View projects", and the closing band carries "Get in
-touch". On mobile the links drop into a white panel below the header.
+- **Home (`index.astro`)**: hero, offer, principles, location, case study, numbers, close (conversion-focused copy)
+- **About (`about.astro`)**: hero, story/brief, values grid, credentials, close CTA (placeholder history/people)
+- **Projects (`projects.astro`)**: hero, current launch (data-driven), track record cards, close CTA
+- **Project detail (`projects/[slug].astro`)**: hero, facts + description + media, gallery, close CTA
+- **Contact (`contact.astro`)**: hero, contact details + enquiry form (mockup/not connected), close context
+- **404 (`404.astro`)**: hero-style recovery with primary/secondary actions
 
-### Home
+All pages share global tokens/components, Terrazzo hero treatment, and reveal animations.
 
-1. **Hero** — 88vh white field, h1 at 4rem, one short paragraph, underlined
-   "View projects", and an original low-contrast skyline at the foot of the
-   section. No badge, no floating card, no stock-photo collage.
-2. **Now selling** — section heading with a right-aligned "All projects" link,
-   then one large project row: 4:3 image, name, location, summary, three facts,
-   "Experience more".
-3. **Values band** — dark `--ink`, image left, 4rem statement right, one link.
-4. **Principles** — four numbered columns on white, hairline top rules. This is
-   the only place where the site explains how it works in list form.
-5. **Numbers** — "Building up" left, five figures in green Larken right, each
-   with a hairline and a one-line label.
-6. **Legacy band** — full-bleed dusk skyline under a dark green gradient, one
-   2rem statement and a link. This is a mood break, not a content section.
-7. **Track record** — dark band, teal h2, three project cards with image, name,
-   location + year, one-line note.
-8. **Closer** — centred 3rem question on a dark green field, one paragraph, one
-   underlined link.
-9. **Footer** — white, hairline rule, wordmark, short description, phone/email,
-   social icons, two-column link list, copyright and disclaimer.
+## 6. Content & copy rules
 
-### Inner pages
+- Benefit-driven, clear CTAs; no invented metrics, testimonials, awards, or RERA numbers.
+- One real selling project only; promoters’ prior work shown with attribution and placeholder labeling until verified.
+- Keep placeholder notes visible until verified content/imagery replaces them.
+- **Before launch:** replace wordmark/logo, all placeholder project facts/RERA/names/photos/copy, verify track record/credentials, remove mockup-only `noindex`/preview behaviors as applicable, confirm font licensing for production use, wire contact form (email/WhatsApp), set production `site/base`, add legal/RERA pages.
 
-- **About** — page hero, story split with image, milestone timeline, four values,
-  dark mission/vision band, leadership grid, credentials list, closer.
-- **Projects** — page hero, current launch row, dark track-record grid, closer.
-- **Project detail** — page hero with actions, 16:9 lead image, overview + "At a
-  glance" facts, 3-up gallery, location + map placeholder, closer.
-- **Contact** — page hero, contact details left, form card right, full-width map.
-- **404** — large green "404", one line of explanation, underlined link home.
+## 7. Key files
 
-## 5. Imagery
-
-The mockup uses original SVG illustrations. The final site replaces them with
-photography; the layout must not change.
-
-- Project rows: 4:3, landscape, natural light, no text overlay.
-- Project detail lead: 16:9, at least 2000px wide.
-- Gallery: 4:3, three images minimum.
-- Values / legacy / closer bands: wide landscape, 2000px+, with a safe dark area
-  on the left or centre for white text.
-- Keep colour grading consistent: warm daylight, muted greens, no heavy HDR.
-- Every image needs a real `alt` describing the place, not "project image".
-
-## 6. Motion
-
-Motion is subtle and one-directional: things arrive, they do not loop or
-compete for attention. There is no autoplay, no carousel and no floating
-objects.
-
-**On load**
-
-- The hero h1, lead and link rise 22px and fade in, staggered at 0/120/240ms
-  over 0.9s. Inner-page heroes do the same for eyebrow, h1, lead and actions.
-- The hero horizon fades in over 1.3s.
-- The sun in the hero artwork drifts 8px vertically on an 11s loop.
-
-**Sky detail**
-
-- A small airliner crosses the hero left to right over 46s, starting 3s after
-  load. A gull crosses right to left over 64s, already mid-flight at load so
-  the sky is never empty. Both loop, and both sit in the empty band above the
-  headline, behind the text layer.
-- The airliner bobs and pitches by 1.6° over 9s; the gull bobs 7px over 5.5s
-  and flaps its wings on a 1.1s cycle.
-- Both are original inline SVG in `--accent-strong` at 0.46–0.55 opacity, about
-  62px and 52px wide on desktop. They are decorative: `aria-hidden`, no pointer
-  events, and `display: none` under reduced motion.
-- They are on the home hero only. Inner-page heroes stay still.
-
-**On scroll**
-
-- Section heads, project rows, value columns, principles, numbers, timeline
-  rows, track cards, gallery images, contact columns and the closer fade up
-  18px over 0.8s. Items that sit side by side are staggered by 80ms, capped at
-  five steps (400ms) so nothing waits long to appear.
-- The hero horizon parallaxes down by 6% of the scroll distance, capped at one
-  viewport height.
-
-**Hover**
-
-- Images scale to 1.03–1.04 over 0.6s; links shift colour only.
-
-**Rules**
-
-- The reveal class is added by JavaScript; without JavaScript, or if the
-  observer cannot be created, all content is visible immediately.
-- Everything above collapses under `prefers-reduced-motion: reduce`: the
-  reveal script exits early, and animation duration, iteration count and
-  transition delay are neutralised.
-- Do not add more motion to the final build. This is the ceiling.
-
-## 7. Accessibility
-
-- One h1 per page; headings descend in order.
-- Focus ring: 2px `--accent`, 3px offset.
-- Skip link to `#main`.
-- Body text on white and on dark bands meets 4.5:1; the green is never used for
-  body copy.
-- Mobile menu is a button with `aria-expanded`, closes on link click and Escape.
-- Forms use real labels; the consent checkbox is not styled as all-caps.
-
-## 8. Content rules
-
-- Say what is verifiable. Numbers, dates, RERA and approvals must come from the
-  Client; placeholders are marked in the UI.
-- One real project only. Promoters' delivered work is always attributed.
-- Prefer short declarative sentences. No "world-class", "luxury redefined" or
-  invented awards.
-- Keep the placeholder note visible until the corresponding real content lands.
-
-## 9. Before launch
-
-- [ ] Replace `NewBuild` wordmark and monogram with the Client's logo.
-- [ ] Replace all project illustrations with photography.
-- [ ] Replace project name, facts, RERA number and copy.
-- [ ] Confirm or remove the promoters' track record.
-- [ ] Confirm the webfont licence.
-- [ ] Remove the preview banner and `noindex` meta in `BaseLayout.astro`.
-- [ ] Point `site`/`base` in `astro.config.mjs` at `https://newbuild.co.in`.
+- `src/styles/tokens.css` — theme tokens
+- `src/styles/base.css` — reset/base/slots/reduced-motion
+- `src/styles/global.css` — Hallmark stamp, page tokens, components, animations, responsive
+- `src/layouts/BaseLayout.astro` — head/fonts, glass header/nav, footer, JS (`.js`, nav, slots, reveals)
+- `src/pages/index.astro`, `about.astro`, `projects.astro`, `projects/[slug].astro`, `contact.astro`, `404.astro`
+- `src/data/projects.ts`, `src/data/site.ts` — content sources
+- `.hallmark/` — preflight/log (local build artifacts)

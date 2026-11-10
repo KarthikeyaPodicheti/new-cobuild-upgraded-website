@@ -1,25 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import CtaBand from '../components/CtaBand.astro';
 import { url } from '../lib/paths';
 
 const values = [
   {
-    title: 'Integrity in paperwork',
-    text: 'Titles, approvals and registrations are checked and shared before money moves. No surprises at handover.',
+    title: 'Paperwork you can check',
+    text: 'We verify titles, approvals, and registrations and share them before money moves.',
   },
   {
-    title: 'Craft in construction',
-    text: 'Material specifications are published, samples are approved, and quality is checked at every stage, not just at the end.',
+    title: 'Care in construction',
+    text: 'We publish material specifications, approve samples, and run quality checks at each stage, not only at handover.',
   },
   {
-    title: 'Respect for timelines',
-    text: 'Milestone schedules are committed at booking and reported against during construction.',
+    title: 'Dates we stand behind',
+    text: 'We commit to a milestone schedule at booking and report progress against it during construction.',
   },
   {
-    title: 'Responsibility to community',
-    text: 'Water, drainage, access and landscaping are planned with the neighbourhood, not just the boundary wall.',
+    title: 'Planning for the neighbourhood',
+    text: 'We plan water, drainage, access, and landscaping with the area around the site, not just inside the boundary.',
   },
 ];
 
@@ -30,13 +28,6 @@ const milestones = [
   { year: '2019', title: 'One million sq ft delivered', text: 'Crosses the million-square-foot mark across residential and commercial.' },
   { year: '2023', title: 'First township handover', text: 'Sunrise Enclave handed over plot-by-plot with completed infrastructure.' },
   { year: '2026', title: 'Forty-two projects', text: 'Operating across three cities with residential, commercial and infrastructure mandates.' },
-];
-
-const leaders = [
-  { initials: 'MD', role: 'Managing Director' },
-  { initials: 'DP', role: 'Director — Projects' },
-  { initials: 'HD', role: 'Head of Design' },
-  { initials: 'HS', role: 'Head of Sales' },
 ];
 
 const credentials = [
@@ -50,172 +41,87 @@ const credentials = [
 
 <BaseLayout
   title="About us"
-  description="Residential and commercial development — built around verifiable documentation and dependable handovers."
+  description="How NewBuild plans, documents, and hands over residential and commercial projects."
 >
-  <section class="page-hero">
-    <div class="container">
-      <p class="eyebrow">About NewBuild</p>
-      <h1>Builders with an engineer's habit of showing the working.</h1>
-      <p class="lead">
-        We started with a simple frustration: buying property in this market
-        asked for more faith than paperwork. NewBuild was built to close that
-        gap.
-      </p>
-      <p class="note" style="margin-top: 1.75rem;">
-        Company history, milestones and leadership profiles on this page are
-        placeholders for the design preview.
-      </p>
+  <section class="hero" data-reveal>
+    <div class="hero__bg" aria-hidden="true">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg/1280px-Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg" alt="" width="1280" height="853" loading="eager" />
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__eyebrow">About NewBuild</span>
+        <h1>We show the work as we build it.</h1>
+        <p class="lead">
+          Buying property means trusting a plan. We share documents, dates, and site progress so you can check what is happening.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container story">
-      <div>
-        <p class="eyebrow">Our story</p>
-        <h2>One brief, one accountable team</h2>
-        <div class="prose">
-          <p>
-            The principle has not changed: we take on land, design, approvals and
-            construction as a single brief — and we document each stage so
-            buyers, tenants and partners can check the work.
+  <section class="offer" data-reveal>
+    <div class="container">
+      <header class="offer__header">
+        <h2>One team, one brief</h2>
+      </header>
+      <div class="offer__grid">
+        <div class="offer__content">
+          <p class="offer__description">
+            We handle land, design, approvals, and construction as one job. At each stage we share documents so buyers, tenants, and partners can review the work.
           </p>
-          <p>
-            The team stays with a project from feasibility to handover, which
-            means decisions do not get lost between consultants.
-          </p>
-          <p>
-            We are deliberately not the fastest builder in the market. We would
-            rather publish a realistic date, meet it, and hand over a building
-            that does not need a second round of corrections.
+          <p class="offer__description">
+            The same team stays with a project from feasibility to handover, so decisions do not get lost between consultants. We do not try to be the fastest builder. We set a realistic date, report against it, and hand over a building that does not need a round of fixes.
           </p>
         </div>
-      </div>
-
-      <div class="story__media">
-        <img
-          src={url('/images/project-skyline.svg')}
-          alt="Illustration of a NewBuild development"
-          width="900"
-          height="675"
-          loading="lazy"
-        />
+        <div class="offer__media">
+          <div data-slot="about" data-alt="Architectural massing model of low courtyard buildings" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg/1280px-Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg');">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg/1280px-Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg" alt="Architectural massing model" width="1280" height="731" loading="lazy" />
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--tint">
+  <section class="what-we-do" data-reveal>
     <div class="container">
-      <SectionHeading
-        eyebrow="Milestones"
-        title="How we got here"
-        intro="A working history of the company and the promoter team. Dates and project counts are placeholders for the design preview."
-      />
-
-      <ul class="timeline" aria-label="Company milestones">
-        {
-          milestones.map((milestone) => (
-            <li>
-              <strong>{milestone.year}</strong>
-              <div>
-                <h3>{milestone.title}</h3>
-                <p>{milestone.text}</p>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
+      <header class="what-we-do__header">
+        <h2>Our values</h2>
+        <p class="lead">Four principles we hold to on every project.</p>
+      </header>
+      <div class="what-we-do__grid" data-stagger>
+        {values.map((value) => (
+          <article class="what-we-do__item">
+            <h3>{value.title}</h3>
+            <p>{value.text}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="case-study" data-reveal>
     <div class="container">
-      <SectionHeading
-        eyebrow="What we stand on"
-        title="Four values, no exceptions"
-      />
-      <div class="grid-4">
-        {
-          values.map((value) => (
-            <article class="value-card">
-              <h3>{value.title}</h3>
-              <p>{value.text}</p>
-            </article>
-          ))
-        }
+      <header class="case-study__header">
+        <h2>Credentials</h2>
+      </header>
+      <div class="offer__grid">
+        <div class="offer__content">
+          <p class="offer__description">Ask for any of these at enquiry; they are part of the sales pack, not a favour.</p>
+          <ul style="display: grid; gap: var(--space-md); padding-left: var(--space-lg); color: var(--color-ink-2);">
+            {credentials.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="values">
-    <div class="container values__grid">
-      <div class="values__media">
-        <img
-          src={url('/images/project-metro.svg')}
-          alt="Illustration of a commercial development"
-          width="900"
-          height="675"
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <h2>Built to perform as promised.</h2>
-        <p>
-          <strong>Mission.</strong> To build assets that perform as promised — on
-          specification, on schedule and on title.
-        </p>
-        <p>
-          <strong>Vision.</strong> To be the developer landowners and buyers
-          recommend because the process was as sound as the building.
-        </p>
-        <a class="link-cta link-cta--light" href={url('/projects')}>
-          See the portfolio
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
+  <section class="close" data-reveal>
     <div class="container">
-      <SectionHeading
-        eyebrow="Leadership"
-        title="The people accountable for delivery"
-        intro="Names, photographs and biographies are placeholders in this draft."
-      />
-      <div class="grid-4">
-        {
-          leaders.map((leader) => (
-            <article class="person person--light">
-              <span class="person__avatar" aria-hidden="true">
-                {leader.initials}
-              </span>
-              <strong>Name to be added</strong>
-              <span>{leader.role}</span>
-            </article>
-          ))
-        }
+      <h2>Want to see the paperwork?</h2>
+      <p class="lead">Ask for the project dossier or schedule a site visit.</p>
+      <div class="close__contact">
+        <a href={url('/contact')}>Schedule a site visit</a>
+        <a href={url('/projects')}>View projects</a>
       </div>
     </div>
   </section>
-
-  <section class="section section--tint">
-    <div class="container story">
-      <div>
-        <p class="eyebrow">Credentials</p>
-        <h2>What we can show you</h2>
-        <p class="lead" style="margin-top: 1.25rem;">
-          Ask for any of these at enquiry; they are part of the sales pack, not a
-          favour.
-        </p>
-      </div>
-      <ul class="check-list">
-        {credentials.map((item) => <li>{item}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <CtaBand
-    title="Want the project dossier before you visit?"
-    body="Ask us for the approvals, title documents and milestone schedule for any project you are considering."
-    ctaLabel="Request the dossier"
-  />
 </BaseLayout>

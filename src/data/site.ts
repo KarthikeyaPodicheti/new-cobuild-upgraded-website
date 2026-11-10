@@ -1,9 +1,9 @@
 export const site = {
   name: 'NewBuild',
   shortName: 'NewBuild',
-  tagline: 'Building landmark spaces. Delivering lasting value.',
+  tagline: 'Homes and workplaces, built with clear paperwork and timelines.',
   description:
-    'NewBuild plans, builds and hands over residential communities, commercial landmarks and infrastructure with verifiable documentation and dependable timelines.',
+    'NewBuild plans and builds residential and commercial projects. We share approvals, schedules, and site progress so you can check the work yourself.',
   phone: '+91 90000 00000',
   phoneHref: '+919000000000',
   whatsappHref:
@@ -17,14 +17,14 @@ export const site = {
     ],
     mapQuery: 'Financial District, Nanakramguda, Hyderabad',
   },
-  hours: 'Monday – Saturday, 9:30 am – 6:30 pm',
+  hours: 'Monday to Saturday, 9:30 am to 6:30 pm',
   social: [
     { label: 'LinkedIn', href: '#' },
     { label: 'Instagram', href: '#' },
     { label: 'YouTube', href: '#' },
   ],
   reraNote:
-    'Design preview only. Project names, specifications, RERA numbers and photography are placeholders.',
+    'Design preview. Project names, specifications, RERA numbers, and photography are placeholders.',
 } as const;
 
 export const navLinks = [

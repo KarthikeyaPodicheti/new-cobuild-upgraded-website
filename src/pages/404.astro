@@ -7,15 +7,20 @@ import { url } from '../lib/paths';
   title="Page not found"
   description="The page you were looking for could not be found."
 >
-  <section class="container error-page">
-    <div>
-      <strong>404</strong>
-      <h1>This page has moved, or never existed.</h1>
-      <p>
-        Check the address, or head back to the projects and contact pages to
-        find what you need.
-      </p>
-      <a class="link-cta" href={url('/')}>Back to home</a>
+  <section class="hero" data-reveal>
+    <div class="hero__bg" aria-hidden="true">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg/1280px-Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg" alt="" width="1280" height="853" loading="eager" />
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__eyebrow">404</span>
+        <h1>This page has moved, or never existed.</h1>
+        <p class="lead">Check the address, or head back to the projects and contact pages to find what you need.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={url('/')}>Back to home</a>
+          <a class="btn btn--secondary" href={url('/projects')}>View projects</a>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

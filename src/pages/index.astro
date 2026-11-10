@@ -1,214 +1,249 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroArt from '../components/HeroArt.astro';
-import HeroFlyers from '../components/HeroFlyers.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import FeaturedProject from '../components/FeaturedProject.astro';
-import CtaBand from '../components/CtaBand.astro';
 import { projects, trackRecord } from '../data/projects';
 import { url } from '../lib/paths';
 
 const flagship = projects[0];
 
-const pillars = [
+const principles = [
   {
     num: '01',
-    title: 'Engineering-led, not brochure-led',
-    text: 'In-house design coordination and site engineers own the details from foundation to finish.',
+    title: 'Engineers on site',
+    text: 'Our in-house team follows the work from foundation to finish and checks the details that are easy to miss.',
   },
   {
     num: '02',
-    title: 'Documentation you can verify',
-    text: 'Approvals, titles and RERA registrations are shared before you commit — not after.',
+    title: 'Paperwork in the open',
+    text: 'Approvals, titles, and registrations are shared up front so you can see what you are buying before you commit.',
   },
   {
     num: '03',
-    title: 'Timelines we publish',
-    text: 'Every project carries a milestone schedule, and we report progress against it.',
+    title: 'Schedules you can track',
+    text: 'We publish milestone dates and send progress updates as the work moves.',
   },
   {
     num: '04',
-    title: 'One team to handover',
-    text: 'Land, design, construction and handover sit with the same accountable team.',
+    title: 'One team responsible',
+    text: 'From land purchase to handover, the same team owns the project and answers for it.',
   },
 ];
 
 const numbers = [
   { value: '1', label: 'Project live now' },
   { value: '2.4', label: 'Acres under development' },
-  { value: '168', label: 'Homes in the flagship' },
+  { value: '168', label: 'Homes in flagship' },
   { value: '2027', label: 'Handover scheduled' },
-  { value: '3', label: 'Delivered by the promoters' },
+  { value: '3', label: 'Delivered by promoters' },
 ];
 
-const legacyBg = [
-  'linear-gradient(90deg, rgba(13, 40, 33, 0.95) 0%, rgba(13, 40, 33, 0.85) 48%, rgba(13, 40, 33, 0.55) 100%)',
-  `url(${url('/images/skyline-dusk.svg')})`,
-].join(', ');
+const offices = [
+  {
+    city: 'Hyderabad',
+    address: 'Kondapur, Hyderabad 500084\nTelangana, India',
+    phone: '+91 40 1234 5678',
+    email: 'hyderabad@newbuild.co.in',
+  },
+];
+
+const caseStudy = trackRecord[0];
 ---
 
 <BaseLayout
   title="Residential and commercial developers"
-  description="NewBuild plans, builds and hands over residential communities and commercial landmarks with verifiable documentation and dependable timelines."
+  description="NewBuild plans and builds residential and commercial projects, with documents and schedules you can check."
 >
-  <section class="hero">
+  <!-- Hero — Settled posture -->
+  <section class="hero" data-reveal>
+    <div class="hero__bg" aria-hidden="true">
+      <img src={url('/images/hero-sunset.jpg')} alt="" width="2000" height="1200" loading="eager" />
+    </div>
     <div class="container hero__inner">
-      <h1>We build the places where life and business grow.</h1>
-      <p class="hero__lead">
-        NewBuild plans, builds and hands over homes and workplaces — with the
-        paperwork, timelines and finish quality to match the promise.
-      </p>
-      <a class="link-cta" href={url('/projects')}>View projects</a>
-    </div>
-    <HeroArt />
-    <HeroFlyers />
-  </section>
-
-  <section class="section" id="now-selling">
-    <div class="container">
-      <SectionHeading
-        eyebrow="Now selling"
-        title="Our current launch"
-        intro="Two towers around a landscaped central court in Kondapur, with a rooftop clubhouse and a dedicated work-from-home lounge."
-        linkHref="/projects"
-        linkLabel="All projects"
-      />
-
-      {flagship && <FeaturedProject project={flagship} />}
-
-      <p class="note" style="margin-top: 2.5rem;">
-        Placeholder project name, specifications and imagery. The Client supplies
-        verified facts, the RERA number and photography before launch.
-      </p>
-    </div>
-  </section>
-
-  <section class="values">
-    <div class="container values__grid">
-      <div class="values__media">
-        <img
-          src={url('/images/project-meadows.svg')}
-          alt="Illustration of a completed residential community"
-          width="900"
-          height="675"
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <h2>The boring parts, done properly.</h2>
-        <p>
-          Most construction promises sound the same. The difference is in what
-          gets documented, published and handed over — and who is still
-          answering the phone after possession.
+      <div class="hero__content">
+        <span class="hero__eyebrow">Kondapur, Hyderabad</span>
+        <h1>Own a piece of <span class="hero__accent">what's next</span></h1>
+        <p class="lead">
+          3 & 4 BHK homes around a landscaped central court in Kondapur, Hyderabad.
         </p>
-        <a class="link-cta link-cta--light" href={url('/about')}>How we work</a>
+        <div class="hero__actions">
+          <a href={url('/projects')} class="btn btn--primary">See current launch</a>
+          <span class="hero__divider">·</span>
+          <a href="#" class="btn btn--outline">Launching soon</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="principles" aria-label="How we work">
+  <!-- Offer — Featured Project -->
+  <section class="offer" data-reveal>
     <div class="container">
-      <ul class="principles__grid">
-        {
-          pillars.map((pillar) => (
-            <li class="principle">
-              <span class="principle__num">{pillar.num}</span>
-              <h3>{pillar.title}</h3>
-              <p>{pillar.text}</p>
-            </li>
-          ))
-        }
-      </ul>
+      <header class="offer__header" data-reveal>
+        <h2>Now selling in Kondapur</h2>
+        <a href={url('/projects')} class="offer__link">View all projects</a>
+      </header>
+      <div class="offer__grid">
+        <div class="offer__media" data-reveal>
+          <div data-slot="offer" data-alt="Curved blue glass facade in diagonal panels, 160 Front Street West Toronto" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg');">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg" alt="Curved blue glass facade in diagonal panels" width="1280" height="853" loading="lazy" />
+          </div>
+        </div>
+        <div class="offer__content" data-reveal>
+          <dl class="offer__meta">
+            <dt>Status</dt>
+            <dd>Limited homes available</dd>
+            <dt>Location</dt>
+            <dd>Kondapur, Hyderabad</dd>
+            <dt>Type</dt>
+            <dd>3 & 4 BHK residences</dd>
+            <dt>Handover</dt>
+            <dd>2027</dd>
+          </dl>
+          <p class="offer__description">
+            Two towers around a landscaped central court, planned for light and air. The project includes a rooftop clubhouse, a work lounge, and open green space.
+          </p>
+          <div class="offer__facts" data-stagger>
+            <div class="offer__fact">
+              <span class="offer__fact-value num">168</span>
+              <span class="offer__fact-label">Homes</span>
+            </div>
+            <div class="offer__fact">
+              <span class="offer__fact-value num">2.4</span>
+              <span class="offer__fact-label">Acres</span>
+            </div>
+            <div class="offer__fact">
+              <span class="offer__fact-value num">2027</span>
+              <span class="offer__fact-label">Handover</span>
+            </div>
+          </div>
+          <a href={url('/projects/the-courtyard')} class="offer__cta">Get project details</a>
+        </div>
+      </div>
+      <p class="offer__note">
+        Placeholder project name, specifications, and imagery. Verified facts, the RERA number, and photography replace these before launch.
+      </p>
     </div>
   </section>
 
-  <section class="numbers" aria-label="The business at a glance">
+  <!-- What we do -->
+  <section class="what-we-do" data-reveal>
+    <div class="container">
+      <header class="what-we-do__header" data-reveal>
+        <h2>How we work with buyers</h2>
+        <p class="lead">We show documents early, publish dates, and keep one team on the project from start to handover.</p>
+      </header>
+      <div class="what-we-do__grid" data-stagger>
+        {principles.map((p) => (
+          <article class="what-we-do__item">
+            <span class="what-we-do__num" aria-hidden="true">{p.num}</span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Where we are -->
+  <section class="where-we-are" data-reveal>
+    <div class="container">
+      <header class="where-we-are__header" data-reveal>
+        <h2>Visit us in Hyderabad</h2>
+        <p class="lead">See the plans, walk the site, and get your questions answered in person.</p>
+      </header>
+      <div class="where-we-are__grid">
+        <div class="where-we-are__map" data-reveal>
+          <div data-slot="map" data-alt="Architectural massing model of low courtyard buildings" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg/1280px-Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg');">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg/1280px-Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg" alt="Architectural massing model of courtyard buildings" width="1280" height="731" loading="lazy" />
+          </div>
+        </div>
+        <div class="where-we-are__details" data-reveal>
+          {offices.map((office) => (
+            <div class="where-we-are__office">
+              <h3>{office.city}</h3>
+              <address class="where-we-are__address">{office.address.replace(/\n/g, '<br>')}</address>
+              <div class="where-we-are__contact">
+                <a href={`tel:${office.phone.replace(/\s/g, '')}`}>{office.phone}</a>
+                <a href={`mailto:${office.email}`}>{office.email}</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case study -->
+  <section class="case-study" data-reveal>
+    <div class="container">
+      <header class="case-study__header" data-reveal>
+        <h2>A track record you can verify</h2>
+        <a href={url('/projects')} class="offer__link">Explore all work</a>
+      </header>
+      <div class="case-study__grid">
+        <div class="case-study__media" data-reveal>
+          <div data-slot="case-main" data-alt="White curved concert hall roof lit at night, Auditorio de Tenerife" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg/1280px-Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg');">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg/1280px-Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg" alt="White curved concert hall roof lit at night" width="1280" height="754" loading="lazy" />
+          </div>
+        </div>
+        <div class="case-study__content" data-reveal>
+          <dl class="case-study__meta">
+            <dt>Project</dt>
+            <dd>{caseStudy.title}</dd>
+            <dt>Location</dt>
+            <dd>{caseStudy.location}</dd>
+            <dt>Year</dt>
+            <dd>{caseStudy.year}</dd>
+          </dl>
+          <p class="case-study__description">
+            {caseStudy.note}
+          </p>
+          <div class="case-study__gallery" data-stagger>
+            <div data-slot="case-1" data-alt="Glass office building at blue hour, Münster LVM Bürogebäude" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg/1280px-M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg');">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg/1280px-M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg" alt="Glass office building at blue hour" width="1280" height="853" loading="lazy" />
+            </div>
+            <div data-slot="case-2" data-alt="Looking up a round courtyard of scattered windows, Nokia Networks Munich Office" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg/1280px-Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg');">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg/1280px-Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg" alt="Round courtyard of scattered windows" width="1280" height="962" loading="lazy" />
+            </div>
+            <div data-slot="case-3" data-alt="Silhouetted spires of Prague against orange dawn sky" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Prague_skyline_at_dawn.jpg/1280px-Prague_skyline_at_dawn.jpg');">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Prague_skyline_at_dawn.jpg/1280px-Prague_skyline_at_dawn.jpg" alt="Prague skyline at dawn" width="1280" height="773" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="case-study__note">
+        Placeholder entries. Replace with verified project names, years, and photography, or remove this section if the promoters have no attributable record.
+      </p>
+    </div>
+  </section>
+
+  <!-- Numbers — Figure on ink band -->
+  <section class="numbers" data-reveal>
     <div class="container numbers__grid">
-      <div class="numbers__intro">
-        <h2>Building up</h2>
-        <p>
-          One live project today, and a promoter team with a delivered record
-          behind it.
-        </p>
+      <div class="numbers__figure" data-reveal>
+        <span class="numbers__value num">168</span>
+        <span class="numbers__label">Homes in our flagship</span>
       </div>
-
-      <ul class="numbers__items">
-        {
-          numbers.map((item) => (
-            <li class="number">
-              <span class="number__value">{item.value}</span>
-              <span class="number__line" aria-hidden="true"></span>
-              <span class="number__label">{item.label}</span>
-            </li>
-          ))
-        }
+      <ul class="numbers__items" data-stagger>
+        {numbers.map((item) => (
+          <li class="numbers__item">
+            <span class="numbers__item-value num">{item.value}</span>
+            <span class="numbers__item-label">{item.label}</span>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
-  <section class="legacy" style={`background-image: ${legacyBg};`}>
-    <div class="container legacy__inner">
-      <h2>
-        Land, design, approvals and construction — held to one brief, one team
-        and one published schedule.
-      </h2>
-      <a class="link-cta link-cta--light" href={url('/about')}>Read our story</a>
-    </div>
-  </section>
-
-  <section class="track">
+  <!-- Close -->
+  <section class="close" data-reveal>
     <div class="container">
-      <SectionHeading
-        eyebrow="Track record"
-        title="Delivered by the promoters"
-        intro="Earlier developments completed by the team behind NewBuild, shown with attribution."
-        linkHref="/projects"
-        linkLabel="All projects"
-        dark
-      />
-
-      <div class="track__grid">
-        {
-          trackRecord.map((entry) => (
-            <article class="track-card">
-              <div class="track-card__media">
-                <img
-                  src={url(entry.image)}
-                  alt={`Illustration of ${entry.title}`}
-                  width="640"
-                  height="480"
-                  loading="lazy"
-                />
-              </div>
-              <div class="track-card__body">
-                <h3>{entry.title}</h3>
-                <p class="track-card__meta">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z" />
-                    <circle cx="12" cy="10" r="2.5" />
-                  </svg>
-                  {entry.location} · {entry.year}
-                </p>
-                <p>{entry.note}</p>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-
-      <p class="note note--light">
-        Placeholder entries. Replace with verified project names, years and
-        photography, or remove this section if the promoters have no
-        attributable track record.
+      <h2>Talk to us about the project</h2>
+      <p class="lead">
+        Ask for the project dossier, schedule a site visit, or tell us what you need.
       </p>
+      <div class="close__contact">
+        <a href={url('/contact')}>Schedule a site visit</a>
+        <a href="tel:+914012345678">Call our team</a>
+      </div>
     </div>
   </section>
-
-  <CtaBand />
 </BaseLayout>

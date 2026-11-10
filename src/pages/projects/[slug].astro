@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CtaBand from '../../components/CtaBand.astro';
 import { projects } from '../../data/projects';
 import { url } from '../../lib/paths';
 
@@ -15,106 +14,71 @@ const { project } = Astro.props;
 ---
 
 <BaseLayout title={project.title} description={project.summary}>
-  <section class="page-hero">
-    <div class="container">
-      <p class="eyebrow">{project.type} · {project.location}</p>
-      <h1>{project.title}</h1>
-      <p class="lead">{project.summary}</p>
-      <div class="page-hero__actions">
-        <a class="link-cta" href={url('/contact')}>Book a site visit</a>
-        <a class="btn btn--ghost" href={url('/projects')}>All projects</a>
-      </div>
+  <section class="hero" data-reveal>
+    <div class="hero__bg" aria-hidden="true">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg/1280px-Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg" alt="" width="1280" height="853" loading="eager" />
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="project-media">
-        <img
-          src={url(project.image)}
-          alt={`Illustration of ${project.title}`}
-          width="1440"
-          height="810"
-        />
-        <span class={`status status--${project.status.toLowerCase()}`}>
-          {project.status}
-        </span>
-      </div>
-
-      <div class="project-layout">
-        <div class="prose">
-          <p class="eyebrow">About the project</p>
-          <h2>Designed around the courtyard</h2>
-          <p style="margin-top: 1.25rem;">{project.description}</p>
-          <p>
-            Floor plans, specifications and the approval set are shared at the
-            site visit, together with the RERA registration and the milestone
-            schedule.
-          </p>
-          <p class="note" style="margin-top: 1.75rem;">
-            Placeholder project details. The Client supplies verified facts,
-            RERA number and photography before launch.
-          </p>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__eyebrow">{project.type} · {project.location}</span>
+        <h1>{project.title}</h1>
+        <p class="lead">{project.summary}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={url('/contact')}>Book a site visit</a>
+          <a class="btn btn--secondary" href={url('/projects')}>All projects</a>
         </div>
-
-        <aside class="project-facts">
-          <h2>At a glance</h2>
-          <dl class="facts">
-            {
-              project.facts.map((fact) => (
-                <div>
-                  <dt>{fact.label}</dt>
-                  <dd>{fact.value}</dd>
-                </div>
-              ))
-            }
-          </dl>
-          <a class="btn" href={url('/contact')}>Request the brochure</a>
-        </aside>
       </div>
     </div>
   </section>
 
-  <section class="section section--tint">
+  <section class="offer" data-reveal>
     <div class="container">
-      <p class="eyebrow">Gallery</p>
-      <h2>A first look</h2>
-      <p class="lead" style="margin-top: 1.1rem;">
-        Placeholder artwork. Real project photography replaces these images
-        before launch.
-      </p>
-      <div class="gallery">
-        {
-          project.gallery.map((src) => (
-            <img src={url(src)} alt="" width="640" height="480" loading="lazy" />
-          ))
-        }
+      <div class="offer__grid">
+        <div class="offer__media">
+          <div data-slot="project-detail" data-alt={`${project.title} visual`} style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg');">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg" alt={`${project.title} visual`} width="1280" height="853" loading="lazy" />
+          </div>
+        </div>
+        <div class="offer__content">
+          <h2>At a glance</h2>
+          <dl class="offer__meta">
+            {project.facts.map((fact) => (
+              <>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </>
+            ))}
+          </dl>
+          <p class="offer__description">{project.description}</p>
+          <a class="offer__cta" href={url('/contact')}>Request the brochure</a>
+        </div>
       </div>
+      <p class="offer__note">Placeholder project details. Verified facts, the RERA number, and photography replace these before launch.</p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container story">
-      <div>
-        <p class="eyebrow">Location</p>
-        <h2>{project.location}</h2>
-        <p class="lead" style="margin-top: 1.25rem;">
-          Close to schools, daily retail and the city's main employment corridor.
-          Exact distances and the location map are confirmed at the site visit.
-        </p>
+  <section class="case-study" data-reveal>
+    <div class="container">
+      <header class="case-study__header">
+        <h2>Gallery</h2>
+      </header>
+      <div class="case-study__gallery" data-stagger>
+        <div data-slot="g1"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg" alt="Gallery image" loading="lazy" /></div>
+        <div data-slot="g2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg/1280px-M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg" alt="Gallery image" loading="lazy" /></div>
+        <div data-slot="g3"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Prague_skyline_at_dawn.jpg/1280px-Prague_skyline_at_dawn.jpg" alt="Gallery image" loading="lazy" /></div>
       </div>
-      <div class="map-placeholder" role="img" aria-label="Map placeholder">
-        <span>
-          Map embed placeholder<br />
-          {project.location}
-        </span>
-      </div>
+      <p class="case-study__note">Placeholder images. Real project photography replaces these before launch.</p>
     </div>
   </section>
 
-  <CtaBand
-    title="See the site before you decide."
-    body="Book a visit and we will walk you through the layout, the specification and the paperwork — including the RERA registration."
-    ctaLabel="Book a site visit"
-  />
+  <section class="close" data-reveal>
+    <div class="container">
+      <h2>See the site before you decide</h2>
+      <p class="lead">Book a visit and we will walk you through the layout, the specification, and the paperwork.</p>
+      <div class="close__contact">
+        <a href={url('/contact')}>Book a site visit</a>
+        <a href={url('/projects')}>All projects</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

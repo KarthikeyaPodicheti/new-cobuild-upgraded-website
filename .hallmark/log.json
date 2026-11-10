@@ -1,0 +1,37 @@
+[
+  {
+    "shape": "Index-First (home), Letter (about), Index-First (projects), Manifesto (project detail), Letter (contact)",
+    "theme": "editorial (custom, from design.md)",
+    "axes": {
+      "material": "photography-led with SVG placeholders",
+      "typeVoice": "Larken Light display, Atlas Grotesk body",
+      "paletteBalance": "white canvas, ink text, single green accent",
+      "surfaces": "flat, square corners, hairline rules",
+      "motion": "subtle rise-in, no loops, prefers-reduced-motion respected"
+    },
+    "hero": "Stage posture: headline + lead + CTA on left, skyline art at foot, flyers in sky band",
+    "nav": "edge-aligned, wordmark + 4 links, active in accent-strong, mobile panel",
+    "footer": "mast: wordmark over links, contact row, social, two-col nav, disclaimer",
+    "imagery": "SVG placeholders (meadows, northgate, metro, riverfront, skyline, skyline-dusk) in project rows, values, track, legacy; library photos would replace",
+    "photos": [],
+    "entry": "2026-11-10T07:19:55Z",
+    "fingerprint": "newbuild-editorial-v1",
+    "sections": [
+      "Hero (headline, lead, CTA, skyline art, flyers)",
+      "Now Selling (featured project row)",
+      "Values Band (dark, image + statement)",
+      "Principles (4 numbered columns)",
+      "Numbers (5 accent figures)",
+      "Legacy Band (dusk skyline + statement)",
+      "Track Record (3 project cards)",
+      "Closer (centered question + CTA)",
+      "Footer"
+    ],
+    "signature": "The skyline art at hero foot — original SVG, not stock — carries the place identity",
+    "waived": [
+      "REFLEX 7b ×21: pure #fff on light canvas, dark bands, form surfaces — design.md locked system",
+      "WARN 11 ×2: hover scale on .project-row__media and .track-card__media — deliberate affordance"
+    ],
+    "prompt": "Rebuild NewBuild site with Hallmark skill; design.md is locked system"
+  }
+]
