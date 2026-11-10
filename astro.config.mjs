@@ -6,6 +6,6 @@ import sitemap from '@astrojs/sitemap';
 // base: '/', and no noindex meta.
 export default defineConfig({
   site: 'https://karthikeyapodicheti.github.io',
-  base: '/newbuild-mockup',
+  base: '/new-cobuild-upgraded-website',
   integrations: [sitemap()],
 });
