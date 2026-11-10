@@ -1167,8 +1167,8 @@
 .js .hero .lead,
 .js .hero__actions {
   opacity: 0;
-  transform: translateY(20px);
-  animation: hero-rise 0.8s var(--ease-out) forwards;
+  transform: translateX(-20px);
+  animation: hero-slide-left 0.8s var(--ease-out) forwards;
 }
 
 .js .hero__eyebrow { animation-delay: 0.1s; }
@@ -1176,7 +1176,7 @@
 .js .hero .lead { animation-delay: 0.4s; }
 .js .hero__actions { animation-delay: 0.55s; }
 
-@keyframes hero-rise {
+@keyframes hero-slide-left {
   to {
     opacity: 1;
     transform: none;
@@ -1248,35 +1248,35 @@
 /* Responsive */
 @media (max-width: 60rem) {
   .hero {
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
   }
   
   .hero__inner {
     padding-inline: var(--gutter);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-xl);
     min-height: auto;
   }
   
   .hero__content {
     max-width: 100%;
-    text-align: center;
+    text-align: left;
   }
   
   .hero__actions {
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-md);
   }
   
   .hero__actions .btn {
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
+    width: auto;
+    max-width: none;
+    justify-content: flex-start;
   }
   
   .hero__divider {
@@ -1513,35 +1513,35 @@
 /* Mobile — hero centered, stacked actions */
 @media (max-width: 60rem) {
   .hero {
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
   }
   
   .hero__inner {
     padding-inline: var(--gutter);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-xl);
     min-height: auto;
   }
   
   .hero__content {
     max-width: 100%;
-    text-align: center;
+    text-align: left;
   }
   
   .hero__actions {
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-md);
   }
   
   .hero__actions .btn {
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
+    width: auto;
+    max-width: none;
+    justify-content: flex-start;
   }
   
   .hero__divider {
@@ -1554,9 +1554,9 @@
   }
   
   .hero__eyebrow {
-    text-align: center;
-    justify-content: center;
-    margin: 0 auto var(--space-md);
+    text-align: left;
+    justify-content: flex-start;
+    margin: 0 0 var(--space-md);
   }
   
   .offer__grid,
