@@ -75,6 +75,7 @@
 
 .hero__accent {
   color: var(--color-accent);
+  font-style: italic;
 }
 
 .hero h1 {
