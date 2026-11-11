@@ -440,6 +440,7 @@
 .offer__media [data-slot] {
   aspect-ratio: 4 / 3;
   border: var(--rule-bar) solid var(--color-ink);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -584,6 +585,7 @@
   padding: var(--space-xl);
   background: var(--color-plate);
   border: var(--rule-bar) solid var(--color-ink);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   transition: box-shadow var(--dur-micro) var(--ease-out);
 }
@@ -642,6 +644,7 @@
 .where-we-are__map [data-slot] {
   aspect-ratio: 1 / 1;
   border: var(--rule-bar) solid var(--color-ink);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -712,6 +715,7 @@
 .case-study__media [data-slot] {
   aspect-ratio: 16 / 9;
   border: var(--rule-bar) solid var(--color-ink);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -766,6 +770,7 @@
 .case-study__gallery [data-slot] {
   aspect-ratio: 4 / 3;
   border: var(--rule-bar) solid var(--color-ink);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
 
@@ -1033,6 +1038,7 @@
   padding: var(--space-xl);
   background: var(--color-plate);
   border: var(--rule-bar) solid var(--color-ink);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
 }
 
