@@ -1373,7 +1373,21 @@
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .numbers__items,
+  .numbers__figure {
+    text-align: center;
+  }
+  
+  .numbers__items {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--space-2xl);
+  }
+  
+  .numbers__item-value,
+  .numbers__item-label {
+    text-align: center;
+  }
+  
   .offer__facts {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1421,8 +1435,21 @@
 }
 
 @media (max-width: 40rem) {
-  .what-we-do__grid,
-  .numbers__items,
+  .numbers__figure {
+    text-align: center;
+  }
+  
+  .numbers__items {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--space-2xl);
+  }
+  
+  .numbers__item-value,
+  .numbers__item-label {
+    text-align: center;
+  }
+  
   .offer__facts {
     grid-template-columns: 1fr;
   }
@@ -1507,10 +1534,24 @@
   }
   
   .what-we-do__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   
-  .numbers__items,
+  .numbers__figure {
+    text-align: center;
+  }
+  
+  .numbers__items {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--space-2xl);
+  }
+  
+  .numbers__item-value,
+  .numbers__item-label {
+    text-align: center;
+  }
+  
   .offer__facts {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1557,7 +1598,21 @@
     grid-template-columns: repeat(4, 1fr);
   }
   
-  .numbers__items,
+  .numbers__figure {
+    text-align: center;
+  }
+  
+  .numbers__items {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--space-2xl);
+  }
+  
+  .numbers__item-value,
+  .numbers__item-label {
+    text-align: center;
+  }
+  
   .offer__facts {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1661,7 +1716,21 @@
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .numbers__items,
+  .numbers__figure {
+    text-align: center;
+  }
+  
+  .numbers__items {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--space-2xl);
+  }
+  
+  .numbers__item-value,
+  .numbers__item-label {
+    text-align: center;
+  }
+  
   .offer__facts {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1710,8 +1779,21 @@
 
 /* Small mobile — single column grids */
 @media (max-width: 40rem) {
-  .what-we-do__grid,
-  .numbers__items,
+  .numbers__figure {
+    text-align: center;
+  }
+  
+  .numbers__items {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--space-2xl);
+  }
+  
+  .numbers__item-value,
+  .numbers__item-label {
+    text-align: center;
+  }
+  
   .offer__facts {
     grid-template-columns: 1fr;
   }
