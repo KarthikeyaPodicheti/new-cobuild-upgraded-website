@@ -55,7 +55,7 @@ const caseStudy = trackRecord[0];
   <!-- Hero — Settled posture -->
   <section class="hero" data-reveal>
     <div class="hero__bg" aria-hidden="true">
-      <img src={url('/images/hero-sunset.jpg')} alt="" width="2000" height="1200" loading="eager" />
+      <img src={url('/images/hero-sunset.jpg')} alt="" width="2000" height="1200" loading="eager" fetchpriority="high" decoding="async" sizes="100vw" />
     </div>
     <div class="container hero__inner">
       <div class="hero__content">
@@ -82,7 +82,7 @@ const caseStudy = trackRecord[0];
       <div class="offer__grid">
         <div class="offer__media" data-reveal>
           <div data-slot="offer" data-alt="Curved blue glass facade in diagonal panels, 160 Front Street West Toronto" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg');">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg" alt="Curved blue glass facade in diagonal panels" width="1280" height="853" loading="lazy" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg" alt="Curved blue glass facade in diagonal panels" width="1280" height="853" loading="lazy" decoding="async" />
           </div>
         </div>
         <div class="offer__content" data-reveal>
@@ -151,7 +151,7 @@ const caseStudy = trackRecord[0];
       <div class="where-we-are__grid">
         <div class="where-we-are__map" data-reveal>
           <div data-slot="map" data-alt="Architectural massing model of low courtyard buildings" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg/1280px-Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg');">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg/1280px-Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg" alt="Architectural massing model of courtyard buildings" width="1280" height="731" loading="lazy" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg/1280px-Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg" alt="Architectural massing model of courtyard buildings" width="1280" height="731" loading="lazy" decoding="async" />
           </div>
         </div>
         <div class="where-we-are__details" data-reveal>
@@ -180,7 +180,7 @@ const caseStudy = trackRecord[0];
       <div class="case-study__grid">
         <div class="case-study__media" data-reveal>
           <div data-slot="case-main" data-alt="White curved concert hall roof lit at night, Auditorio de Tenerife" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg/1280px-Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg');">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg/1280px-Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg" alt="White curved concert hall roof lit at night" width="1280" height="754" loading="lazy" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg/1280px-Auditorio_de_Tenerife%2C_Santa_Cruz_de_Tenerife%2C_Espa%C3%B1a%2C_2012-12-15%2C_DD_24.jpg" alt="White curved concert hall roof lit at night" width="1280" height="754" loading="lazy" decoding="async" />
           </div>
         </div>
         <div class="case-study__content" data-reveal>
@@ -197,13 +197,13 @@ const caseStudy = trackRecord[0];
           </p>
           <div class="case-study__gallery" data-stagger>
             <div data-slot="case-1" data-alt="Glass office building at blue hour, Münster LVM Bürogebäude" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg/1280px-M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg');">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg/1280px-M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg" alt="Glass office building at blue hour" width="1280" height="853" loading="lazy" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg/1280px-M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg" alt="Glass office building at blue hour" width="1280" height="853" loading="lazy" decoding="async" />
             </div>
             <div data-slot="case-2" data-alt="Looking up a round courtyard of scattered windows, Nokia Networks Munich Office" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg/1280px-Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg');">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg/1280px-Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg" alt="Round courtyard of scattered windows" width="1280" height="962" loading="lazy" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg/1280px-Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg" alt="Round courtyard of scattered windows" width="1280" height="962" loading="lazy" decoding="async" />
             </div>
             <div data-slot="case-3" data-alt="Silhouetted spires of Prague against orange dawn sky" style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Prague_skyline_at_dawn.jpg/1280px-Prague_skyline_at_dawn.jpg');">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Prague_skyline_at_dawn.jpg/1280px-Prague_skyline_at_dawn.jpg" alt="Prague skyline at dawn" width="1280" height="773" loading="lazy" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Prague_skyline_at_dawn.jpg/1280px-Prague_skyline_at_dawn.jpg" alt="Prague skyline at dawn" width="1280" height="773" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
