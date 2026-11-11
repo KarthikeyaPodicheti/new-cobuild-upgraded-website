@@ -1301,7 +1301,7 @@
   .hero__actions {
     justify-content: flex-start;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--space-sm);
     flex-wrap: wrap;
   }
@@ -1589,7 +1589,7 @@
   .hero__actions {
     justify-content: flex-start;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--space-sm);
     flex-wrap: wrap;
   }
