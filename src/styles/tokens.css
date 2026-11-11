@@ -9,18 +9,18 @@
   --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
   --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
   --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
---color-paper: oklch(98% 0.004 75);      /* warm stone bg */
---color-paper-2: oklch(94% 0.006 75);
---color-paper-3: oklch(89% 0.008 75);
+--color-paper: oklch(96% 0.005 85);      /* champagne off-white bg */
+--color-paper-2: oklch(92% 0.006 85);
+--color-paper-3: oklch(87% 0.007 85);
 --color-plate: oklch(100% 0 0);
---color-ink: oklch(18% 0.005 25);        /* warm charcoal */
---color-ink-2: oklch(30% 0.005 25);
---color-muted: oklch(48% 0.008 25);
---color-rule: oklch(86% 0.006 75);
---color-accent: oklch(55% 0.16 35);      /* terracotta/clay */
---color-accent-soft: oklch(93% 0.03 35);
---color-accent-ink: oklch(100% 0 0);
---color-focus: oklch(52% 0.17 35);
+--color-ink: oklch(20% 0.01 260);        /* deep navy ink */
+--color-ink-2: oklch(33% 0.009 260);
+--color-muted: oklch(50% 0.01 240);      /* slate gray */
+--color-rule: oklch(90% 0.006 85);
+--color-accent: oklch(62% 0.12 75);      /* muted gold */
+--color-accent-soft: oklch(94% 0.04 75);
+--color-accent-ink: oklch(18% 0.01 260);
+--color-focus: oklch(60% 0.13 75);
   --font-display: "Syne", ui-sans-serif, sans-serif; --font-body: "Onest", ui-sans-serif, sans-serif;
   --font-outlier: "JetBrains Mono", ui-monospace, monospace;
   --radius-card: 0; --radius-pill: 0; --rule-hair: 1px; --rule-bar: 2px;
