@@ -1339,7 +1339,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(42px, 6vw, 76px);
+    font-size: clamp(64px, 10vw, 96px);
     max-width: 850px;
   }
   
@@ -1627,7 +1627,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(42px, 6vw, 76px);
+    font-size: clamp(64px, 10vw, 96px);
     max-width: 850px;
   }
   
@@ -1740,7 +1740,7 @@
   }
   
   .hero h1 {
-    font-size: clamp(32px, 6vw, 56px);
+    font-size: clamp(56px, 9vw, 88px);
   }
 }
 
@@ -1752,7 +1752,7 @@
   }
   
   .hero h1 {
-    font-size: clamp(28px, 5vw, 48px);
+    font-size: clamp(52px, 8vw, 76px);
     margin-bottom: var(--space-sm);
   }
   
