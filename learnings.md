@@ -135,6 +135,18 @@ Mobile breakpoints (`max-width: 60rem` and `max-width: 40rem`) retain centered s
 
 ---
 
+## 11. What-we-do cards side-by-side on mobile; wanted stacked vertically
+
+**Problem:** On mobile, the `.what-we-do__grid` used `grid-template-columns: repeat(2, 1fr)`, placing two cards side-by-side which looked cramped on small screens.
+
+**Fix:** Changed `.what-we-do__grid` to `grid-template-columns: 1fr` with `gap: var(--space-xl)` on mobile breakpoints (`max-width: 60rem` and `max-width: 40rem`), so cards stack one before another vertically.
+
+Desktop/tablet layout unchanged (2 columns).
+
+**Files affected:** `src/styles/global.css`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:
