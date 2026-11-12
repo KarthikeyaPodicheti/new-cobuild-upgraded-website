@@ -147,6 +147,29 @@ Desktop/tablet layout unchanged (2 columns).
 
 ---
 
+## 12. Responsive breakpoint consolidation and hero max-width for monitors
+
+**Problem:** The CSS had duplicate `@media (max-width: 60rem)` and `@media (max-width: 40rem)` blocks, plus a duplicate `@media (prefers-reduced-motion: reduce)` block. The hero section had no max-width constraint on tablet/desktop, causing it to stretch full-width on ultra-wide monitors.
+
+**Root cause:** Earlier edits added a second mobile block instead of merging into the first, and the hero `.hero__inner` had `width: 100%` with no container constraint on large screens.
+
+**Fix:** Removed duplicate `@media (max-width: 60rem)`, `@media (max-width: 40rem)`, and `@media (prefers-reduced-motion: reduce)` blocks. Added `max-width: var(--container)` and `margin: 0 auto` to `.hero__inner` on both tablet (`@media (min-width: 48rem) and (max-width: 80rem)`) and desktop (`@media (min-width: 80rem)`) breakpoints.
+
+Final breakpoint structure:
+- Touch targets: `@media (pointer: coarse) and (max-width: 60rem), (max-width: 40rem)`
+- Mobile: `@media (max-width: 60rem)`
+- Small mobile: `@media (max-width: 40rem)`
+- Landscape mobile: `@media (max-height: 500px) and (orientation: landscape) and (max-width: 60rem)`
+- Tablet: `@media (min-width: 48rem) and (max-width: 80rem)` — hero max-width + container
+- Desktop: `@media (min-width: 80rem)` — hero max-width + container
+- Safe areas: `@supports (padding: max(0px))`
+- Reduced motion: single `@media (prefers-reduced-motion: reduce)`
+- Print: `@media print`
+
+**Files affected:** `src/styles/global.css`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:
