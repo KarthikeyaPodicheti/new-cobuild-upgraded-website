@@ -170,6 +170,16 @@ Final breakpoint structure:
 
 ---
 
+## 13. Numbers items left-aligned bullets on mobile
+
+**Problem:** The `.numbers__items` `<ul>` retained default browser styling — `list-style: disc`, left padding, and margin. This caused bullet points to appear on the far left edge of each item while the number and label text were centered via `text-align: center`, creating a ragged misaligned look on mobile.
+
+**Fix:** Added `list-style: none; padding: 0; margin: 0;` to the base `.numbers__items` rule so bullets are removed and all items center consistently across all breakpoints.
+
+**Files affected:** `src/styles/global.css`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:
