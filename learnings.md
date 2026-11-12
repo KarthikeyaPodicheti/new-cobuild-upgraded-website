@@ -102,6 +102,22 @@ const browser = await puppeteer.launch({
 
 ---
 
+## 9. Numbers section left-aligned on mobile; wanted centered
+
+**Problem:** On mobile, the `.numbers` section (168 Homes, 2.4 Acres, 2027 Handover, 3 Delivered by promoters) was left-aligned because `.numbers__figure` had `text-align: left` and `.numbers__items` used `grid-template-columns: repeat(3, 1fr)` which on narrow screens created a cramped left-aligned layout.
+
+**Fix:** On mobile breakpoints (`max-width: 60rem` and `max-width: 40rem`):
+- `.numbers__figure` changed to `text-align: center`
+- `.numbers__items` changed to `grid-template-columns: 1fr` with `justify-items: center`
+- `.numbers__item-value` and `.numbers__item-label` changed to `text-align: center`
+- `.offer__facts` separated out to keep its own grid behavior
+
+Desktop layout unchanged (2-column grid with left-aligned figure in left column, 3-item grid in right column).
+
+**Files affected:** `src/styles/global.css`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:
