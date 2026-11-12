@@ -118,6 +118,23 @@ Desktop layout unchanged (2-column grid with left-aligned figure in left column,
 
 ---
 
+## 10. Desktop numbers accidentally center-aligned; reverted to original desktop layout
+
+**Problem:** After the previous mobile centering fix, `replaceAll` duplicated center-alignment overrides into tablet (`@media (min-width: 48rem) and (max-width: 80rem)`) and desktop (`@media (min-width: 80rem)`) breakpoints. Desktop numbers section was showing centered instead of left-aligned, and the grid was single-column instead of 2-column.
+
+**Root cause:** `replaceAll` on `.numbers__items, .offer__facts` matched across multiple media query blocks, injecting center-alignment CSS into non-mobile breakpoints.
+
+**Fix:** Removed center-alignment overrides from tablet and desktop breakpoints:
+- Tablet (48-80rem): removed `.numbers__figure` text-align center, `.numbers__items` single-column centered grid, `.numbers__item-value/label` text-align center
+- Desktop (80rem+): removed duplicate `.numbers__grid { grid-template-columns: 1fr }` override that was overriding the correct `1fr 1.5fr`
+
+Desktop restored to original: figure `text-align: left`, grid `1fr 1.5fr` (2 columns).
+Mobile breakpoints (`max-width: 60rem` and `max-width: 40rem`) retain centered single-column layout.
+
+**Files affected:** `src/styles/global.css`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:
