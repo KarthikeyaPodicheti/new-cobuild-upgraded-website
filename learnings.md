@@ -180,6 +180,18 @@ Final breakpoint structure:
 
 ---
 
+## 14. Numbers boundary lines short on mobile; wanted full width
+
+**Problem:** The `border-top` divider lines between numbers items only spanned content width, not full width, on mobile. This made the lines look short and centered rather than extending across both sides.
+
+**Root cause:** `justify-items: center` on `.numbers__items` (mobile breakpoints) shrank grid items to content width, so `border-top` only covered the item content, not the full cell width.
+
+**Fix:** Removed `justify-items: center` from `.numbers__items` on all mobile breakpoints so grid items stretch to fill their cells (`justify-self: stretch` default), making `border-top` dividers span full width.
+
+**Files affected:** `src/styles/global.css`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:
