@@ -1571,6 +1571,15 @@
     align-items: center;
     justify-content: center;
   }
+
+  .offer__fact {
+    text-align: center;
+  }
+
+  .offer__cta {
+    justify-content: center;
+    margin: var(--space-lg) auto 0;
+  }
 }
 
 /* Small mobile — single column grids */
@@ -1591,6 +1600,15 @@
   
   .offer__facts {
     grid-template-columns: 1fr;
+  }
+
+  .offer__fact {
+    text-align: center;
+  }
+
+  .offer__cta {
+    justify-content: center;
+    margin: var(--space-lg) auto 0;
   }
   
   .footer__grid {
