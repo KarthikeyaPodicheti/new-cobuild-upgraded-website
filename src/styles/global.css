@@ -577,7 +577,7 @@
 
 .what-we-do__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--gap-columns);
 }
 
@@ -793,7 +793,7 @@
 }
 
 .numbers__figure {
-  text-align: left;
+  text-align: center;
 }
 
 .numbers__value {
@@ -828,6 +828,7 @@
 .numbers__item {
   padding-top: var(--space-xl);
   border-top: var(--rule-hair) solid var(--color-rule);
+  text-align: center;
 }
 
 .numbers__item-value {
