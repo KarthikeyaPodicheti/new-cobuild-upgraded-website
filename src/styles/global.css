@@ -820,6 +820,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--gap-columns);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .numbers__item {
