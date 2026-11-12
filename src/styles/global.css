@@ -1595,22 +1595,7 @@
   }
   
   .what-we-do__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  
-  .numbers__figure {
-    text-align: center;
-  }
-  
-  .numbers__items {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: var(--space-2xl);
-  }
-  
-  .numbers__item-value,
-  .numbers__item-label {
-    text-align: center;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .offer__facts {
