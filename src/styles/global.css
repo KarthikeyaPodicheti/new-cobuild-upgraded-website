@@ -80,9 +80,9 @@
 
 .hero h1 {
   font-size: clamp(42px, 6vw, 76px);
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.05;
-  letter-spacing: -1.5px;
+  letter-spacing: -0.02em;
   max-width: 850px;
   margin-bottom: var(--space-md);
   color: var(--color-paper);
@@ -122,7 +122,7 @@
   position: relative;
   padding: var(--space-md) var(--space-2xl);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   background: var(--color-accent);
   color: var(--color-paper);
   border: none;
@@ -259,7 +259,7 @@
   color: var(--color-paper);
   font-family: var(--font-display);
   font-size: var(--text-title);
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: var(--tracking-display);
 }
 
@@ -272,7 +272,7 @@
 .logo__text strong {
   font-family: var(--font-display);
   font-size: var(--text-title);
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: var(--tracking-display);
   color: var(--color-ink);
 }
@@ -516,7 +516,7 @@
   display: block;
   font-family: var(--font-display);
   font-size: var(--text-2xl);
-  font-weight: 700;
+  font-weight: 300;
   line-height: 1;
   color: var(--color-accent);
   letter-spacing: var(--tracking-display);
@@ -612,7 +612,7 @@
   display: block;
   font-family: var(--font-display);
   font-size: var(--text-lg);
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: var(--tracking-display);
   color: var(--color-accent);
   margin-bottom: var(--space-md);
@@ -814,9 +814,9 @@
   display: block;
   font-family: var(--font-display);
   font-size: clamp(5rem, 10vw, 9rem);
-  font-weight: 700;
+  font-weight: 300;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   color: var(--color-paper);
   font-variant-numeric: tabular-nums;
 }
@@ -849,7 +849,7 @@
   display: block;
   font-family: var(--font-display);
   font-size: var(--text-3xl);
-  font-weight: 700;
+  font-weight: 300;
   line-height: 1;
   letter-spacing: var(--tracking-display);
   color: var(--color-accent);
@@ -952,14 +952,14 @@
   color: var(--color-paper);
   font-family: var(--font-display);
   font-size: var(--text-title);
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: var(--tracking-display);
 }
 
 .footer__logo-text strong {
   font-family: var(--font-display);
   font-size: var(--text-title);
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: var(--tracking-display);
   color: var(--color-ink);
 }
@@ -1478,7 +1478,7 @@
     justify-content: center;
     padding: var(--space-xs) var(--space-md);
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
   }
   
   .hero__launch {

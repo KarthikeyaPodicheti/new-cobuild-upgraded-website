@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import { site } from '../data/site';
 import { url } from '../lib/paths';
+import larkenUrl from '../assets/fonts/Larken-Light.ttf?url';
+import atlasGroteskRegularUrl from '../assets/fonts/AtlasGrotesk-Regular.otf?url';
 
 interface Props {
   title: string;
@@ -35,12 +37,10 @@ const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
     <link rel="preload" as="image" href={url('/images/hero-sunset.jpg')} fetchpriority="high" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Onest:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=Onest:wght@400;500&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'" />
+    <link rel="preload" as="font" type="font/ttf" href={larkenUrl} crossorigin />
+    <link rel="preload" as="font" type="font/otf" href={atlasGroteskRegularUrl} crossorigin />
   </head>
   <body>
     <script is:inline>document.documentElement.classList.add('js');</script>
