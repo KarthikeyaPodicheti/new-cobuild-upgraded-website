@@ -137,8 +137,9 @@
   transition: transform var(--dur-short) var(--ease-out), opacity var(--dur-short) var(--ease-out);
 }
 .nav-toggle__bar + .nav-toggle__bar { margin-top: 6px; }
-.nav-toggle[aria-expanded="true"] .nav-toggle__bar--top { transform: translateY(3.75px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] .nav-toggle__bar--bottom { transform: translateY(-3.75px) rotate(-45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar--top { transform: translateY(7.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar--middle { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar--bottom { transform: translateY(-7.5px) rotate(-45deg); }
 
 /* ==========================================================================
    Hero — white editorial, line-art horizon

@@ -16,6 +16,11 @@
     "astro": "^5.18.2"
   },
   "devDependencies": {
-    "puppeteer": "^25.17.0"
+    "puppeteer": "^25.17.0",
+    "@rollup/wasm-node": "4.68.3"
+  },
+  "overrides": {
+    "rollup": "npm:@rollup/wasm-node@4.68.3",
+    "@rollup/rollup-win32-x64-msvc": "npm:@rollup/wasm-node@4.68.3"
   }
 }
