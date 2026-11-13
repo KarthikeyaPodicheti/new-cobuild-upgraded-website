@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { projects } from '../../data/projects';
+import { projects, photos } from '../../data/projects';
 import { url } from '../../lib/paths';
 
 export function getStaticPaths() {
@@ -11,74 +11,77 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+
+const IMG = {
+  courtyard:
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg',
+};
 ---
 
 <BaseLayout title={project.title} description={project.summary}>
-  <section class="hero" data-reveal>
-    <div class="hero__bg" aria-hidden="true">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg/1280px-Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg" alt="" width="1280" height="853" loading="eager" />
+  <section class="page-hero">
+    <div class="page-hero__art" aria-hidden="true">
+      <img src={url('/images/illustration-trees.svg')} alt="" width="600" height="220" loading="lazy" />
     </div>
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <span class="hero__eyebrow">{project.type} · {project.location}</span>
-        <h1>{project.title}</h1>
-        <p class="lead">{project.summary}</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href={url('/contact')}>Book a site visit</a>
-          <a class="btn btn--secondary" href={url('/projects')}>All projects</a>
-        </div>
+    <div class="container">
+      <span class="eyebrow">{project.type} · {project.location}</span>
+      <h1 class="page-hero__title" data-reveal="left">{project.title}</h1>
+      <p class="lead page-hero__lead" data-reveal="left" style="transition-delay:150ms">{project.summary}</p>
+      <div style="margin-top:var(--space-xl)">
+        <a class="link" href={url('/contact')}>Book a site visit</a>
       </div>
     </div>
   </section>
 
-  <section class="offer" data-reveal>
+  <section class="section section--tight">
     <div class="container">
-      <div class="offer__grid">
-        <div class="offer__media">
-          <div data-slot="project-detail" data-alt={`${project.title} visual`} style="--slot-img: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg');">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg" alt={`${project.title} visual`} width="1280" height="853" loading="lazy" />
-          </div>
+      <div class="row">
+        <div class="row__media" data-reveal="left">
+          <img src={photos.courtyard} alt={`${project.title} visual`} width="1280" height="759" loading="lazy" decoding="async" />
         </div>
-        <div class="offer__content">
-          <h2>At a glance</h2>
-          <dl class="offer__meta">
+        <div class="row__body" data-reveal="left" style="transition-delay:100ms">
+          <h2 class="section-title">At a glance</h2>
+          <dl class="detail-list" style="margin-top:var(--space-xl);grid-template-columns:1fr">
             {project.facts.map((fact) => (
-              <>
+              <div>
                 <dt>{fact.label}</dt>
                 <dd>{fact.value}</dd>
-              </>
+              </div>
             ))}
           </dl>
-          <p class="offer__description">{project.description}</p>
-          <a class="offer__cta" href={url('/contact')}>Request the brochure</a>
+          <p class="body-text" style="margin-top:var(--space-lg)">{project.description}</p>
+          <a class="link row__link" href={url('/contact')}>Request the brochure</a>
         </div>
       </div>
-      <p class="offer__note">Placeholder project details. Verified facts, the RERA number, and photography replace these before launch.</p>
+      <p class="note">
+        Placeholder project details. Verified facts, the RERA number and photography replace these
+        before launch.
+      </p>
     </div>
   </section>
 
-  <section class="case-study" data-reveal>
+  <section class="section">
     <div class="container">
-      <header class="case-study__header">
-        <h2>Gallery</h2>
-      </header>
-      <div class="case-study__gallery" data-stagger>
-        <div data-slot="g1"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg" alt="Gallery image" loading="lazy" /></div>
-        <div data-slot="g2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg/1280px-M%C3%BCnster%2C_LVM%2C_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg" alt="Gallery image" loading="lazy" /></div>
-        <div data-slot="g3"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Prague_skyline_at_dawn.jpg/1280px-Prague_skyline_at_dawn.jpg" alt="Gallery image" loading="lazy" /></div>
+      <h2 class="section-title" data-reveal="left">Gallery</h2>
+      <div class="gallery" data-stagger style="margin-top:var(--space-2xl)">
+        {project.gallery.map((src, i) => (
+          <img src={src} alt={`${project.title} — gallery image ${i + 1}`} width="1280" height="759" loading="lazy" decoding="async" />
+        ))}
       </div>
-      <p class="case-study__note">Placeholder images. Real project photography replaces these before launch.</p>
+      <p class="note">Placeholder images. Real project photography replaces these before launch.</p>
     </div>
   </section>
 
-  <section class="close" data-reveal>
-    <div class="container">
-      <h2>See the site before you decide</h2>
-      <p class="lead">Book a visit and we will walk you through the layout, the specification, and the paperwork.</p>
-      <div class="close__contact">
-        <a href={url('/contact')}>Book a site visit</a>
-        <a href={url('/projects')}>All projects</a>
-      </div>
+  <section class="closer">
+    <div class="closer__media" aria-hidden="true">
+      <img src={photos.courtyard} alt="" width="1280" height="759" loading="lazy" decoding="async" />
+    </div>
+    <div class="container closer__inner">
+      <h2 class="closer__title" data-reveal="grow-big">See the site before you decide</h2>
+      <p class="closer__text" data-reveal="grow" style="transition-delay:200ms">
+        Book a visit and we will walk you through the layout, the specification and the paperwork.
+      </p>
+      <a class="link link--light" href={url('/contact')} data-reveal="bottom">Get in touch</a>
     </div>
   </section>
 </BaseLayout>

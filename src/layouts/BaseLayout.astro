@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { site } from '../data/site';
+import { site, navLinks } from '../data/site';
 import { url } from '../lib/paths';
 import larkenUrl from '../assets/fonts/Larken-Light.ttf?url';
 import atlasGroteskRegularUrl from '../assets/fonts/AtlasGrotesk-Regular.otf?url';
@@ -14,6 +14,12 @@ const { title, description = site.description } = Astro.props;
 const pageTitle = `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = (Astro.url.pathname.replace(base, '') || '/').replace(/\/$/, '') || '/';
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -24,7 +30,7 @@ const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#f4f2ef" />
+    <meta name="theme-color" content="#ffffff" />
     <!-- Mockup only: removed at launch. -->
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
@@ -38,138 +44,242 @@ const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
-    <link rel="preload" as="image" href={url('/images/hero-sunset.jpg')} fetchpriority="high" />
     <link rel="preload" as="font" type="font/ttf" href={larkenUrl} crossorigin />
     <link rel="preload" as="font" type="font/otf" href={atlasGroteskRegularUrl} crossorigin />
   </head>
   <body>
     <script is:inline>document.documentElement.classList.add('js');</script>
-    <header class="site-header" role="banner">
+
+    <a class="visually-hidden" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner" data-header>
       <div class="container header__inner">
-        <a href={url('/')} class="logo" aria-label={`${site.name} home`}>
-          <span class="logo__mark">NB</span>
+        <a class="logo" href={url('/')} aria-label={`${site.name} — home`}>
+          <span class="logo__mark" aria-hidden="true">
+            <img src={url('/images/logo-mark.svg')} alt="" width="38" height="38" />
+          </span>
           <span class="logo__text">
-            <strong>NewBuild</strong>
-            <span>Residential & Commercial</span>
+            <span class="logo__name">NewBuild</span>
+            <span class="logo__sub">Developers</span>
           </span>
         </a>
-        <nav class="nav" role="navigation" aria-label="Primary">
-          <ul class="nav__list" id="nav-list">
-            <li><a href={url('/projects')} class="nav__link">Projects</a></li>
-            <li><a href={url('/about')} class="nav__link">About</a></li>
-            <li><a href={url('/contact')} class="nav__link">Contact</a></li>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          <span class="visually-hidden">Toggle navigation</span>
+          <span class="nav-toggle__bar nav-toggle__bar--top" aria-hidden="true"></span>
+          <span class="nav-toggle__bar nav-toggle__bar--bottom" aria-hidden="true"></span>
+        </button>
+
+        <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
+          <ul class="nav__list">
+            {
+              navLinks.map((link) => (
+                <li>
+                  <a
+                    class="nav__link"
+                    href={url(link.href)}
+                    aria-current={isActive(link.href) ? 'page' : undefined}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
           </ul>
-          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Toggle navigation">
-            <span class="nav-toggle__bar" aria-hidden="true"></span>
-          </button>
         </nav>
       </div>
     </header>
+
+    <div class="nav-scrim" data-nav-scrim hidden></div>
+
     <main id="main">
       <slot />
     </main>
+
     <footer class="site-footer" role="contentinfo">
       <div class="container">
-        <div class="footer__grid">
+        <div class="footer__rule"></div>
+
+        <div class="footer__top">
           <div class="footer__brand">
-            <div class="footer__logo">
-              <span class="footer__logo-mark">NB</span>
-              <span class="footer__logo-text">
-                <strong>NewBuild</strong>
-                <span>Residential & Commercial</span>
+            <a class="logo" href={url('/')} aria-label={`${site.name} — home`}>
+              <span class="logo__mark" aria-hidden="true">
+                <img src={url('/images/logo-mark.svg')} alt="" width="38" height="38" />
               </span>
-            </div>
-            <p class="footer__description">
-              We plan, build and hand over homes and workplaces — with the documentation, timelines and finish quality to match the promise.
+              <span class="logo__text">
+                <span class="logo__name">NewBuild</span>
+                <span class="logo__sub">Developers</span>
+              </span>
+            </a>
+            <p>
+              Residential communities, commercial landmarks and infrastructure — planned, built and
+              handed over by one accountable team.
             </p>
+            <div class="footer__social">
+              <a href={site.social[0].href} aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.4 8.65 23 10.6 23 14.1V21h-4v-6.1c0-1.45-.03-3.3-2.02-3.3-2.02 0-2.33 1.57-2.33 3.2V21h-3.9V9Z"></path>
+                </svg>
+              </a>
+              <a href={site.social[1].href} aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle>
+                </svg>
+              </a>
+              <a href={site.social[2].href} aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"></path>
+                </svg>
+              </a>
+            </div>
+            <div class="footer__legal">
+              <a href={url('/privacy')}>Terms</a>
+              <a href={url('/privacy')}>Privacy</a>
+            </div>
           </div>
-          <nav class="footer__column" aria-label="Projects">
-            <h3>Projects</h3>
-            <ul>
-              <li><a href={url('/projects')}>Current launches</a></li>
-              <li><a href={url('/projects')}>Track record</a></li>
-              <li><a href={url('/projects')}>All projects</a></li>
-            </ul>
-          </nav>
-          <nav class="footer__column" aria-label="Company">
-            <h3>Company</h3>
-            <ul>
-              <li><a href={url('/about')}>Our story</a></li>
-              <li><a href={url('/about#values')}>Values</a></li>
-              <li><a href={url('/about#leadership')}>Leadership</a></li>
-            </ul>
-          </nav>
-          <nav class="footer__column" aria-label="Contact">
-            <h3>Contact</h3>
-            <ul>
-              <li><a href={url('/contact')}>Get in touch</a></li>
-              <li><a href="tel:+914012345678">+91 40 1234 5678</a></li>
-              <li><a href="mailto:hello@newbuild.co.in">hello@newbuild.co.in</a></li>
-            </ul>
+
+          <nav class="footer__links" aria-label="Footer">
+            {navLinks.map((link) => <a href={url(link.href)}>{link.label}</a>)}
           </nav>
         </div>
+
         <div class="footer__bottom">
-          <p class="footer__credits">
-            Photographs: 
-            <a href="https://commons.wikimedia.org/wiki/File:Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg">Basile Morin</a> (CC BY-SA 4.0),
-            <a href="https://commons.wikimedia.org/wiki/File:Fragment_of_160_Front_Street_West%2C_Toronto.jpg">Maksim Sokolov</a> (CC BY-SA 4.0),
-            <a href="https://commons.wikimedia.org/wiki/File:Nokia_Networks_Munich_Office%2C_April_2017_-02.jpg">Martin Falbisoner</a> (CC BY-SA 4.0),
-            <a href="https://commons.wikimedia.org/wiki/File:Auditorio_de_Tenerife,_Santa_Cruz_de_Tenerife,_Espa%C3%B1a,_2012-12-15,_DD_24.jpg">Diego Delso</a> (CC BY-SA 3.0),
-            <a href="https://commons.wikimedia.org/wiki/File:M%C3%BCnster,_LVM,_B%C3%BCrogeb%C3%A4ude_--_2013_--_5149-51.jpg">Dietmar Rabich</a> (CC BY-SA 4.0),
-            <a href="https://commons.wikimedia.org/wiki/File:Prague_skyline_at_dawn.jpg">Petar Milošević</a> (CC BY-SA 4.0),
-            <a href="https://commons.wikimedia.org/wiki/File:Architectural_Masterplan_Model_of_Lieb_Tang_Rodfai_Villas.jpg">Designer Mario Kleff</a> (CC BY-SA 4.0)
-          </p>
-          <p class="footer__legal">&copy; 2024 NewBuild.</p>
+          <p>© {year} {site.name}. All rights reserved.</p>
+          <p>{site.reraNote}</p>
         </div>
-      </div    </footer>
+      </div>
+    </footer>
+
     <script is:inline>
-      // Mobile nav toggle
+      // ---- Mobile nav -------------------------------------------------------
       (() => {
-        const toggle = document.querySelector('.nav-toggle');
-        const list = document.querySelector('.nav__list');
-        if (!toggle || !list) return;
+        const toggle = document.querySelector('[data-nav-toggle]');
+        const nav = document.querySelector('[data-nav]');
+        const scrim = document.querySelector('[data-nav-scrim]');
+        if (!toggle || !nav || !scrim) return;
+
+        const setOpen = (open) => {
+          toggle.setAttribute('aria-expanded', String(open));
+          nav.classList.toggle('is-open', open);
+          scrim.hidden = !open;
+          scrim.classList.toggle('is-open', open);
+          document.body.style.overflow = open ? 'hidden' : '';
+        };
+
         toggle.addEventListener('click', () => {
-          const expanded = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!expanded));
-          list.classList.toggle('is-open');
+          setOpen(toggle.getAttribute('aria-expanded') !== 'true');
         });
-        // Close on link click
-        list.querySelectorAll('a').forEach((link) => {
-          link.addEventListener('click', () => {
-            toggle.setAttribute('aria-expanded', 'false');
-            list.classList.remove('is-open');
-          });
+        nav.addEventListener('click', (e) => {
+          if (e.target.closest('a')) setOpen(false);
         });
-        // Close on Escape
+        scrim.addEventListener('click', () => setOpen(false));
         document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && list.classList.contains('is-open')) {
-            toggle.setAttribute('aria-expanded', 'false');
-            list.classList.remove('is-open');
+          if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+            setOpen(false);
             toggle.focus();
           }
         });
       })();
 
-      // Hallmark slot image replacement
-      window.hallmarkSlots = (m) => {
-        for (const [k, v] of Object.entries(m)) {
-          const s = document.querySelector(`[data-slot="${k}"]`);
-          if (!s) continue;
-          const im = new Image();
-          im.src = typeof v === 'string' ? v : v.src;
-          im.alt = (typeof v === 'object' && v.alt) || s.dataset.alt || '';
-          s.querySelectorAll(':scope > img').forEach((o) => o.remove());
-          s.prepend(im);
-        }
-      };
-      document.querySelectorAll('[data-slot] img').forEach((i) => {
-        if (i.complete && !i.naturalWidth) i.remove();
-        else i.addEventListener('error', () => i.remove(), { once: true });
-      });
+      // ---- Sticky header hairline -----------------------------------------
+      (() => {
+        const header = document.querySelector('[data-header]');
+        if (!header) return;
+        const onScroll = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
 
-      // IntersectionObserver for reveal animations
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!reduce) {
+      // ---- Balloon parallax ------------------------------------------------
+      (() => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const balloons = [...document.querySelectorAll('[data-parallax]')];
+        if (reduce || !balloons.length) return;
+
+        let target = 0;
+        let current = 0;
+        let raf = null;
+
+        const tick = () => {
+          current += (target - current) * 0.09;
+          balloons.forEach((el) => {
+            const range = parseFloat(el.dataset.parallax || '20');
+            el.style.setProperty('--px', `${(current * range).toFixed(2)}px`);
+          });
+          if (Math.abs(target - current) > 0.05) raf = requestAnimationFrame(tick);
+          else raf = null;
+        };
+
+        window.addEventListener(
+          'mousemove',
+          (e) => {
+            target = (e.clientX / window.innerWidth - 0.5) * 2;
+            if (!raf) raf = requestAnimationFrame(tick);
+          },
+          { passive: true }
+        );
+      })();
+
+      // ---- Project slider --------------------------------------------------
+      (() => {
+        document.querySelectorAll('[data-slider]').forEach((root) => {
+          const track = root.querySelector('[data-slider-track]');
+          const prev = root.querySelector('[data-slider-prev]');
+          const next = root.querySelector('[data-slider-next]');
+          const dots = [...root.querySelectorAll('[data-slider-dot]')];
+          if (!track) return;
+
+          const items = [...track.children];
+          const step = () => {
+            const first = items[0];
+            if (!first) return 320 + 32;
+            return first.getBoundingClientRect().width + 32;
+          };
+
+          const page = () => {
+            const perView = Math.max(1, Math.round(track.clientWidth / step()));
+            return Math.max(1, items.length - perView + 1);
+          };
+
+          const update = () => {
+            const max = track.scrollWidth - track.clientWidth;
+            if (prev) prev.disabled = track.scrollLeft <= 2;
+            if (next) next.disabled = track.scrollLeft >= max - 2;
+            const current = Math.round(track.scrollLeft / step());
+            dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+          };
+
+          const goTo = (index) => {
+            const clamped = Math.max(0, Math.min(page() - 1, index));
+            track.scrollTo({ left: clamped * step(), behavior: 'smooth' });
+          };
+
+          if (prev) prev.addEventListener('click', () => goTo(Math.round(track.scrollLeft / step()) - 1));
+          if (next) next.addEventListener('click', () => goTo(Math.round(track.scrollLeft / step()) + 1));
+          dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+          track.addEventListener('scroll', update, { passive: true });
+          window.addEventListener('resize', update);
+          update();
+        });
+      })();
+
+      // ---- Scroll reveals --------------------------------------------------
+      (() => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const targets = document.querySelectorAll('[data-reveal], [data-stagger]');
+        if (reduce) {
+          targets.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -181,10 +291,8 @@ const ogImage = new URL(url('/images/og-cover.svg'), Astro.site);
           },
           { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
         );
-        document.querySelectorAll('[data-reveal], [data-stagger]').forEach((el) => observer.observe(el));
-      } else {
-        document.querySelectorAll('[data-reveal], [data-stagger]').forEach((el) => el.classList.add('is-visible'));
-      }
+        targets.forEach((el) => observer.observe(el));
+      })();
     </script>
   </body>
 </html>

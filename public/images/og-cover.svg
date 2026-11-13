@@ -1,22 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="New Co Build Infra Developers">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#101b2b"/>
-      <stop offset="1" stop-color="#2a4568"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0.85" cy="0.1" r="0.6">
-      <stop offset="0" stop-color="#d9b166" stop-opacity="0.35"/>
-      <stop offset="1" stop-color="#d9b166" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
-  <rect x="80" y="86" width="64" height="64" rx="16" fill="#1b2b43" stroke="#d9b166" stroke-width="2"/>
-  <text x="112" y="128" fill="#d9b166" font-family="Georgia, serif" font-size="26" font-weight="700" text-anchor="middle">NC</text>
-  <text x="164" y="118" fill="#ffffff" font-family="Georgia, serif" font-size="30" font-weight="600">New Co</text>
-  <text x="164" y="142" fill="#8b97a8" font-family="Arial, sans-serif" font-size="13" letter-spacing="3">BUILD INFRA DEVELOPERS</text>
-  <text x="80" y="300" fill="#ffffff" font-family="Georgia, serif" font-size="66" font-weight="600">Building landmark spaces.</text>
-  <text x="80" y="378" fill="#d9b166" font-family="Georgia, serif" font-size="66" font-style="italic">Delivering lasting value.</text>
-  <text x="80" y="460" fill="#aeb9c8" font-family="Arial, sans-serif" font-size="24">Residential communities · Commercial landmarks · Infrastructure</text>
-  <rect x="80" y="520" width="120" height="4" fill="#d9b166"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="NewBuild — residential and commercial developers">
+  <rect width="1200" height="630" fill="#ffffff" />
+
+  <!-- logo mark -->
+  <g transform="translate(80 74)" fill="none" stroke="#1a1c1d" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M5 43V17.5L24 5l19 12.5V43" />
+    <path d="M17 43V27h14v16" />
+    <path d="M24 27v16" stroke="#2cb690" />
+  </g>
+  <text x="150" y="106" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="7" fill="#1a1c1d">NEWBUILD</text>
+  <text x="152" y="134" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="6.5" fill="#707070">DEVELOPERS</text>
+
+  <!-- headline -->
+  <text x="80" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="74" fill="#1a1c1d">Own a piece of</text>
+  <text x="80" y="414" font-family="Georgia, 'Times New Roman', serif" font-size="74" fill="#1f8a70">what&#8217;s next</text>
+
+  <!-- rule + caption -->
+  <rect x="80" y="486" width="180" height="3" fill="#2cb690" />
+  <text x="80" y="536" font-family="Helvetica, Arial, sans-serif" font-size="21" fill="#48494a">3 &amp; 4 BHK homes around a landscaped central court</text>
+  <text x="80" y="568" font-family="Helvetica, Arial, sans-serif" font-size="21" fill="#48494a">Kondapur, Hyderabad · Handover 2027</text>
 </svg>

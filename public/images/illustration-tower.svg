@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" width="420" height="460" fill="none" stroke="#3ecfa6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Line drawing of a tower with leaves growing from it">
+  <defs>
+    <pattern id="nb-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#3ecfa6" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- ground -->
+  <path d="M40 404h340" opacity=".5" />
+
+  <!-- right face -->
+  <path d="M244 246v152l92-56V194l-92 52Z" />
+  <path d="M244 246l92-52v152l-92 56V246Z" fill="url(#nb-hatch)" stroke="none" opacity=".22" />
+  <!-- left face -->
+  <path d="M116 186v152l128 60V246l-128-60Z" />
+  <!-- top face -->
+  <path d="M116 186 208 132l128 62-92 52-128-60Z" />
+
+  <!-- window grid, right face -->
+  <g opacity=".8">
+    <path d="M262 268l16-10v26l-16 10v-26Z" />
+    <path d="M292 250l16-10v26l-16 10v-26Z" />
+    <path d="M262 308l16-10v26l-16 10v-26Z" />
+    <path d="M292 290l16-10v26l-16 10v-26Z" />
+    <path d="M262 348l16-10v26l-16 10v-26Z" />
+    <path d="M292 330l16-10v26l-16 10v-26Z" />
+  </g>
+  <!-- window grid, left face -->
+  <g opacity=".8">
+    <path d="M140 214l18 8v26l-18-8v-26Z" />
+    <path d="M176 232l18 8v26l-18-8v-26Z" />
+    <path d="M212 250l16 8v26l-16-8v-26Z" />
+    <path d="M140 268l18 8v26l-18-8v-26Z" />
+    <path d="M176 286l18 8v26l-18-8v-26Z" />
+    <path d="M212 304l16 8v26l-16-8v-26Z" />
+  </g>
+
+  <!-- fronds growing from the roof -->
+  <g>
+    <path d="M186 154c-18-16-30-40-26-64 24 10 40 34 36 62" />
+    <path d="M186 154c-2-22 8-44 26-56 12 24 6 52-16 66" />
+    <path d="M186 154c-22-6-44 0-58 18 20 14 46 8 60-10" />
+    <path d="M186 154c14-18 38-26 58-16-12 22-38 30-58 24" />
+    <path d="M186 154v-26" />
+  </g>
+  <g opacity=".85">
+    <path d="M252 152c-8-18-8-38 2-54 16 14 20 36 10 54" />
+    <path d="M252 152c10-16 28-24 44-16-10 18-28 26-44 22" />
+  </g>
+
+  <!-- small planter block on the roof -->
+  <path d="M132 184 206 136l34 16-74 48-34-16Z" />
+  <path d="M132 184v-14l34 16v14" />
+  <path d="M166 200v-14l74-48v14" />
+</svg>

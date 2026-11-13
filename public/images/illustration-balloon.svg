@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" width="200" height="260" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Line drawing of a hot air balloon">
+  <defs>
+    <pattern id="nb-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(38)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width="1" />
+    </pattern>
+    <clipPath id="nb-envelope">
+      <path d="M100 14C58 14 26 56 26 112c0 44 34 78 74 88 40-10 74-44 74-88 0-56-32-98-74-98Z" />
+    </clipPath>
+  </defs>
+
+  <!-- envelope -->
+  <path d="M100 14C58 14 26 56 26 112c0 44 34 78 74 88 40-10 74-44 74-88 0-56-32-98-74-98Z" />
+  <g clip-path="url(#nb-envelope)">
+    <rect x="20" y="8" width="160" height="200" fill="url(#nb-hatch)" stroke="none" opacity=".38" />
+  </g>
+  <!-- gores -->
+  <path d="M100 14v186" />
+  <path d="M70 19c-16 59-20 123 8 174" />
+  <path d="M130 19c16 59 20 123-8 174" />
+  <path d="M46 38c-12 50-8 108 12 142" />
+  <path d="M154 38c12 50 8 108-12 142" />
+  <!-- waist band -->
+  <path d="M33 150c33 30 101 30 134 0" />
+
+  <!-- rigging + basket -->
+  <path d="M84 198l6 26" />
+  <path d="M116 198l-6 26" />
+  <path d="M86 224h28l-4 22H90l-4-22Z" />
+  <path d="M86 232h28" />
+</svg>

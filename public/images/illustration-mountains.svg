@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 300" width="1440" height="300" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Line drawing of a landscape with mountains and trees">
+  <defs>
+    <pattern id="nb-hatch-dark" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" stroke-width="1" />
+    </pattern>
+    <pattern id="nb-hatch-green" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#2cb690" stroke-width="1" />
+    </pattern>
+    <g id="nb-pine">
+      <path d="M0 0v-20" />
+      <path d="M-10-8 0-28l10 20" />
+      <path d="M-13 0 0-22l13 22" />
+    </g>
+    <g id="nb-spruce">
+      <path d="M0 0v-14" />
+      <path d="M-7-6 0-22l7 16" />
+    </g>
+  </defs>
+
+  <!-- distant ridge -->
+  <path d="M430 250c40-56 78-92 112-92s72 36 112 92c38-62 74-104 108-104s70 42 108 104c34-52 66-86 100-86s66 34 100 86" opacity=".5" />
+
+  <!-- tree line, left -->
+  <g>
+    <use href="#nb-pine" transform="translate(70 250)" />
+    <use href="#nb-pine" transform="translate(132 252) scale(.82)" />
+    <use href="#nb-spruce" transform="translate(178 250) scale(1.05)" />
+    <use href="#nb-pine" transform="translate(228 252) scale(.62)" />
+    <use href="#nb-spruce" transform="translate(268 250) scale(.78)" />
+    <use href="#nb-pine" transform="translate(322 252) scale(.5)" />
+    <use href="#nb-spruce" transform="translate(356 250) scale(.62)" />
+    <use href="#nb-pine" transform="translate(398 252) scale(.38)" />
+  </g>
+
+  <!-- ground line -->
+  <path d="M0 250h180c40 0 60-6 96-6h220c40 0 58 6 96 6h180c40 0 60-6 96-6h380c40 0 62 6 132 6" />
+
+  <!-- mountains, right -->
+  <g>
+    <path d="M690 250 860 72l170 178Z" />
+    <path d="M860 72l170 178H690L860 72Z" fill="url(#nb-hatch-dark)" stroke="none" opacity=".5" />
+    <path d="M980 250 1130 108l150 142Z" />
+    <path d="M1130 108l150 142H980l150-142Z" fill="url(#nb-hatch-green)" stroke="none" opacity=".9" />
+    <path d="M1180 250 1310 140l130 110Z" />
+    <path d="M1310 140l130 110h-260l130-110Z" fill="url(#nb-hatch-dark)" stroke="none" opacity=".5" />
+  </g>
+
+  <!-- foreground scrub -->
+  <g opacity=".8">
+    <use href="#nb-spruce" transform="translate(470 250) scale(.5)" />
+    <use href="#nb-pine" transform="translate(520 250) scale(.34)" />
+    <use href="#nb-spruce" transform="translate(560 250) scale(.42)" />
+  </g>
+</svg>

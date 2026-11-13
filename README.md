@@ -30,22 +30,38 @@ human-speak copy, sunset-villa hero imagery, and a styled contact form.
 
 ```
 src/
-├── components/     Header, footer, cards, CTA band, hero artwork, preview banner
+├── assets/fonts/   Self-hosted Larken + Atlas Grotesk font files
 ├── data/           Site details and project records (edit content here)
-├── layouts/        Base layout with SEO metadata
+├── layouts/        Base layout with SEO metadata, header, footer and JS
 ├── lib/            Base-path helper for GitHub Pages
 ├── pages/          One file per route
-└── styles/         Global design tokens and component styles
+└── styles/         Design tokens, base reset, and component styles
 public/
-└── images/         Placeholder SVG artwork (replace with real photography)
+├── favicon.svg
+└── images/         Line-art illustrations, logo mark, pin, hero photography
 ```
+
+## Design system
+
+The visual system is documented in `design.md` — colour, type, spacing, the
+component patterns and the motion rules. Read it before changing styles.
+
+Key points:
+
+- Fonts are self-hosted from `src/assets/fonts/` (Larken for display, Atlas
+  Grotesk for body). No external font requests.
+- The accent green `--color-accent` is used only for the active nav item, the
+  hairline under CTAs, the large statistic numerals and illustration accents.
+- CTAs are the `.link` class: grey text with a 1px green rule beneath it. There
+  are no filled buttons, no shadows and no rounded surfaces.
+- Dark sections are flat `--color-ink` bands. Headings inside them inherit
+  `.band--dark` colour overrides — do not hard-code colours on `h1`–`h4`.
 
 ## Before the production launch (MilesWeb)
 
 - Replace placeholder content in `src/data/site.ts` and `src/data/projects.ts`.
-- Swap the wordmark for the real logo.
-- Remove the preview banner and the `noindex` meta from
-  `src/layouts/BaseLayout.astro`.
+- Swap the wordmark (`public/images/logo-mark.svg` and the `.logo__name` text) for the real logo.
+- Remove the `noindex` meta from `src/layouts/BaseLayout.astro`.
 - Change `site` and `base` in `astro.config.mjs` to
   `https://newbuild.co.in` and `/`.
 - Connect the enquiry form to email and WhatsApp.

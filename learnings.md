@@ -222,6 +222,49 @@ it, while the self-hosted font files were left unreferenced in `src/assets/fonts
 
 ---
 
+## 16. Site did not match its own design system — full Meridian redesign
+
+**Problem:** The site rendered as a navy/champagne "Terrazzo" theme with rounded cards, pill
+buttons, hard offset shadows and an uppercase monospace eyebrow. Meanwhile `.hallmark/preflight.json`
+and the font files in `src/assets/fonts/` specified a completely different system: white paper,
+near-black ink, one green accent, Larken + Atlas Grotesk, and flat surfaces with no chrome. The
+reference design the Client pointed at (pragnagroup.co.in) uses exactly that second system.
+
+**Root cause:** An earlier "Terrazzo" redesign pass replaced the tokens, added a large component
+stylesheet for components that were then abandoned, and left the original font files in place but
+unreferenced. Every one of the nine files in `src/components/` had become dead code.
+
+**Fix:** Rebuilt the design system end to end.
+
+- `tokens.css` rewritten around the five-colour reference palette (`--color-ink #1a1c1d`,
+  `--color-accent #2cb690`, `--color-muted #707070`, `--color-body #48494a`, white paper) with
+  `--color-body` added so body copy is `#48494a` while default text stays `#333`
+- `global.css` rewritten: no shadows, no radii, no filled buttons. The CTA is a hairline link —
+  `border-bottom: 1px solid var(--color-accent)` with `padding: 0.75rem 0` — which is the single
+  most recognisable interaction on the reference site
+- Page anatomy rebuilt to match: white editorial hero with line art, alternating `1fr 0.5fr` project
+  rows, a flat ink values band, a green-numeral statistics block, a full-bleed photo banner, an ink
+  band with a project slider, and a full-bleed closer
+- Row grid uses explicit `grid-column` on `.row__media` / `.row__body` so DOM order no longer
+  controls which side the image lands on (`.row--flip`, `.row--body-wide`)
+- Added `.band--dark` colour overrides for `h1`-`h4` and body copy — headings inside ink bands were
+  inheriting `--color-ink` and rendering dark-on-dark
+- New hand-drawn line-art assets: balloon, accent balloon, mountain horizon, leafy tower, tree row,
+  logo mark, location pin
+- `hero-sunset.jpg` (1.7 MB) converted to `hero-sunset.webp` (546 KB) plus a 1200px variant
+- Removed the nine dead components and the six obsolete gradient placeholder SVGs; project imagery
+  now lives in `src/data/projects.ts` as a single `photos` map instead of being duplicated per page
+- Scroll reveals retimed to 1s `outQuart` with `translateX(-100px)` / `translateY(100px)` / `scale`
+  variants and 0/100/150/200/300ms stagger delays, matching the reference choreography
+
+**Files affected:** `src/styles/tokens.css`, `src/styles/base.css`, `src/styles/global.css`,
+`src/layouts/BaseLayout.astro`, `src/pages/index.astro`, `src/pages/about.astro`,
+`src/pages/projects.astro`, `src/pages/contact.astro`, `src/pages/404.astro`,
+`src/pages/projects/[slug].astro`, `src/data/projects.ts`, `public/images/*`, `public/favicon.svg`,
+`design.md`, `README.md`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:

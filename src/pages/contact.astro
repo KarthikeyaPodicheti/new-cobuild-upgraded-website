@@ -1,82 +1,112 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
+import { url } from '../lib/paths';
+import { photos } from '../data/projects';
+
 ---
 
 <BaseLayout
   title="Contact"
   description="Talk to NewBuild about a home, commercial space or a site visit."
 >
-  <section class="hero" data-reveal>
-    <div class="hero__bg" aria-hidden="true">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg/1280px-Exterior_view_of_the_illuminated_facade_of_Maison_Herm%C3%A8s%2C_Ginza%2C_Tokyo%2C_Japan.jpg" alt="" width="1280" height="853" loading="eager" />
+  <section class="page-hero">
+    <div class="page-hero__art" aria-hidden="true">
+      <img src={url('/images/illustration-trees.svg')} alt="" width="600" height="220" loading="lazy" />
     </div>
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <span class="hero__eyebrow">Contact</span>
-        <h1>Ask for a visit or the project details</h1>
-        <p class="lead">
-          Send a message if you want the project dossier, a site visit, or answers to specific questions. We reply within one working day.
-        </p>
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h1 class="page-hero__title" data-reveal="left">Ask for a visit or the project details</h1>
+      <p class="lead page-hero__lead" data-reveal="left" style="transition-delay:150ms">
+        Send a message if you want the project dossier, a site visit, or answers to specific questions. We
+        reply within one working day.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row row--body-wide">
+        <div class="row__media" data-reveal="left">
+          <img src={photos.tower} alt="Illuminated facade of a city building at night" width="1280" height="853" loading="lazy" decoding="async" />
+        </div>
+        <div class="row__body" data-reveal="left" style="transition-delay:100ms">
+          <h2 class="section-title">Reach us</h2>
+          <dl class="detail-list" style="margin-top:var(--space-2xl);grid-template-columns:1fr 1fr">
+            <div>
+              <dt>Head office</dt>
+              <dd>{site.address.lines.join(', ')}</dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href={`tel:${site.phoneHref}`}>{site.phone}</a></dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+            </div>
+            <div>
+              <dt>Hours</dt>
+              <dd>{site.hours}</dd>
+            </div>
+          </dl>
+          <a class="link row__link" href={url('/projects')}>Browse the projects</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="offer" data-reveal>
+  <section class="section section--tight">
     <div class="container">
-      <div class="offer__grid">
-        <div class="offer__content">
-          <h2>Reach us</h2>
-          <dl class="offer__meta" style="margin-top: var(--space-lg);">
-            <dt>Head office</dt>
-            <dd>{site.address.lines.join(', ')}</dd>
-            <dt>Phone</dt>
-            <dd><a href={`tel:${site.phoneHref}`}>{site.phone}</a></dd>
-            <dt>Email</dt>
-            <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
-            <dt>Hours</dt>
-            <dd>{site.hours}</dd>
-          </dl>
+      <div class="row row--body-wide">
+        <div class="row__media" data-reveal="left">
+          <img src={url('/images/illustration-tower.svg')} alt="Line drawing of a tower with leaves" width="420" height="460" loading="lazy" />
         </div>
-
-        <div class="form-card" data-reveal>
-          <h2>Send an enquiry</h2>
-          <p class="form-hint">Fields marked with * are required.</p>
-          <form class="form-grid" data-mockup-form>
-            <div class="field">
-              <label for="name">Full name *</label>
-              <input id="name" name="name" type="text" autocomplete="name" required />
-            </div>
-            <div class="field">
-              <label for="phone">Phone *</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" required />
-            </div>
-            <div class="field field--full">
-              <label for="email">Email *</label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
-            </div>
-            <div class="field field--full">
-              <label for="interest">I am interested in</label>
-              <select id="interest" name="interest">
-                <option>The Courtyard — 3 BHK</option>
-                <option>The Courtyard — 4 BHK</option>
-                <option>Commercial or retail space</option>
-                <option>Something else</option>
-              </select>
-            </div>
-            <div class="field field--full">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Preferred unit, budget range, timeline, or questions you want answered."></textarea>
-            </div>
-            <div class="field field--full">
-              <label class="checkbox">
-                <input type="checkbox" name="consent" required />
-                <span>I agree to be contacted about this enquiry. My details will not be used for anything else.</span>
-              </label>
-            </div>
-            <div class="field field--full">
-              <button class="btn btn--primary" type="submit">Request details / Book visit</button>
-              <p class="form-note">Design preview — this form is not connected yet. Email and WhatsApp are wired up in the final build.</p>
+        <div class="row__body" data-reveal="left" style="transition-delay:100ms">
+          <h2 class="section-title">Send an enquiry</h2>
+          <p class="body-text" style="margin-top:var(--space-md)">
+            Fields marked with * are required.
+          </p>
+          <form class="form" data-mockup-form style="margin-top:var(--space-lg)">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Full name *</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="phone">Phone *</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+              </div>
+              <div class="field field--full">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="field field--full">
+                <label for="interest">I am interested in</label>
+                <select id="interest" name="interest">
+                  <option>The Courtyard — 3 BHK</option>
+                  <option>The Courtyard — 4 BHK</option>
+                  <option>Commercial or retail space</option>
+                  <option>Something else</option>
+                </select>
+              </div>
+              <div class="field field--full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Preferred unit, budget range, timeline, or questions you want answered."></textarea>
+              </div>
+              <div class="field field--full">
+                <label class="checkbox">
+                  <input type="checkbox" name="consent" required />
+                  <span>I agree to be contacted about this enquiry. My details will not be used for anything else.</span>
+                </label>
+              </div>
+              <div class="field field--full">
+                <a class="link" href={`mailto:${site.email}`}>Send enquiry by email</a>
+                <p class="form-note" style="margin-top:var(--space-md)">
+                  Design preview — this form is not connected yet. Email and WhatsApp are wired up in the
+                  final build.
+                </p>
+              </div>
             </div>
           </form>
         </div>
