@@ -48,14 +48,14 @@ Defined in `src/styles/tokens.css` (theme) and `src/styles/global.css` (page).
 No second accent. Dark band: `.numbers` uses `--color-ink` bg with paper/accent text.
 
 ### Type
-- **Display:** `Syne` 700 (`--font-display`), tight tracking `--tracking-display: -0.025em`
-- **Body:** `Onest` 400/500 (`--font-body`)
-- **Outlier/meta:** `JetBrains Mono` 500 (`--font-outlier`) for small labels/eyebrows/meta where used
+- **Display:** `Larken` 300 (`--font-display`), tracking `--tracking-display: -0.01em`
+- **Body:** `Atlas Grotesk` 400/500 (`--font-body`)
+- **Outlier/meta:** `Atlas Grotesk` 500 (`--font-outlier`) for small labels/eyebrows/meta where used
 
 Scale (tokens): `--text-xs..--text-3xl`, `--text-display`, `--text-display-s`, `--text-section`, `--text-title`, `--text-lead`.  
 Hero h1 capped for fold fit: `clamp(2.25rem, 4vw + 0.5rem, 4rem)`; lead `--text-md`. Body/lead measures constrained (`max-width` on hero/sections). Tabular figures on numeric stats.
 
-Fonts loaded via Google Fonts in `BaseLayout.astro` (swap/preload pattern).
+Fonts are self-hosted from `src/assets/fonts/` and declared with `@font-face` in `base.css` (`Larken-Light.ttf` 300, `AtlasGrotesk-Regular.otf` 400, `AtlasGrotesk-Medium.otf` 500). `BaseLayout.astro` preloads the display and body files.
 
 ### Space, layout, shape
 - Container: `--container: 1440px`, gutter `64px` desktop → `24px`/`16px` responsive (`base.css`)

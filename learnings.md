@@ -192,6 +192,36 @@ Final breakpoint structure:
 
 ---
 
+## 15. Web fonts drifted from the design system (Google Fonts instead of Larken + Atlas Grotesk)
+
+**Problem:** The site rendered Syne / Onest / JetBrains Mono loaded from Google Fonts, but the design
+system (`.hallmark/preflight.json`) and the font files already committed in `src/assets/fonts/`
+specify **Larken Light (300) for display** and **Atlas Grotesk Regular (400) / Medium (500) for body
+and emphasis**.
+
+**Root cause:** The Google Fonts stack was wired into `BaseLayout.astro` and `tokens.css` pointed at
+it, while the self-hosted font files were left unreferenced in `src/assets/fonts/`.
+
+**Fix:** Swapped the font tokens and dropped the remote font links.
+```css
+/* tokens.css */
+--font-display: "Larken", ui-sans-serif, sans-serif;
+--font-body: "Atlas Grotesk", ui-sans-serif, sans-serif;
+--font-outlier: "Atlas Grotesk", ui-sans-serif, sans-serif;
+--tracking-display: -0.01em; --display-weight: 300;
+```
+- Added `@font-face` rules in `base.css` pointing at `../assets/fonts/*.ttf|otf` with `font-display: swap`
+- Removed the Google Fonts preload/stylesheet and the `fonts.googleapis.com` / `fonts.gstatic.com`
+  preconnects from `BaseLayout.astro`; added `as="font"` preloads for Larken and Atlas Grotesk Regular
+- Display weight `700 -> 300` (Larken ships Light only); hero h1 tracking `-1.5px -> -0.02em`;
+  `.numbers__value` tracking `-0.04em -> -0.02em`; `.hero__cta` / mobile `.btn` `600 -> 500`
+  (Atlas Grotesk tops out at Medium)
+
+**Files affected:** `src/styles/base.css`, `src/styles/tokens.css`, `src/styles/global.css`,
+`src/layouts/BaseLayout.astro`, `design.md`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:
