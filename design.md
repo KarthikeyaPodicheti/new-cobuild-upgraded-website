@@ -113,28 +113,41 @@ Variants: `.link--light` (on ink bands), `.link--ink` (ink text).
 - `.closer`: full-bleed photo with a flat dark overlay, centred copy `max-width: 64rem`, title `4rem` white
 
 ### Statistics
-- `.stats__grid`: `1fr 1fr`; left is a title + lead, right is a 3-column stat grid
-- `.stats__value`: Larken 300 at `--text-stat` in `--color-accent`; caption in Atlas Grotesk beneath. No vertical hairline
+- `.stats__grid`: `1fr 1fr` with a 16px gap; left is a title + lead, right is a 3-column stat grid
+- `.stats__value`: Larken 300 at `--text-stat` in `--color-accent-deep`; caption in Atlas Grotesk beneath. No vertical hairline
+- On phones the stat list stays two-up — a single column made the section twice as tall as the reference
+
+### Hero statistics (`about.astro`, `.hero-stats`)
+- Three-up strip under the About hero lead: green Larken numeral, small muted caption, 1px rule above
+- Mirrors the reference's "700+ / 5000+ / 15" block
 
 ### Project slider
-- `.slider__track`: horizontal scroll, `scroll-snap-type: x mandatory`, 320px cards at `1.689 / 1`, 32px gap
-- Card title Larken 300 `2rem` white, location row with a white pin icon
-- Controls below: green dot pagination left, two 48px green circular arrows right (48px, `border-radius: 50%`)
+- `.slider__track`: horizontal scroll, `scroll-snap-type: x mandatory`, cards at `clamp(300px, 31%, 400px)` and `1.689 / 1`, 32px gap
+- Cards are deliberately wider than a quarter of the container so the rail actually overflows and the arrows have something to do
+- Card title is block-level Larken 300 `2rem` white, location row with a white pin icon
+- Controls below: green dot pagination left, two 48px green circular arrows right (`border-radius: 50%`)
+- Dots are built in JS from the computed page count, so their number always equals the number of reachable positions
+- The track is focusable and responds to Left/Right/Home/End
 - The only hover transition on the site is the arrow background
 
 ### Footer
-- 1px `--color-muted-2` rule, then a `space-between` row: brand lockup + description + social icons + legal links left, four nav links right
+- 1px `--color-muted-2` rule, then a `space-between` row: stacked brand lockup + social icons + legal links left, four nav links right. No description paragraph — the reference footer is compact
+- The brand lockup is vertical: 56px mark, then the name in Larken at 13px / `0.22em`, then "Developers" at 8.5px / `0.3em`, all centred
+- Social icons are 44px targets. Until real profiles exist they render `aria-disabled`, `pointer-events: none`, `tabindex="-1"` rather than jumping to the top of the page
 - Bottom row: copyright left, disclaimer right, separated by a `--color-rule` hairline
 
 ### Forms
 - Flat square fields, 1px `--color-rule` border, green border on focus, no radius, no shadow
+- `.form--dark` variant for the contact panel: transparent fields, white label, 1px `rgb(255 255 255 / 0.3)` underline, green underline on focus
+- Every form has a real `<button type="submit">` styled as the hairline CTA (`.link--button`)
+- Result feedback goes to an inline `role="status"` region (`.form__status`), never `window.alert()`
 
 ## 5. Sections
 
 1. **Hero** (white, line art) — headline, lead, hairline CTA, balloons, mountain horizon
 2. **Selected developments** (white) — section title + three alternating `.row` blocks
 3. **Values** (ink band) — green line-art tower left, "How we work with buyers" right, hairline CTA
-4. **Numbers** (white) — "Building up" + six green Larken statistics
+4. **Numbers** (white) — "Building up" + six green Larken statistics, two-up on phones
 5. **Banner** (full-bleed photo) — one Larken sentence over the image
 6. **Other projects** (ink band) — green section title + project slider with arrows and dots
 7. **Closer** (full-bleed photo) — centred title, lead, hairline CTA
@@ -143,10 +156,11 @@ Variants: `.link--light` (on ink bands), `.link--ink` (ink text).
 ## 6. Pages
 
 - **Home (`index.astro`)**: hero, selected developments, values band, numbers, banner, other-projects slider, closer
-- **About (`about.astro`)**: page hero, one-team row, values band, milestones timeline, credentials row, closer
+- **About (`about.astro`)**: page hero with stat strip, one-team row, values band, milestones timeline, credentials row, closer
 - **Projects (`projects.astro`)**: page hero, current launch row, delivered-by-the-promoters band (3 cards), closer
 - **Project detail (`projects/[slug].astro`)**: page hero, at-a-glance row, gallery, closer
-- **Contact (`contact.astro`)**: page hero, reach-us row, enquiry row (form is a mockup), footer
+- **Contact (`contact.astro`)**: full-width ink panel — green 64px heading, enquiry form left, line-art tower right — then a corporate-office block. On small screens the art moves above the form
+- **Privacy (`privacy.astro`)**: terms, privacy, RERA disclaimer and contact details
 - **404 (`404.astro`)**: page hero with recovery links
 
 All pages share global tokens/components, the white editorial page hero, and reveal animations.
@@ -154,6 +168,7 @@ All pages share global tokens/components, the white editorial page hero, and rev
 ## 7. Content & copy rules
 
 - Benefit-driven, clear CTAs; no invented metrics, testimonials, awards, or RERA numbers.
+- Green **text** uses `--color-accent-deep` `#1b7f66` (4.9:1 on white). The mint `#2cb690` is decorative only — rules, fills, illustration, and text on ink where it measures 6.6:1.
 - One real selling project only; promoters' prior work shown with attribution and placeholder labelling until verified.
 - Keep placeholder notes visible until verified content/imagery replaces them.
 - **Before launch:** replace wordmark/logo, all placeholder project facts/RERA/names/photos/copy, verify track record/credentials, remove mockup-only `noindex` behaviour, confirm font licensing for production use, wire contact form (email/WhatsApp), set production `site`/`base`, add legal/RERA pages.
@@ -167,4 +182,5 @@ All pages share global tokens/components, the white editorial page hero, and rev
 - `src/pages/index.astro`, `about.astro`, `projects.astro`, `projects/[slug].astro`, `contact.astro`, `404.astro`
 - `src/data/projects.ts`, `src/data/site.ts` — content sources
 - `public/images/` — line-art illustrations, logo mark, pin, hero photography
+- `comparison/` — side-by-side screenshots against the reference, with a README explaining them
 - `.hallmark/` — preflight/log (local build artifacts)

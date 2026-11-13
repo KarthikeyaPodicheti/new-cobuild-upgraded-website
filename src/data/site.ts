@@ -18,10 +18,15 @@ export const site = {
     mapQuery: 'Financial District, Nanakramguda, Hyderabad',
   },
   hours: 'Monday to Saturday, 9:30 am to 6:30 pm',
+  /**
+   * Social profiles are not configured yet. Until the client supplies them
+   * the footer renders them as disabled placeholders rather than dead links
+   * that jump the visitor back to the top of the page.
+   */
   social: [
-    { label: 'LinkedIn', href: '#' },
-    { label: 'Instagram', href: '#' },
-    { label: 'YouTube', href: '#' },
+    { label: 'LinkedIn', href: '#', placeholder: true },
+    { label: 'Instagram', href: '#', placeholder: true },
+    { label: 'YouTube', href: '#', placeholder: true },
   ],
   reraNote:
     'Design preview. Project names, specifications, RERA numbers, and photography are placeholders.',

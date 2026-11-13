@@ -265,6 +265,75 @@ unreferenced. Every one of the nine files in `src/components/` had become dead c
 
 ---
 
+## 17. Matching a reference site by measurement, not by eye
+
+**Problem:** After the first Meridian pass the page *felt* close to the reference, but comparing
+full-page screenshots band by band kept producing small, arguable judgements — "this heading looks
+bigger?", "is this column the right width?".
+
+**Root cause:** Eyeballing a scaled screenshot is unreliable. Downscaling a 1440px page into a 720px
+column makes a 32px and a 48px heading look similar, and accumulated 8–16px offsets are invisible.
+
+**Fix:** Added a probe script that loads both sites in headless Chromium and prints the same measured
+facts for each: bounding box, computed `font-size`, `line-height`, `color`, `max-width`, `gap`,
+`padding`. That list settled every open question in one pass:
+
+- Content began at x=120, not 80 — the container was `max-width: 1280` *plus* a 40px inner gutter.
+  Changed to `max-width: 1360` with a 40px gutter so content starts at 80.
+- The small section heading is 32px, not 48px; row titles are 24px with `line-height: 1.4`, not 28px.
+- The statistics grid gap is 16px, not 80px, which moved the numerals 32px left.
+- The values band uses 128px padding, not 160px, and its illustration is 524×480.
+- The banner headline is 32px, not 37px.
+- The closer title spans the full container instead of being capped at 64rem.
+- Slider card titles are block-level, not inline.
+
+**Lesson:** When the goal is "look like that site", measure it. A 30-line probe that prints computed
+styles for a dozen selectors is faster and far more accurate than looking at screenshots.
+
+**Files affected:** `src/styles/tokens.css`, `src/styles/global.css`, `src/pages/index.astro`
+
+---
+
+## 18. What a real click-through found that an audit did not
+
+**Problem:** The accessibility audit was clean and every page returned 200, but the site still had
+three defects a customer would hit immediately.
+
+**Root cause:** The audit checked markup and contrast, not behaviour. It never clicked anything.
+
+**Fix:** Added a functional test that drives the site like a visitor — checks every link resolves,
+submits the form empty and filled, clicks the slider arrows, jumps with the dots, tabs to the rail and
+presses Home/End, opens the mobile panel and closes it three ways, and scrolls the page to confirm
+reveals fire.
+
+It found:
+
+1. **The enquiry form had no submit button at all.** Fields, a consent checkbox and a note, but no way
+   to send. Added a real `<button type="submit">` styled as the hairline CTA, plus an inline
+   `role="status"` confirmation. The previous handler called `window.alert()`, which is a blocking
+   native dialog and the wrong pattern for a form result.
+2. **The slider arrows and dots were dead.** Four cards at 320px fitted exactly into the 1280px
+   container, so `scrollLeft` had 96px of range and the "next" button clamped to page 1 — and the
+   fourth dot could never become active. Widened the cards to `clamp(300px, 31%, 400px)` so the rail
+   genuinely pages, and rebuild the dots from the computed page count so their number always matches
+   the number of reachable positions.
+3. **The accent green failed contrast.** `#2cb690` on white measures 2.6:1. Green *text* now uses
+   `#1b7f66` (4.9:1); the mint is kept for rules, fills and illustration, where contrast rules do not
+   apply. On the ink background the mint stays, because 2cb690 on #1a1c1d is 6.6:1.
+
+Also fixed while testing: the footer's social links pointed at `href="#"` and jumped people back to
+the top. They are now rendered as `aria-disabled` placeholders with `pointer-events: none` and
+`tabindex="-1"` until real profiles exist. The footer's Terms and Privacy links pointed at a page that
+did not exist; `src/pages/privacy.astro` now exists.
+
+**Lesson:** An accessibility audit answers "can this be used?" A functional test answers "does this
+work?" Ship both. The missing submit button survived a full design review and a clean audit.
+
+**Files affected:** `src/pages/contact.astro`, `src/pages/privacy.astro`, `src/layouts/BaseLayout.astro`,
+`src/styles/global.css`, `src/styles/tokens.css`, `src/data/site.ts`
+
+---
+
 ## How to document future fixes
 
 When you encounter a challenge and fix it, add a new section to this file following the format above:

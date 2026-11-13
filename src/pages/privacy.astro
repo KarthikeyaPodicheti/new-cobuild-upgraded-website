@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+import { url } from '../lib/paths';
+---
+
+<BaseLayout
+  title="Terms, privacy and RERA disclaimer"
+  description="Terms of use, privacy notice and RERA disclaimer for the NewBuild mockup site."
+>
+  <section class="page-hero">
+    <div class="page-hero__art" aria-hidden="true">
+      <img src={url('/images/illustration-trees.svg')} alt="" width="600" height="220" loading="lazy" />
+    </div>
+    <div class="container">
+      <span class="eyebrow">Legal</span>
+      <h1 class="page-hero__title" data-reveal="left">Terms, privacy and RERA disclaimer</h1>
+      <p class="lead page-hero__lead" data-reveal="left" style="transition-delay:150ms">
+        Placeholder legal copy. Replace with counsel-reviewed text and the project's registered
+        RERA details before launch.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="row row--body-wide">
+        <div class="row__media" data-reveal="left">
+          <img src={url('/images/illustration-trees.svg')} alt="" width="600" height="220" loading="lazy" />
+        </div>
+        <div class="row__body row__body--roomy" data-reveal="left" style="transition-delay:100ms">
+          <h2 class="section-title section-title--sm">Terms of use</h2>
+          <p class="body-text" style="margin-top:var(--space-md)">
+            This site is a design mockup. Project names, specifications, images, prices and
+            availability shown here are placeholders and do not describe a real offering.
+          </p>
+
+          <h2 class="section-title section-title--sm" style="margin-top:var(--space-2xl)">Privacy</h2>
+          <p class="body-text" style="margin-top:var(--space-md)">
+            The enquiry form on this mockup is not connected to a server and nothing you type is
+            transmitted or stored. In the production build, contact details will be used only to
+            answer your enquiry.
+          </p>
+
+          <h2 class="section-title section-title--sm" style="margin-top:var(--space-2xl)">RERA disclaimer</h2>
+          <p class="body-text" style="margin-top:var(--space-md)">
+            All project names, RERA numbers, addresses, dates and photography on this site are
+            placeholders. The registered details of the live project will appear here, with the
+            applicable RERA registration number, before launch.
+          </p>
+
+          <h2 class="section-title section-title--sm" style="margin-top:var(--space-2xl)">Contact</h2>
+          <dl class="detail-list" style="margin-top:var(--space-md);grid-template-columns:1fr 1fr">
+            <div>
+              <dt>Email</dt>
+              <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href={`tel:${site.phoneHref}`}>{site.phone}</a></dd>
+            </div>
+          </dl>
+          <a class="link row__link" href={url('/contact')}>Back to contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

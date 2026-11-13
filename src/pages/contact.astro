@@ -2,123 +2,126 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 import { url } from '../lib/paths';
-import { photos } from '../data/projects';
-
 ---
 
 <BaseLayout
   title="Contact"
   description="Talk to NewBuild about a home, commercial space or a site visit."
 >
-  <section class="page-hero">
-    <div class="page-hero__art" aria-hidden="true">
-      <img src={url('/images/illustration-trees.svg')} alt="" width="600" height="220" loading="lazy" />
-    </div>
-    <div class="container">
-      <span class="eyebrow">Contact</span>
-      <h1 class="page-hero__title" data-reveal="left">Ask for a visit or the project details</h1>
-      <p class="lead page-hero__lead" data-reveal="left" style="transition-delay:150ms">
-        Send a message if you want the project dossier, a site visit, or answers to specific questions. We
-        reply within one working day.
-      </p>
+  <!-- Full-width dark panel: form left, line art right — the reference layout -->
+  <section class="contact-hero">
+    <div class="container contact-hero__grid">
+      <div>
+        <h1 class="contact-hero__title" data-reveal="left">
+          Let's talk about <em>your next home</em>
+        </h1>
+        <p class="contact-hero__lead" data-reveal="left" style="transition-delay:150ms">
+          If you have questions or would like to learn more, please don't hesitate to reach out. We
+          look forward to hearing from you.
+        </p>
+
+        <form class="form form--dark" data-mockup-form style="margin-top:var(--space-2xl)">
+          <p class="form__required">All fields are required unless marked optional.</p>
+          <div class="form-grid">
+            <div class="field field--full">
+              <label for="name">Full Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Enter your name here" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="Enter your email here" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Enter your phone number here" required />
+            </div>
+            <div class="field field--full">
+              <label for="interest">I am interested in</label>
+              <select id="interest" name="interest">
+                <option>The Courtyard — 3 BHK</option>
+                <option>The Courtyard — 4 BHK</option>
+                <option>Commercial or retail space</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="message">Message <span class="field__optional">(optional)</span></label>
+              <textarea id="message" name="message" rows="3" placeholder="Preferred unit, budget range, timeline."></textarea>
+            </div>
+            <div class="field field--full">
+              <label class="checkbox">
+                <input type="checkbox" name="consent" required />
+                <span>I agree to be contacted about this enquiry. My details will not be used for anything else.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form__submit-row">
+            <button class="link link--button" type="submit">Submit</button>
+          </div>
+
+          <p class="form__status" data-form-status role="status" aria-live="polite" hidden></p>
+          <p class="form__note">
+            Design preview — this form is not connected yet. Write to us directly at
+            <a href={`mailto:${site.email}`}>{site.email}</a>.
+          </p>
+        </form>
+      </div>
+
+      <div class="contact-hero__art" aria-hidden="true">
+        <img src={url('/images/illustration-tower.svg')} alt="" width="524" height="480" />
+      </div>
     </div>
   </section>
 
+  <!-- Corporate office -->
   <section class="section">
     <div class="container">
-      <div class="row row--body-wide">
-        <div class="row__media" data-reveal="left">
-          <img src={photos.tower} alt="Illuminated facade of a city building at night" width="1280" height="853" loading="lazy" decoding="async" />
-        </div>
-        <div class="row__body" data-reveal="left" style="transition-delay:100ms">
-          <h2 class="section-title">Reach us</h2>
-          <dl class="detail-list" style="margin-top:var(--space-2xl);grid-template-columns:1fr 1fr">
-            <div>
-              <dt>Head office</dt>
-              <dd>{site.address.lines.join(', ')}</dd>
-            </div>
-            <div>
-              <dt>Phone</dt>
-              <dd><a href={`tel:${site.phoneHref}`}>{site.phone}</a></dd>
-            </div>
-            <div>
-              <dt>Email</dt>
-              <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
-            </div>
-            <div>
-              <dt>Hours</dt>
-              <dd>{site.hours}</dd>
-            </div>
-          </dl>
-          <a class="link row__link" href={url('/projects')}>Browse the projects</a>
-        </div>
-      </div>
-    </div>
-  </section>
+      <h2 class="section-title section-title--sm" data-reveal="left">Corporate office</h2>
 
-  <section class="section section--tight">
-    <div class="container">
-      <div class="row row--body-wide">
-        <div class="row__media" data-reveal="left">
-          <img src={url('/images/illustration-tower.svg')} alt="Line drawing of a tower with leaves" width="420" height="460" loading="lazy" />
+      <div class="office-grid">
+        <div data-reveal="left" style="transition-delay:100ms">
+          <h3 class="office-grid__city">Hyderabad</h3>
+          <p class="office-grid__address">{site.address.lines.join(', ')}</p>
         </div>
-        <div class="row__body" data-reveal="left" style="transition-delay:100ms">
-          <h2 class="section-title">Send an enquiry</h2>
-          <p class="body-text" style="margin-top:var(--space-md)">
-            Fields marked with * are required.
-          </p>
-          <form class="form" data-mockup-form style="margin-top:var(--space-lg)">
-            <div class="form-grid">
-              <div class="field">
-                <label for="name">Full name *</label>
-                <input id="name" name="name" type="text" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="phone">Phone *</label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" required />
-              </div>
-              <div class="field field--full">
-                <label for="email">Email *</label>
-                <input id="email" name="email" type="email" autocomplete="email" required />
-              </div>
-              <div class="field field--full">
-                <label for="interest">I am interested in</label>
-                <select id="interest" name="interest">
-                  <option>The Courtyard — 3 BHK</option>
-                  <option>The Courtyard — 4 BHK</option>
-                  <option>Commercial or retail space</option>
-                  <option>Something else</option>
-                </select>
-              </div>
-              <div class="field field--full">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Preferred unit, budget range, timeline, or questions you want answered."></textarea>
-              </div>
-              <div class="field field--full">
-                <label class="checkbox">
-                  <input type="checkbox" name="consent" required />
-                  <span>I agree to be contacted about this enquiry. My details will not be used for anything else.</span>
-                </label>
-              </div>
-              <div class="field field--full">
-                <a class="link" href={`mailto:${site.email}`}>Send enquiry by email</a>
-                <p class="form-note" style="margin-top:var(--space-md)">
-                  Design preview — this form is not connected yet. Email and WhatsApp are wired up in the
-                  final build.
-                </p>
-              </div>
-            </div>
-          </form>
-        </div>
+
+        <dl class="office-grid__details" data-reveal="left" style="transition-delay:150ms">
+          <div>
+            <dt>Phone</dt>
+            <dd><a href={`tel:${site.phoneHref}`}>{site.phone}</a></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+          </div>
+          <div>
+            <dt>Hours</dt>
+            <dd>{site.hours}</dd>
+          </div>
+        </dl>
       </div>
+
+      <a class="link" href={url('/projects')} style="margin-top:var(--space-2xl)">Browse the projects</a>
     </div>
   </section>
 </BaseLayout>
 
 <script>
   const form = document.querySelector<HTMLFormElement>('[data-mockup-form]');
+  const status = document.querySelector<HTMLElement>('[data-form-status]');
+
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
-    window.alert('Design preview — the enquiry form is not connected yet. Email and WhatsApp are added in the final build.');
+
+    // The preview has no backend. Give the visitor a clear, inline result
+    // instead of a blocking native alert, then reset for another attempt.
+    if (status) {
+      status.textContent =
+        'Thanks — this is a design preview, so nothing has been sent. ' +
+        'In the finished site your enquiry would reach the sales team, and you would get a reply within one working day.';
+      status.hidden = false;
+      status.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+    form.reset();
   });
 </script>

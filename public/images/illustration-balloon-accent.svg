@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" width="240" height="260" fill="none" stroke="#1a1c1d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Line drawing of a hot air balloon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" width="240" height="260" fill="none" stroke="#1a1c1d" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Line drawing of a hot air balloon">
   <defs>
     <pattern id="nb-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(38)">
-      <line x1="0" y1="0" x2="0" y2="7" stroke="#1a1c1d" stroke-width="1" />
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#1a1c1d" stroke-width="2.2" />
     </pattern>
     <clipPath id="nb-envelope">
       <path d="M120 14C78 14 46 56 46 112c0 44 34 78 74 88 40-10 74-44 74-88 0-56-32-98-74-98Z" />
@@ -13,7 +13,7 @@
   <!-- envelope -->
   <path d="M120 14C78 14 46 56 46 112c0 44 34 78 74 88 40-10 74-44 74-88 0-56-32-98-74-98Z" />
   <g clip-path="url(#nb-envelope)">
-    <rect x="40" y="8" width="160" height="200" fill="url(#nb-hatch)" stroke="none" opacity=".38" />
+    <rect x="40" y="8" width="160" height="200" fill="url(#nb-hatch)" stroke="none" opacity=".3" />
   </g>
   <!-- gores -->
   <path d="M120 14v186" />
