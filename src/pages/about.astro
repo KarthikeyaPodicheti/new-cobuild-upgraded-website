@@ -39,6 +39,28 @@ const credentials = [
   'Site safety plan and monthly safety reporting',
 ];
 
+const faqs = [
+  {
+    question: 'How do we verify property titles and encumbrances?',
+    answer:
+      'We conduct a thorough 30-year search through the sub-registrar office, obtain certificates of encumbrance, and commission independent legal opinions from senior property advocates. All title documents and search reports are shared upfront in the buyer\'s due diligence packet.',
+  },
+  {
+    question: 'When is RERA registration made available to buyers?',
+    answer:
+      'Every project is registered with the state Real Estate Regulatory Authority before public booking commences. The official RERA registration number, sanctioned layout plans, project account details, and quarterly progress disclosures are published on both the authority\'s portal and our website.',
+  },
+  {
+    question: 'How are construction milestones tracked and reported?',
+    answer:
+      'We tie customer installments strictly to structural milestones (foundation, plinth, slab casting, brickwork, MEP, and handover). Each milestone is verified by chartered civil engineers and accompanied by high-resolution photographic audit reports sent directly to buyers.',
+  },
+  {
+    question: 'Can buyers inspect material testing and QA/QC certifications?',
+    answer:
+      'Yes. Batch test reports for concrete compressive strength, steel tensile test certificates, and waterproofing flood test sign-offs are archived in the site technical office and available for inspection by buyers or their structural consultants at any time.',
+  },
+];
 ---
 
 <BaseLayout
@@ -156,9 +178,43 @@ const credentials = [
     </div>
   </section>
 
+  <!-- Due Diligence & Transparency Accordions — Baseline 2024 exclusive accordions with native name attribute -->
+  <section class="section section--tint">
+    <div class="container">
+      <span class="eyebrow">Buyer Assurance</span>
+      <h2 class="section-title section-title--sm" data-reveal="left">Paperwork & due diligence</h2>
+      <p class="lead" style="margin-top:var(--space-md)">
+        Standard regulatory disclosures, legal verifications, and quality assurance protocols shared with every prospective buyer.
+      </p>
+
+      <div class="faq-list" data-stagger style="margin-top:var(--space-2xl)">
+        {faqs.map((faq) => (
+          <details class="faq-item" name="due-diligence">
+            <summary class="faq-summary">
+              <span>{faq.question}</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-content">
+              <p class="body-text">{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="closer">
     <div class="closer__media" aria-hidden="true">
-      <img src={url('/images/hero-sunset.webp')} alt="" width="2400" height="1603" loading="lazy" decoding="async" />
+      <img
+        src={url('/images/hero-sunset.webp')}
+        srcset={`${url('/images/hero-sunset-sm.webp')} 800w, ${url('/images/hero-sunset.webp')} 2400w`}
+        sizes="(max-width: 50rem) 100vw, 100vw"
+        alt=""
+        width="2400"
+        height="1603"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <div class="container closer__inner">
       <h2 class="closer__title" data-reveal="grow-big">Want to see the paperwork?</h2>

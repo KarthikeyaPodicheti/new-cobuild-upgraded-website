@@ -1,5 +1,6 @@
 :root {
   color-scheme: light;
+  interpolate-size: allow-keywords;
 
   /* --- Space scale --- */
   --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px;
@@ -41,6 +42,11 @@
   --color-accent: #2cb690;       /* mint green — decorative only (rules, fills, illustration) */
   --color-accent-deep: #1b7f66;  /* text-safe green — 4.9:1 on white; use for any green TEXT */
   --color-accent-wash: #eef8f4; /* soft green background */
+  --color-accent-tint: color-mix(in oklch, var(--color-accent) 15%, transparent);
+  --color-accent-subtle: color-mix(in oklch, var(--color-accent) 8%, transparent);
+  --color-focus-ring: color-mix(in oklch, var(--color-accent-deep) 35%, transparent);
+  --color-error: #c53030;
+  --color-error-tint: color-mix(in oklch, #c53030 12%, transparent);
   --color-accent-ink: #1a1c1d;  /* text on accent */
   --color-focus: #1b7f66;        /* focus ring — 4.9:1 on white, 3.5:1 on ink */
   --color-on-dark: #ffffff;

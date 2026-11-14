@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import { site, navLinks } from '../data/site';
 import { url } from '../lib/paths';
 import larkenUrl from '../assets/fonts/Larken-Light.ttf?url';
@@ -46,6 +47,7 @@ const year = new Date().getFullYear();
     <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
     <link rel="preload" as="font" type="font/ttf" href={larkenUrl} crossorigin />
     <link rel="preload" as="font" type="font/otf" href={atlasGroteskRegularUrl} crossorigin />
+    <ClientRouter />
   </head>
   <body>
     <script is:inline>document.documentElement.classList.add('js');</script>
@@ -76,6 +78,13 @@ const year = new Date().getFullYear();
         </button>
 
         <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
+          <div class="nav__drawer-header">
+            <button class="nav__close" type="button" aria-label="Close navigation menu" data-nav-close>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
           <ul class="nav__list">
             {
               navLinks.map((link) => (
@@ -97,7 +106,7 @@ const year = new Date().getFullYear();
 
     <div class="nav-scrim" data-nav-scrim hidden></div>
 
-    <main id="main">
+    <main id="main" tabindex="-1">
       <slot />
     </main>
 
@@ -161,87 +170,84 @@ const year = new Date().getFullYear();
     </footer>
 
     <script is:inline>
-      // ---- Mobile nav -------------------------------------------------------
-      (() => {
+      const setupApp = () => {
+        // ---- Mobile nav -------------------------------------------------------
         const toggle = document.querySelector('[data-nav-toggle]');
         const nav = document.querySelector('[data-nav]');
         const scrim = document.querySelector('[data-nav-scrim]');
-        if (!toggle || !nav || !scrim) return;
+        const closeBtn = document.querySelector('[data-nav-close]');
+        if (toggle && nav && scrim) {
+          const setOpen = (open) => {
+            toggle.setAttribute('aria-expanded', String(open));
+            nav.classList.toggle('is-open', open);
+            const header = document.querySelector('[data-header]');
+            if (header) header.classList.toggle('has-nav-open', open);
+            scrim.hidden = !open;
+            scrim.classList.toggle('is-open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+            if (open) {
+              const first = nav.querySelector('a, button');
+              if (first) first.focus();
+            }
+          };
 
-        const setOpen = (open) => {
-          toggle.setAttribute('aria-expanded', String(open));
-          nav.classList.toggle('is-open', open);
-          scrim.hidden = !open;
-          scrim.classList.toggle('is-open', open);
-          document.body.style.overflow = open ? 'hidden' : '';
-          if (open) {
-            // move focus into the panel so the next Tab stays inside it
-            const first = nav.querySelector('a');
-            if (first) first.focus();
-          }
-        };
+          toggle.onclick = () => setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+          if (closeBtn) closeBtn.onclick = () => { setOpen(false); toggle.focus(); };
+          nav.onclick = (e) => {
+            if (e.target.closest('a')) setOpen(false);
+          };
+          scrim.onclick = () => setOpen(false);
 
-        toggle.addEventListener('click', () => {
-          setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-        });
-        nav.addEventListener('click', (e) => {
-          if (e.target.closest('a')) setOpen(false);
-        });
-        scrim.addEventListener('click', () => setOpen(false));
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-            setOpen(false);
-            toggle.focus();
-          }
-        });
-        // when the layout grows past the breakpoint, make sure the panel resets
-        const mq = window.matchMedia('(min-width: 48.0625rem)');
-        mq.addEventListener('change', (e) => {
-          if (e.matches && nav.classList.contains('is-open')) setOpen(false);
-        });
-      })();
+          document.onkeydown = (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+              setOpen(false);
+              toggle.focus();
+            }
+          };
 
-      // ---- Sticky header hairline -----------------------------------------
-      (() => {
+          const mq = window.matchMedia('(min-width: 48.0625rem)');
+          mq.onchange = (e) => {
+            if (e.matches && nav.classList.contains('is-open')) setOpen(false);
+          };
+        }
+
+        // ---- Sticky header hairline -----------------------------------------
         const header = document.querySelector('[data-header]');
-        if (!header) return;
-        const onScroll = () => header.classList.toggle('is-stuck', window.scrollY > 8);
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
-      })();
+        if (header) {
+          const onScroll = () => header.classList.toggle('is-stuck', window.scrollY > 8);
+          onScroll();
+          window.addEventListener('scroll', onScroll, { passive: true });
+        }
 
-      // ---- Balloon parallax ------------------------------------------------
-      (() => {
+        // ---- Balloon parallax ------------------------------------------------
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const balloons = [...document.querySelectorAll('[data-parallax]')];
-        if (reduce || !balloons.length) return;
+        if (!reduce && balloons.length) {
+          let target = 0;
+          let current = 0;
+          let raf = null;
 
-        let target = 0;
-        let current = 0;
-        let raf = null;
+          const tick = () => {
+            current += (target - current) * 0.09;
+            balloons.forEach((el) => {
+              const range = parseFloat(el.dataset.parallax || '20');
+              el.style.setProperty('--px', `${(current * range).toFixed(2)}px`);
+            });
+            if (Math.abs(target - current) > 0.05) raf = requestAnimationFrame(tick);
+            else raf = null;
+          };
 
-        const tick = () => {
-          current += (target - current) * 0.09;
-          balloons.forEach((el) => {
-            const range = parseFloat(el.dataset.parallax || '20');
-            el.style.setProperty('--px', `${(current * range).toFixed(2)}px`);
-          });
-          if (Math.abs(target - current) > 0.05) raf = requestAnimationFrame(tick);
-          else raf = null;
-        };
+          window.addEventListener(
+            'mousemove',
+            (e) => {
+              target = (e.clientX / window.innerWidth - 0.5) * 2;
+              if (!raf) raf = requestAnimationFrame(tick);
+            },
+            { passive: true }
+          );
+        }
 
-        window.addEventListener(
-          'mousemove',
-          (e) => {
-            target = (e.clientX / window.innerWidth - 0.5) * 2;
-            if (!raf) raf = requestAnimationFrame(tick);
-          },
-          { passive: true }
-        );
-      })();
-
-      // ---- Project slider --------------------------------------------------
-      (() => {
+        // ---- Project slider --------------------------------------------------
         document.querySelectorAll('[data-slider]').forEach((root) => {
           const track = root.querySelector('[data-slider-track]');
           const prev = root.querySelector('[data-slider-prev]');
@@ -261,8 +267,6 @@ const year = new Date().getFullYear();
             return Math.max(1, items.length - perView + 1);
           };
 
-          // Dots represent scrollable pages, not cards, so their number
-          // changes with the viewport. Rebuild them whenever that changes.
           let dots = [];
           const buildDots = () => {
             if (!dotsHost) return;
@@ -276,7 +280,7 @@ const year = new Date().getFullYear();
               dot.className = 'slider__dot';
               dot.dataset.sliderDot = '';
               dot.setAttribute('aria-label', `Go to slide ${i + 1} of ${count}`);
-              dot.addEventListener('click', () => goTo(i));
+              dot.onclick = () => goTo(i);
               dotsHost.append(dot);
               dots.push(dot);
             }
@@ -300,26 +304,28 @@ const year = new Date().getFullYear();
             track.scrollTo({ left: clamped * step(), behavior: 'smooth' });
           };
 
-          if (prev) prev.addEventListener('click', () => goTo(Math.round(track.scrollLeft / step()) - 1));
-          if (next) next.addEventListener('click', () => goTo(Math.round(track.scrollLeft / step()) + 1));
+          if (prev) prev.onclick = () => goTo(Math.round(track.scrollLeft / step()) - 1);
+          if (next) next.onclick = () => goTo(Math.round(track.scrollLeft / step()) + 1);
 
-          // keyboard scrolling for the track itself
-          track.addEventListener('keydown', (e) => {
+          track.onkeydown = (e) => {
             if (e.key === 'ArrowRight') { e.preventDefault(); goTo(Math.round(track.scrollLeft / step()) + 1); }
             if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(Math.round(track.scrollLeft / step()) - 1); }
             if (e.key === 'Home') { e.preventDefault(); goTo(0); }
             if (e.key === 'End') { e.preventDefault(); goTo(page() - 1); }
-          });
+          };
 
           track.addEventListener('scroll', update, { passive: true });
           window.addEventListener('resize', update);
           update();
         });
-      })();
 
-      // ---- Scroll reveals --------------------------------------------------
-      (() => {
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // ---- Scroll reveals --------------------------------------------------
+        if (!CSS.supports('transition-delay: calc(sibling-index() * 0.1s)')) {
+          document.querySelectorAll('[data-stagger]').forEach((list) => {
+            [...list.children].forEach((el, index) => el.style.setProperty('--sibling-index', String(index)));
+          });
+        }
+
         const targets = document.querySelectorAll('[data-reveal], [data-stagger]');
         if (reduce) {
           targets.forEach((el) => el.classList.add('is-visible'));
@@ -337,7 +343,14 @@ const year = new Date().getFullYear();
           { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
         );
         targets.forEach((el) => observer.observe(el));
-      })();
+      };
+
+      document.addEventListener('astro:page-load', setupApp);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupApp);
+      } else {
+        setupApp();
+      }
     </script>
   </body>
 </html>

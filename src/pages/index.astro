@@ -15,6 +15,7 @@ const rows = [
     href: url(`/projects/${flagship.slug}`),
     linkLabel: 'Experience more',
     flip: false,
+    priority: true,
   },
   {
     title: trackRecord[0].title,
@@ -25,6 +26,7 @@ const rows = [
     href: url('/projects'),
     linkLabel: 'Experience more',
     flip: true,
+    priority: false,
   },
   {
     title: trackRecord[1].title,
@@ -35,6 +37,7 @@ const rows = [
     href: url('/projects'),
     linkLabel: 'Experience more',
     flip: false,
+    priority: false,
   },
 ];
 
@@ -91,7 +94,15 @@ const sliderItems = [
       {rows.map((row) => (
         <article class:list={['row', row.flip && 'row--flip']}>
           <div class="row__media" data-reveal="left">
-            <img src={row.image} alt={row.alt} width="1280" height="759" loading="lazy" decoding="async" />
+            <img
+              src={row.image}
+              alt={row.alt}
+              width="1280"
+              height="759"
+              loading={row.priority ? 'eager' : 'lazy'}
+              fetchpriority={row.priority ? 'high' : 'auto'}
+              decoding="async"
+            />
           </div>
           <div class="row__body" data-reveal="left" style="transition-delay:100ms">
             <h3 class="row__title">{row.title}</h3>
@@ -146,10 +157,19 @@ const sliderItems = [
     </div>
   </section>
 
-  <!-- Legacy banner -->
+  <!-- Legacy banner with responsive srcset and sizes -->
   <section class="banner">
     <div class="banner__media" aria-hidden="true">
-      <img src={url('/images/hero-sunset.webp')} alt="" width="2400" height="1603" loading="lazy" decoding="async" />
+      <img
+        src={url('/images/hero-sunset.webp')}
+        srcset={`${url('/images/hero-sunset-sm.webp')} 800w, ${url('/images/hero-sunset.webp')} 2400w`}
+        sizes="(max-width: 50rem) 100vw, 1360px"
+        alt=""
+        width="2400"
+        height="1603"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <div class="container banner__inner">
       <p class="banner__text" data-reveal="left">

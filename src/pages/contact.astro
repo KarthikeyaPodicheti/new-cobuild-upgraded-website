@@ -20,20 +20,55 @@ import { url } from '../lib/paths';
           look forward to hearing from you.
         </p>
 
-        <form class="form form--dark" data-mockup-form style="margin-top:var(--space-2xl)">
+        <form class="form form--dark" data-mockup-form style="margin-top:var(--space-2xl)" novalidate>
           <p class="form__required">All fields are required unless marked optional.</p>
           <div class="form-grid">
             <div class="field field--full">
               <label for="name">Full Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" placeholder="Enter your name here" required />
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                enterkeyhint="next"
+                placeholder="Enter your name here"
+                required
+                data-error="name-error"
+                aria-invalid="false"
+              />
+              <span id="name-error" class="field__error">Please provide your full name.</span>
             </div>
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" placeholder="Enter your email here" required />
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                inputmode="email"
+                enterkeyhint="next"
+                placeholder="name@domain.com"
+                required
+                data-error="email-error"
+                aria-invalid="false"
+              />
+              <span id="email-error" class="field__error">Please enter a valid email address.</span>
             </div>
             <div class="field">
               <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Enter your phone number here" required />
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                inputmode="tel"
+                enterkeyhint="next"
+                placeholder="+91 90000 00000"
+                required
+                data-error="phone-error"
+                aria-invalid="false"
+              />
+              <span id="phone-error" class="field__error">Please enter a valid phone number.</span>
             </div>
             <div class="field field--full">
               <label for="interest">I am interested in</label>
@@ -50,20 +85,20 @@ import { url } from '../lib/paths';
             </div>
             <div class="field field--full">
               <label class="checkbox">
-                <input type="checkbox" name="consent" required />
+                <input type="checkbox" name="consent" required data-error="consent-error" aria-invalid="false" />
                 <span>I agree to be contacted about this enquiry. My details will not be used for anything else.</span>
               </label>
+              <span id="consent-error" class="field__error">Please accept the consent check to proceed.</span>
             </div>
           </div>
 
           <div class="form__submit-row">
-            <button class="link link--button" type="submit">Submit</button>
+            <button class="link link--button" type="submit">Submit enquiry</button>
           </div>
 
-          <p class="form__status" data-form-status role="status" aria-live="polite" hidden></p>
           <p class="form__note">
-            Design preview — this form is not connected yet. Write to us directly at
-            <a href={`mailto:${site.email}`}>{site.email}</a>.
+            Design preview — write to us directly at
+            <a href={`mailto:${site.email}`}>{site.email}</a> or call <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.
           </p>
         </form>
       </div>
@@ -73,6 +108,22 @@ import { url } from '../lib/paths';
       </div>
     </div>
   </section>
+
+  <!-- Declarative HTML <dialog closedby="any"> modal for accessible form submission feedback -->
+  <dialog class="modal-dialog" id="contact-dialog" aria-labelledby="dialog-title" aria-modal="true" closedby="any">
+    <div class="modal-dialog__surface">
+      <div class="modal-dialog__badge" aria-hidden="true">✓</div>
+      <h2 id="dialog-title" class="section-title section-title--sm">Enquiry Registered</h2>
+      <p class="body-text" style="margin-top:var(--space-md)">
+        Thank you for contacting NewBuild. We have recorded your interest. In the production release, this forwards directly to our project sales desk in Hyderabad for verified documentation follow-up.
+      </p>
+      <div class="modal-dialog__actions">
+        <form method="dialog">
+          <button class="link link--button" type="submit" autofocus>Dismiss</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Corporate office -->
   <section class="section">
@@ -106,22 +157,75 @@ import { url } from '../lib/paths';
   </section>
 </BaseLayout>
 
-<script>
-  const form = document.querySelector<HTMLFormElement>('[data-mockup-form]');
-  const status = document.querySelector<HTMLElement>('[data-form-status]');
+<script is:inline>
+  const setupContactForm = () => {
+    const form = document.querySelector('[data-mockup-form]');
+    const dialog = document.getElementById('contact-dialog');
+    if (!form) return;
 
-  form?.addEventListener('submit', (event) => {
-    event.preventDefault();
+    // Modern Web Guidance: sync visual :user-invalid with programmatic aria-invalid
+    const linkError = (el, shown) => {
+      const errorId = el.dataset.error;
+      if (!errorId) return;
+      const ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter((id) => id && id !== errorId);
+      if (shown) ids.push(errorId);
+      if (ids.length) el.setAttribute('aria-describedby', ids.join(' '));
+      else el.removeAttribute('aria-describedby');
+    };
 
-    // The preview has no backend. Give the visitor a clear, inline result
-    // instead of a blocking native alert, then reset for another attempt.
-    if (status) {
-      status.textContent =
-        'Thanks — this is a design preview, so nothing has been sent. ' +
-        'In the finished site your enquiry would reach the sales team, and you would get a reply within one working day.';
-      status.hidden = false;
-      status.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    }
-    form.reset();
-  });
+    const syncField = (el) => {
+      if (!el.matches('input, select, textarea')) return;
+      const invalid = el.matches(':user-invalid');
+      if (invalid) {
+        el.setAttribute('aria-invalid', 'true');
+        linkError(el, true);
+      } else {
+        el.setAttribute('aria-invalid', 'false');
+        linkError(el, false);
+      }
+    };
+
+    form.querySelectorAll('input, select, textarea').forEach((el) => {
+      el.addEventListener('blur', () => syncField(el));
+      el.addEventListener('input', () => {
+        if (el.getAttribute('aria-invalid') === 'true') syncField(el);
+      });
+      el.addEventListener('change', () => syncField(el));
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        const firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) {
+          firstInvalid.focus();
+          syncField(firstInvalid);
+        }
+        return;
+      }
+
+      // Valid: show native modal dialog
+      if (dialog && typeof dialog.showModal === 'function') {
+        dialog.showModal();
+        if (!('closedBy' in HTMLDialogElement.prototype)) {
+          dialog.addEventListener('click', (event) => {
+            if (event.target === dialog) dialog.close();
+          });
+        }
+      }
+      form.reset();
+      form.querySelectorAll('input, select, textarea').forEach((el) => {
+        el.setAttribute('aria-invalid', 'false');
+        linkError(el, false);
+      });
+    });
+  };
+
+  document.addEventListener('astro:page-load', setupContactForm);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupContactForm);
+  } else {
+    setupContactForm();
+  }
 </script>

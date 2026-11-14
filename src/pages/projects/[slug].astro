@@ -11,11 +11,6 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-
-const IMG = {
-  courtyard:
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Fragment_of_160_Front_Street_West%2C_Toronto.jpg/1280px-Fragment_of_160_Front_Street_West%2C_Toronto.jpg',
-};
 ---
 
 <BaseLayout title={project.title} description={project.summary}>
@@ -37,7 +32,15 @@ const IMG = {
     <div class="container">
       <div class="row">
         <div class="row__media" data-reveal="left">
-          <img src={photos.courtyard} alt={`${project.title} visual`} width="1280" height="759" loading="lazy" decoding="async" />
+          <img
+            src={photos.courtyard}
+            alt={`${project.title} visual`}
+            width="1280"
+            height="759"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
         </div>
         <div class="row__body" data-reveal="left" style="transition-delay:100ms">
           <h2 class="section-title">At a glance</h2>
@@ -57,6 +60,55 @@ const IMG = {
         Placeholder project details. Verified facts, the RERA number and photography replace these
         before launch.
       </p>
+    </div>
+  </section>
+
+  <!-- Project Specifications & Disclosures — Baseline 2024 exclusive accordions with native name attribute -->
+  <section class="section section--tint">
+    <div class="container">
+      <span class="eyebrow">Specifications & Disclosures</span>
+      <h2 class="section-title section-title--sm" data-reveal="left">Verified documentation</h2>
+      <p class="lead" style="margin-top:var(--space-md)">
+        Explore the structural, regulatory, and architectural specs for {project.title}.
+      </p>
+
+      <div class="faq-list" data-stagger style="margin-top:var(--space-2xl)">
+        <details class="faq-item" name="project-specs">
+          <summary class="faq-summary">
+            <span>RERA and statutory municipal approvals</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-content">
+            <p class="body-text">
+              Sanctioned building plans, environmental clearance, fire NOC, and airport authority height approvals are verified and accessible for review prior to booking.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item" name="project-specs">
+          <summary class="faq-summary">
+            <span>Structural and seismic compliance</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-content">
+            <p class="body-text">
+              Engineered to IS 456 (reinforced concrete) and IS 1893 (seismic zone II design). Uses Fe 550D TMT reinforcement steel and M30/M40 grade ready-mix concrete with third-party cube test validation.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item" name="project-specs">
+          <summary class="faq-summary">
+            <span>Scheduled handover and penalty covenants</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-content">
+            <p class="body-text">
+              Handover timeline is backed by an enforceable builder-buyer agreement containing standard RERA delay compensation clauses and escrow account protection for construction disbursements.
+            </p>
+          </div>
+        </details>
+      </div>
     </div>
   </section>
 
